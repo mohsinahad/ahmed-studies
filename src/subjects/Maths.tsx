@@ -1,24 +1,37 @@
+import { useState } from 'react';
+import { useMathsProgress } from '../hooks/useMathsProgress';
+import MathsTopicMap from '../components/MathsTopicMap';
+import MathsLessonView from '../components/MathsLessonView';
+import { getMathsTopicById } from '../data/mathsCurriculum';
+
 interface Props {
   onBack: () => void;
 }
 
 export default function Maths({ onBack }: Props) {
-  return (
-    <div className="flex flex-col" style={{ height: '100vh' }}>
-      <div className="flex items-center gap-3 px-4 py-3 bg-slate-900 border-b border-slate-800 shrink-0">
-        <button
-          onClick={onBack}
-          className="text-slate-400 hover:text-white text-sm flex items-center gap-1 transition"
-        >
-          ← Back
-        </button>
-        <span className="text-white font-semibold text-sm">Maths</span>
-      </div>
-      <iframe
-        src={`${import.meta.env.BASE_URL}maths/index.html`}
-        className="flex-1 w-full border-none"
-        title="Maths"
+  const { progress, markCompleted, resetProgress } = useMathsProgress();
+  const [activeTopic, setActiveTopic] = useState<string | null>(null);
+
+  const topic = activeTopic ? getMathsTopicById(activeTopic) : null;
+
+  if (topic) {
+    return (
+      <MathsLessonView
+        topic={topic}
+        alreadyCompleted={progress.completedTopics.includes(topic.id)}
+        onComplete={(score) => markCompleted(topic.id, score)}
+        onBack={() => setActiveTopic(null)}
       />
-    </div>
+    );
+  }
+
+  return (
+    <MathsTopicMap
+      completedTopics={progress.completedTopics}
+      scores={progress.scores}
+      onSelect={setActiveTopic}
+      onReset={resetProgress}
+      onBackToHome={onBack}
+    />
   );
 }
