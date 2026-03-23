@@ -15,7 +15,7 @@ export default function Maths({ onBack }: Props) {
         <span className="text-white font-semibold text-sm">Maths</span>
       </div>
       <iframe
-        src="/maths/index.html"
+        src={`${import.meta.env.BASE_URL}maths/index.html`}
         className="flex-1 w-full border-none"
         title="Maths"
       />
