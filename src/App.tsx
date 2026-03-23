@@ -4,8 +4,9 @@ import Maths from './subjects/Maths';
 import SocialStudies from './subjects/SocialStudies';
 import Chemistry from './subjects/Chemistry';
 import AI from './subjects/AI';
+import ELA from './subjects/ELA';
 
-type Subject = 'home' | 'physics' | 'maths' | 'social-studies' | 'chemistry' | 'ai';
+type Subject = 'home' | 'physics' | 'maths' | 'social-studies' | 'chemistry' | 'ai' | 'ela';
 
 const subjects = [
   {
@@ -53,6 +54,15 @@ const subjects = [
     border: 'border-violet-700',
     glow: 'hover:shadow-violet-500/20',
   },
+  {
+    id: 'ela' as const,
+    label: 'English (ELA)',
+    description: 'Grammar, Literature & Writing',
+    icon: '📖',
+    accent: 'from-rose-500 to-pink-600',
+    border: 'border-rose-700',
+    glow: 'hover:shadow-rose-500/20',
+  },
 ];
 
 export default function App() {
@@ -63,6 +73,7 @@ export default function App() {
   if (subject === 'social-studies') return <SocialStudies onBack={() => setSubject('home')} />;
   if (subject === 'chemistry') return <Chemistry onBack={() => setSubject('home')} />;
   if (subject === 'ai') return <AI onBack={() => setSubject('home')} />;
+  if (subject === 'ela') return <ELA onBack={() => setSubject('home')} />;
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-8">
