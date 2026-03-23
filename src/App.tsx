@@ -3,8 +3,9 @@ import Physics from './subjects/Physics';
 import Maths from './subjects/Maths';
 import SocialStudies from './subjects/SocialStudies';
 import Chemistry from './subjects/Chemistry';
+import AI from './subjects/AI';
 
-type Subject = 'home' | 'physics' | 'maths' | 'social-studies' | 'chemistry';
+type Subject = 'home' | 'physics' | 'maths' | 'social-studies' | 'chemistry' | 'ai';
 
 const subjects = [
   {
@@ -43,6 +44,15 @@ const subjects = [
     border: 'border-emerald-700',
     glow: 'hover:shadow-emerald-500/20',
   },
+  {
+    id: 'ai' as const,
+    label: 'AI & Prompting',
+    description: 'How AI works and how to prompt it',
+    icon: '🤖',
+    accent: 'from-violet-500 to-purple-600',
+    border: 'border-violet-700',
+    glow: 'hover:shadow-violet-500/20',
+  },
 ];
 
 export default function App() {
@@ -52,6 +62,7 @@ export default function App() {
   if (subject === 'maths') return <Maths onBack={() => setSubject('home')} />;
   if (subject === 'social-studies') return <SocialStudies onBack={() => setSubject('home')} />;
   if (subject === 'chemistry') return <Chemistry onBack={() => setSubject('home')} />;
+  if (subject === 'ai') return <AI onBack={() => setSubject('home')} />;
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-8">
