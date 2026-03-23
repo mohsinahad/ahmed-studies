@@ -1,0 +1,3052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maths</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f0f1a;
+    --bg2: #1a1a2e;
+    --surface: #25253e;
+    --card: #2f2f4a;
+    --card-hover: #3a3a5c;
+    --fg: #e2e8f0;
+    --fg-dim: #94a3b8;
+    --accent: #818cf8;
+    --accent-glow: rgba(129,140,248,0.3);
+    --green: #34d399;
+    --green-bg: rgba(52,211,153,0.12);
+    --green-border: rgba(52,211,153,0.4);
+    --red: #fb7185;
+    --red-bg: rgba(251,113,133,0.12);
+    --red-border: rgba(251,113,133,0.4);
+    --yellow: #fbbf24;
+    --yellow-dim: rgba(251,191,36,0.15);
+    --mauve: #c084fc;
+    --teal: #2dd4bf;
+    --peach: #fb923c;
+    --radius: 20px;
+    --radius-sm: 12px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Top Bar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    background: rgba(15,15,26,0.85);
+    border-bottom: 1px solid var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+  }
+  .topbar-left { display: flex; align-items: center; gap: 16px; }
+
+  .home-btn {
+    background: var(--surface);
+    color: var(--fg);
+    border: 1px solid var(--card);
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: inherit;
+  }
+  .home-btn:hover { background: var(--card); border-color: var(--accent); }
+  .home-btn:disabled { opacity: 0.25; cursor: default; }
+
+  .app-title {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--mauve), var(--teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .score-area { display: flex; align-items: center; gap: 14px; }
+
+  .score-badge {
+    background: var(--surface);
+    padding: 8px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--yellow);
+    border: 1px solid var(--card);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .score-badge .score-icon { font-size: 16px; }
+
+  .streak-badge {
+    background: var(--yellow-dim);
+    color: var(--yellow);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 13px;
+    border: 1px solid rgba(251,191,36,0.25);
+    display: none;
+  }
+  .streak-badge.visible { display: flex; align-items: center; gap: 6px; }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Home Grid */
+  .home-header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+  .home-header h2 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--fg), var(--fg-dim));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .home-header p {
+    font-size: 16px;
+    color: var(--fg-dim);
+    letter-spacing: 0.3px;
+  }
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .topic-card {
+    background: linear-gradient(160deg, var(--bg2), var(--surface));
+    border: 1px solid var(--card);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .topic-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .topic-card:nth-child(1)::before { background: var(--accent); }
+  .topic-card:nth-child(2)::before { background: var(--green); }
+  .topic-card:nth-child(3)::before { background: var(--teal); }
+  .topic-card:nth-child(4)::before { background: var(--mauve); }
+  .topic-card:nth-child(5)::before { background: var(--peach); }
+  .topic-card:nth-child(6)::before { background: var(--yellow); }
+  .topic-card:nth-child(7)::before { background: var(--red); }
+  .topic-card:nth-child(8)::before { background: var(--peach); }
+  .topic-card:nth-child(9)::before { background: var(--yellow); }
+  .topic-card:nth-child(10)::before { background: var(--accent); }
+
+  .topic-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 16px 48px rgba(129,140,248,0.12);
+  }
+  .topic-card:hover::before { opacity: 1; }
+
+  .topic-card .tc-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .topic-card:nth-child(1) .tc-icon { background: rgba(129,140,248,0.15); }
+  .topic-card:nth-child(2) .tc-icon { background: rgba(52,211,153,0.15); }
+  .topic-card:nth-child(3) .tc-icon { background: rgba(45,212,191,0.15); }
+  .topic-card:nth-child(4) .tc-icon { background: rgba(192,132,252,0.15); }
+  .topic-card:nth-child(5) .tc-icon { background: rgba(251,146,60,0.15); }
+  .topic-card:nth-child(6) .tc-icon { background: rgba(251,191,36,0.15); }
+  .topic-card:nth-child(7) .tc-icon { background: rgba(251,113,133,0.15); }
+  .topic-card:nth-child(8) .tc-icon { background: rgba(251,146,60,0.15); }
+  .topic-card:nth-child(9) .tc-icon { background: rgba(251,191,36,0.15); }
+  .topic-card:nth-child(10) .tc-icon { background: rgba(129,140,248,0.15); }
+
+  .topic-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--fg); }
+  .topic-card p { font-size: 13px; color: var(--fg-dim); line-height: 1.6; }
+
+  /* Topic Page */
+  .topic-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .topic-layout { grid-template-columns: 1fr; }
+  }
+
+  .left-col { display: flex; flex-direction: column; gap: 16px; }
+
+  .viz-panel {
+    background: var(--bg2);
+    border: 1px solid var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--shadow);
+  }
+  .viz-panel canvas {
+    border-radius: var(--radius-sm);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .viz-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 14px;
+  }
+  .viz-btn {
+    background: var(--surface);
+    color: var(--fg);
+    border: 2px solid var(--card);
+    padding: 9px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .viz-btn:hover { border-color: var(--accent); background: rgba(129,140,248,0.08); }
+  .viz-btn.active {
+    border-color: var(--accent);
+    background: rgba(129,140,248,0.15);
+    color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .info-card {
+    background: var(--bg2);
+    border: 1px solid var(--surface);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .info-card h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: var(--accent);
+  }
+  .info-card p, .info-card ul {
+    font-size: 14px;
+    color: var(--fg-dim);
+    line-height: 1.9;
+  }
+  .info-card ul { padding-left: 20px; }
+  .info-card li { margin-bottom: 4px; }
+  .info-card .formula {
+    background: var(--surface);
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    color: var(--yellow);
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid var(--card);
+  }
+
+  /* Quiz */
+  .quiz-card {
+    background: var(--bg2);
+    border: 1px solid var(--surface);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .quiz-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .quiz-question {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--fg);
+    line-height: 1.6;
+    padding: 14px 18px;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--accent);
+  }
+
+  .quiz-options { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+
+  .quiz-btn {
+    background: var(--surface);
+    color: var(--fg);
+    border: 2px solid var(--card);
+    padding: 11px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: inherit;
+    position: relative;
+  }
+  .quiz-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: rgba(129,140,248,0.08);
+    transform: translateY(-2px);
+  }
+  .quiz-btn:disabled { cursor: default; opacity: 0.7; }
+  .quiz-btn.correct {
+    border-color: var(--green) !important;
+    background: var(--green-bg) !important;
+    color: var(--green) !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(52,211,153,0.2);
+  }
+  .quiz-btn.wrong {
+    border-color: var(--red) !important;
+    background: var(--red-bg) !important;
+    color: var(--red) !important;
+    animation: shake 0.5s ease;
+  }
+  .quiz-btn.correct-answer {
+    border-color: var(--green) !important;
+    background: var(--green-bg) !important;
+    color: var(--green) !important;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .quiz-input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .quiz-input {
+    background: var(--surface);
+    border: 2px solid var(--card);
+    color: var(--fg);
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    width: 180px;
+    outline: none;
+    transition: all 0.25s;
+  }
+  .quiz-input:focus { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
+  .quiz-input.correct { border-color: var(--green); box-shadow: 0 0 12px rgba(52,211,153,0.3); }
+  .quiz-input.wrong { border-color: var(--red); box-shadow: 0 0 12px rgba(251,113,133,0.3); animation: shake 0.5s ease; }
+
+  .submit-btn {
+    background: linear-gradient(135deg, var(--accent), var(--mauve));
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: inherit;
+  }
+  .submit-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 4px 16px var(--accent-glow); }
+  .submit-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+
+  .quiz-feedback {
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 20px;
+    animation: popIn 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .quiz-feedback.hidden { display: none; }
+  .quiz-feedback.correct {
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+  }
+  .quiz-feedback.wrong {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    color: var(--red);
+  }
+  .quiz-feedback .fb-icon { font-size: 20px; }
+
+  .next-btn {
+    background: var(--surface);
+    color: var(--fg);
+    border: 1px solid var(--card);
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    margin-top: 12px;
+  }
+  .next-btn:hover { border-color: var(--accent); background: rgba(129,140,248,0.08); }
+
+  .diff-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+  .diff-badge.d1 { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.25); }
+  .diff-badge.d2 { background: rgba(251,191,36,0.12); color: var(--yellow); border: 1px solid rgba(251,191,36,0.25); }
+  .diff-badge.d3 { background: rgba(251,146,60,0.12); color: var(--peach); border: 1px solid rgba(251,146,60,0.25); }
+  .diff-badge.d4 { background: rgba(251,113,133,0.12); color: var(--red); border: 1px solid rgba(251,113,133,0.25); }
+  .diff-badge.d5 { background: rgba(192,132,252,0.12); color: var(--mauve); border: 1px solid rgba(192,132,252,0.25); }
+
+  .diff-dots { display: flex; gap: 3px; }
+  .diff-dots span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor; opacity: 0.3;
+  }
+  .diff-dots span.filled { opacity: 1; }
+
+  .color-accent { color: var(--accent); }
+  .color-green { color: var(--green); }
+  .color-yellow { color: var(--yellow); }
+  .color-red { color: var(--red); }
+  .color-teal { color: var(--teal); }
+  .color-mauve { color: var(--mauve); }
+
+  /* Area explanation modal */
+  #areaModal {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.72);
+    display: none;
+    align-items: center; justify-content: center;
+    backdrop-filter: blur(6px);
+  }
+  #areaModal.open { display: flex; }
+  .area-modal-inner {
+    background: var(--bg2);
+    border: 1px solid var(--surface);
+    border-radius: var(--radius);
+    padding: 28px;
+    max-width: 560px; width: 92%;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    animation: popIn 0.25s ease;
+  }
+  .area-modal-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .area-modal-title { font-size: 18px; font-weight: 800; color: var(--accent); }
+  .area-step-info { font-size: 12px; color: var(--fg-dim); }
+  #areaModalCanvas { width: 100%; border-radius: var(--radius-sm); display: block; }
+  .area-modal-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+  .area-close-btn {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--surface); border: 1px solid var(--card);
+    color: var(--fg); border-radius: 8px; padding: 5px 14px;
+    cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600;
+  }
+  .area-close-btn:hover { background: var(--card); }
+  .explain-area-btn {
+    border-color: var(--green) !important;
+    color: var(--green) !important;
+    background: rgba(52,211,153,0.07) !important;
+  }
+  .explain-area-btn:hover { background: rgba(52,211,153,0.15) !important; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="home-btn" id="homeBtn" disabled onclick="showHome()">Home</button>
+    <span class="app-title">Maths</span>
+  </div>
+  <div class="score-area">
+    <div class="streak-badge" id="streakBadge">Streak: 0</div>
+    <div class="score-badge" id="scoreBadge"><span class="score-icon">*</span> 0 / 0</div>
+  </div>
+</div>
+
+<div class="container" id="app"></div>
+
+<!-- Area Explanation Modal -->
+<div id="areaModal">
+  <div class="area-modal-inner">
+    <button class="area-close-btn" onclick="closeAreaModal()">&#10005; Close</button>
+    <div class="area-modal-header">
+      <span class="area-modal-title" id="areaModalTitle">How Area is Defined</span>
+      <span class="area-step-info" id="areaStepInfo">Step 1 of 4</span>
+    </div>
+    <canvas id="areaModalCanvas"></canvas>
+    <div class="area-modal-footer">
+      <button id="areaModalPrev" class="viz-btn" onclick="areaModalNav(-1)">&#8592; Prev</button>
+      <button id="areaModalNext" class="viz-btn" style="border-color:var(--accent);color:var(--accent);background:rgba(129,140,248,0.12);" onclick="areaModalNav(1)">Next &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let correct = 0, total = 0, streak = 0, difficulty = 1;
+let animId = null;
+
+const C = {
+  bg:'#0f0f1a', bg2:'#1a1a2e', surface:'#25253e', card:'#2f2f4a',
+  fg:'#e2e8f0', fgDim:'#94a3b8',
+  accent:'#818cf8', green:'#34d399', red:'#fb7185',
+  yellow:'#fbbf24', mauve:'#c084fc', teal:'#2dd4bf', peach:'#fb923c'
+};
+
+const DIFF_NAMES = ['','Easy','Medium','Hard','Expert','Master'];
+
+function diffBadgeHTML() {
+  const dots = Array.from({length:5},(_,i)=>`<span class="${i<difficulty?'filled':''}"></span>`).join('');
+  return `<span class="diff-badge d${difficulty}">${DIFF_NAMES[difficulty]} <span class="diff-dots">${dots}</span></span>`;
+}
+
+function updateScore(ok) {
+  if (ok) { correct++; streak++; } else { streak = 0; }
+  total++;
+  // adjust difficulty based on streak
+  if (streak >= 4 && difficulty < 5) { difficulty++; streak = 0; }
+  else if (!ok && difficulty > 1) { difficulty--; }
+  document.getElementById('scoreBadge').innerHTML = `<span class="score-icon">*</span> ${correct} / ${total}`;
+  const sb = document.getElementById('streakBadge');
+  if (streak >= 2) { sb.textContent = `Streak: ${streak}`; sb.classList.add('visible'); }
+  else { sb.classList.remove('visible'); }
+}
+
+function randInt(min, max) { return Math.floor(Math.random()*(max-min+1))+min; }
+
+function stopAnim() { if (animId) { cancelAnimationFrame(animId); animId = null; } }
+
+function showHome() {
+  stopAnim();
+  document.getElementById('homeBtn').disabled = true;
+  document.getElementById('app').innerHTML = `
+    <div class="home-header">
+      <h2>Pick a topic to start learning</h2>
+      <p>Interactive lessons with animations and quizzes</p>
+    </div>
+    <div class="topic-grid">
+      <div class="topic-card" onclick="openTopic('addition')">
+        <div class="tc-icon">+</div>
+        <h3>Addition</h3><p>Put groups together to find the total. Count on, use dots, and solve word problems.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('subtraction')">
+        <div class="tc-icon">&minus;</div>
+        <h3>Subtraction</h3><p>Take away from a group to find what is left. Work with missing numbers and real stories.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('numberline')">
+        <div class="tc-icon">&#8596;</div>
+        <h3>Number Line</h3><p>Hop forward to add and hop back to subtract on a number line from 0 to 20.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('absval')">
+        <div class="tc-icon">| |</div>
+        <h3>Absolute Value</h3><p>Understand distance from zero and how to remove absolute value signs by splitting into two cases.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('angles')">
+        <div class="tc-icon">/</div>
+        <h3>Angles</h3><p>Learn about acute, right, obtuse, straight, and reflex angles with interactive demos.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('triangles')">
+        <div class="tc-icon">^</div>
+        <h3>Triangles</h3><p>Explore equilateral, isosceles, scalene, and right triangles.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('quads')">
+        <div class="tc-icon">#</div>
+        <h3>Quadrilaterals</h3><p>Squares, rectangles, parallelograms, rhombi, and trapezoids.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('perimarea')">
+        <div class="tc-icon">[]</div>
+        <h3>Perimeter & Area</h3><p>Calculate the distance around and space inside shapes.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('circles')">
+        <div class="tc-icon">O</div>
+        <h3>Circles</h3><p>Discover radius, diameter, circumference, and area.</p>
+      </div>
+      <div class="topic-card" onclick="openTopic('pythag')">
+        <div class="tc-icon">~</div>
+        <h3>Pythagorean Theorem</h3><p>The famous a\u00B2 + b\u00B2 = c\u00B2 for right triangles.</p>
+      </div>
+    </div>`;
+}
+
+function openTopic(t) {
+  stopAnim();
+  document.getElementById('homeBtn').disabled = false;
+  ({angles:topicAngles, triangles:topicTriangles, circles:topicCircles,
+    quads:topicQuads, perimarea:topicPerimArea, pythag:topicPythag,
+    absval:topicAbsoluteValue, addition:topicAddition,
+    subtraction:topicSubtraction, numberline:topicNumberLine})[t]();
+}
+
+function makeCanvas(parent, w, h) {
+  const c = document.createElement('canvas');
+  c.width = w*2; c.height = h*2;
+  c.style.width = w+'px'; c.style.height = h+'px';
+  parent.appendChild(c);
+  const ctx = c.getContext('2d');
+  ctx.scale(2,2);
+  return {canvas:c, ctx, w, h};
+}
+
+function cls(ctx, w, h) {
+  ctx.fillStyle = C.bg2;
+  ctx.fillRect(0,0,w,h);
+}
+
+// ===================== ANGLES =====================
+function topicAngles() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Angles</h2>
+          <p>An angle is formed when two rays meet at a point.</p>
+          <ul>
+            <li><span class="color-green">Acute</span>: less than 90&deg;</li>
+            <li><span class="color-yellow">Right</span>: exactly 90&deg;</li>
+            <li><span class="color-accent">Obtuse</span>: between 90&deg; and 180&deg;</li>
+            <li><span class="color-red">Straight</span>: exactly 180&deg;</li>
+            <li><span class="color-mauve">Reflex</span>: between 180&deg; and 360&deg;</li>
+          </ul>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 340);
+  const types = [['Acute',45,C.green],['Right',90,C.yellow],['Obtuse',135,C.accent],['Straight',180,C.red],['Reflex',270,C.mauve]];
+  const cx = w/2, cy = h/2-10, arm = 120;
+  let cur = {name:'Acute', deg:45, color:C.green, animDeg:0, animating:false};
+
+  function drawAngle() {
+    cls(ctx,w,h);
+    if (cur.animating && cur.animDeg < cur.deg) {
+      cur.animDeg = Math.min(cur.animDeg + Math.max(2, cur.deg/30), cur.deg);
+    }
+    const rad = cur.animDeg * Math.PI/180;
+
+    // arc fill
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,45, 0, -rad, true); ctx.closePath();
+    ctx.fillStyle = cur.color + '22'; ctx.fill();
+
+    // arc stroke
+    ctx.beginPath(); ctx.arc(cx,cy,45, 0, -rad, true);
+    ctx.strokeStyle = cur.color; ctx.lineWidth = 2; ctx.stroke();
+
+    // arm 1
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+arm, cy);
+    ctx.strokeStyle = C.fg; ctx.lineWidth = 3; ctx.lineCap='round'; ctx.stroke();
+
+    // arm 2
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+arm*Math.cos(-rad), cy+arm*Math.sin(-rad));
+    ctx.strokeStyle = cur.color; ctx.lineWidth = 3; ctx.stroke();
+
+    // center
+    ctx.beginPath(); ctx.arc(cx,cy,5,0,Math.PI*2);
+    ctx.fillStyle = C.fg; ctx.fill();
+
+    // degree label
+    ctx.fillStyle = cur.color;
+    ctx.font = 'bold 28px Inter, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(`${Math.round(cur.animDeg)}\u00B0`, cx, h-30);
+    ctx.fillStyle = C.fg;
+    ctx.font = 'bold 15px Inter, sans-serif';
+    ctx.fillText(cur.name, cx, h-8);
+
+    if (cur.animating && cur.animDeg < cur.deg) animId = requestAnimationFrame(drawAngle);
+    else cur.animating = false;
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  types.forEach(([name,deg,color], i) => {
+    const b = document.createElement('button');
+    b.className = 'viz-btn' + (i===0?' active':'');
+    b.textContent = name;
+    b.onclick = () => {
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      stopAnim();
+      cur = {name, deg, color, animDeg:0, animating:true};
+      drawAngle();
+    };
+    ctrls.appendChild(b);
+  });
+
+  cur.animating = true;
+  drawAngle();
+  genAngleQuiz();
+}
+
+function genAngleQuiz() {
+  const d = difficulty;
+  let question, answer, explanation, opts, isMultiChoice = true;
+
+  if (d <= 2) {
+    // classify an angle
+    const angle = randInt(1, 359);
+    if (angle<90) answer='Acute'; else if (angle===90) answer='Right';
+    else if (angle<180) answer='Obtuse'; else if (angle===180) answer='Straight';
+    else answer='Reflex';
+    question = `What type of angle is <strong>${angle}&deg;</strong>?`;
+    explanation = `${angle}\u00B0 is an ${answer} angle.`;
+    opts = ['Acute','Right','Obtuse','Straight','Reflex'];
+  } else if (d === 3) {
+    // complementary / supplementary
+    const type = Math.random() < 0.5 ? 'complementary' : 'supplementary';
+    const total = type === 'complementary' ? 90 : 180;
+    const given = randInt(10, total - 10);
+    answer = String(total - given);
+    question = `Two angles are <strong>${type}</strong>. One is <strong>${given}&deg;</strong>. What is the other?`;
+    explanation = `${type} angles add to ${total}\u00B0. ${total} - ${given} = ${answer}\u00B0`;
+    isMultiChoice = false;
+  } else if (d === 4) {
+    // missing angle in triangle
+    const a1 = randInt(20, 80), a2 = randInt(20, 130 - a1);
+    const a3 = 180 - a1 - a2;
+    answer = String(a3);
+    question = `A triangle has angles <strong>${a1}&deg;</strong> and <strong>${a2}&deg;</strong>. What is the third angle?`;
+    explanation = `Triangle angles sum to 180\u00B0. 180 - ${a1} - ${a2} = ${a3}\u00B0`;
+    isMultiChoice = false;
+  } else {
+    // missing angle in quadrilateral
+    const a1 = randInt(50, 120), a2 = randInt(50, 120), a3 = randInt(50, 160 - Math.max(0, a1+a2-200));
+    const a4 = 360 - a1 - a2 - a3;
+    if (a4 < 10 || a4 > 350) return genAngleQuiz(); // reroll
+    answer = String(a4);
+    question = `A quadrilateral has angles <strong>${a1}&deg;</strong>, <strong>${a2}&deg;</strong>, and <strong>${a3}&deg;</strong>. What is the fourth angle?`;
+    explanation = `Quadrilateral angles sum to 360\u00B0. 360 - ${a1} - ${a2} - ${a3} = ${a4}\u00B0`;
+    isMultiChoice = false;
+  }
+
+  if (isMultiChoice) {
+    document.getElementById('quizContent').innerHTML = `
+      <div class="quiz-question">${question} ${diffBadgeHTML()}</div>
+      <div class="quiz-options" id="qOpts">
+        ${opts.map(o=>`<button class="quiz-btn" data-opt="${o}">${o}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback hidden" id="qFeedback"></div>`;
+    document.querySelectorAll('#qOpts .quiz-btn').forEach(btn => {
+      btn.onclick = () => {
+        const chosen = btn.dataset.opt, ok = chosen === answer;
+        updateScore(ok);
+        document.querySelectorAll('#qOpts .quiz-btn').forEach(b => {
+          b.disabled = true;
+          if (b.dataset.opt === answer) b.classList.add('correct-answer');
+        });
+        btn.classList.add(ok?'correct':'wrong');
+        showFeedback('qFeedback', ok, explanation, genAngleQuiz);
+      };
+    });
+  } else {
+    renderInputQuiz(question, answer, explanation, genAngleQuiz);
+  }
+}
+
+function showFeedback(id, ok, explanation, nextFn) {
+  const fb = document.getElementById(id);
+  fb.classList.remove('hidden');
+  fb.className = 'quiz-feedback '+(ok?'correct':'wrong');
+  fb.innerHTML = ok
+    ? `<span class="fb-icon">+</span> Correct! ${explanation}`
+    : `<span class="fb-icon">x</span> Incorrect. ${explanation}`;
+  const nb = document.createElement('button');
+  nb.className='next-btn'; nb.textContent='Next Question'; nb.onclick=nextFn;
+  document.getElementById('quizContent').appendChild(nb);
+}
+
+function renderInputQuiz(question, answer, explanation, nextFn, tolerance) {
+  const tol = tolerance || 0.1;
+  document.getElementById('quizContent').innerHTML = `
+    <div class="quiz-question">${question} ${diffBadgeHTML()}</div>
+    <div class="quiz-input-row">
+      <input class="quiz-input" id="qInput" type="number" step="any" placeholder="Enter answer...">
+      <button class="submit-btn" id="qSubmit">Submit</button>
+    </div>
+    <div class="quiz-feedback hidden" id="qFeedback"></div>`;
+  const input = document.getElementById('qInput'); input.focus();
+  function check() {
+    const val = parseFloat(input.value); if(isNaN(val)) return;
+    document.getElementById('qSubmit').disabled=true; input.disabled=true;
+    const ok = Math.abs(val - parseFloat(answer)) < tol;
+    updateScore(ok); input.classList.add(ok?'correct':'wrong');
+    showFeedback('qFeedback', ok, explanation, nextFn);
+  }
+  document.getElementById('qSubmit').onclick = check;
+  input.onkeydown = e => { if(e.key==='Enter') check(); };
+}
+
+// ===================== TRIANGLES =====================
+function topicTriangles() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Triangles</h2>
+          <p>A triangle has 3 sides and 3 angles that add up to 180&deg;.</p>
+          <p style="margin-top:10px"><strong>By sides:</strong></p>
+          <ul>
+            <li><span class="color-green">Equilateral</span>: all sides equal</li>
+            <li><span class="color-yellow">Isosceles</span>: two sides equal</li>
+            <li><span class="color-accent">Scalene</span>: no sides equal</li>
+          </ul>
+          <p style="margin-top:10px"><strong>By angles:</strong></p>
+          <ul>
+            <li>Acute: all angles &lt; 90&deg;</li>
+            <li>Right: one angle = 90&deg;</li>
+            <li>Obtuse: one angle &gt; 90&deg;</li>
+          </ul>
+          <div class="formula">Area = 1/2 x base x height</div>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 340);
+  const s = 90;
+  const tris = [
+    ['Equilateral',[[0,0],[2,0],[1,Math.sqrt(3)]],C.green, 'All 3 sides equal\nAll angles = 60\u00B0'],
+    ['Isosceles',[[0,0],[2,0],[1,2.5]],C.yellow, '2 sides equal\n2 base angles equal'],
+    ['Scalene',[[0,0],[2.8,0],[1,1.8]],C.accent, 'No sides equal\nNo angles equal'],
+    ['Right',[[0,0],[2,0],[0,1.5]],C.red, 'One angle = 90\u00B0\nSides: a\u00B2+b\u00B2=c\u00B2']
+  ];
+  let curTri = {idx:0, progress:0, animating:false};
+
+  function drawTri() {
+    cls(ctx,w,h);
+    const [name, verts, color, desc] = tris[curTri.idx];
+    const p = Math.min(curTri.progress, 1);
+    const ox = w/2-1.2*s, oy = h/2+0.6*s;
+
+    // draw triangle with progress
+    ctx.beginPath();
+    const pts = verts.map(([vx,vy])=>[ox+vx*s, oy-vy*s]);
+    // trace edges with progress
+    const totalLen = pts.reduce((sum,pt,i)=>{
+      const nxt = pts[(i+1)%pts.length];
+      return sum + Math.hypot(nxt[0]-pt[0], nxt[1]-pt[1]);
+    },0);
+    const drawDist = p * totalLen;
+
+    ctx.fillStyle = color + '18';
+    if (p >= 1) {
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      pts.forEach(([x,y])=>ctx.lineTo(x,y));
+      ctx.closePath(); ctx.fill();
+    }
+
+    // trace outline
+    ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+    let rem = drawDist;
+    for (let i = 0; i < pts.length; i++) {
+      const nxt = pts[(i+1)%pts.length];
+      const segLen = Math.hypot(nxt[0]-pts[i][0], nxt[1]-pts[i][1]);
+      if (rem >= segLen) { ctx.lineTo(nxt[0], nxt[1]); rem -= segLen; }
+      else { const t=rem/segLen; ctx.lineTo(pts[i][0]+t*(nxt[0]-pts[i][0]), pts[i][1]+t*(nxt[1]-pts[i][1])); break; }
+    }
+    ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.stroke();
+
+    // vertices dots
+    if (p >= 1) {
+      pts.forEach(([x,y])=>{
+        ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2);
+        ctx.fillStyle = color; ctx.fill();
+      });
+    }
+
+    // label
+    ctx.fillStyle = color;
+    ctx.font = 'bold 24px Inter, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(name, w/2, h-40);
+    if (p >= 1) {
+      ctx.fillStyle = C.fgDim;
+      ctx.font = '13px Inter, sans-serif';
+      desc.split('\n').forEach((line,i) => ctx.fillText(line, w/2, h-18+i*16));
+    }
+
+    if (curTri.animating && curTri.progress < 1) {
+      curTri.progress += 0.035;
+      animId = requestAnimationFrame(drawTri);
+    }
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  tris.forEach(([name,,color], i) => {
+    const b = document.createElement('button');
+    b.className = 'viz-btn' + (i===0?' active':'');
+    b.textContent = name;
+    b.onclick = () => {
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      stopAnim();
+      curTri = {idx:i, progress:0, animating:true};
+      drawTri();
+    };
+    ctrls.appendChild(b);
+  });
+
+  const expBtnT = document.createElement('button');
+  expBtnT.className = 'viz-btn explain-area-btn';
+  expBtnT.textContent = 'How is Area defined?';
+  expBtnT.onclick = () => showAreaExplain('triangle');
+  ctrls.appendChild(expBtnT);
+
+  curTri.animating = true;
+  drawTri();
+  genTriQuiz();
+}
+
+function genTriQuiz() {
+  const d = difficulty;
+  let question, answer, explanation;
+
+  if (d <= 2) {
+    const base = randInt(3, 8+d*4), height = randInt(2, 6+d*4);
+    const area = base*height/2;
+    question = `A triangle has <strong>base = ${base}</strong> and <strong>height = ${height}</strong>.<br>What is its area?`;
+    answer = String(area); explanation = `Area = 1/2 x ${base} x ${height} = ${area}`;
+  } else if (d === 3) {
+    // give area and height, find base
+    const base = randInt(4, 20), height = randInt(3, 15);
+    const area = base*height/2;
+    question = `A triangle has <strong>area = ${area}</strong> and <strong>height = ${height}</strong>.<br>What is the base?`;
+    answer = String(base); explanation = `base = 2 x area / height = 2 x ${area} / ${height} = ${base}`;
+  } else if (d === 4) {
+    // give area and base, find height
+    const base = randInt(5, 24), height = randInt(4, 20);
+    const area = base*height/2;
+    question = `A triangle has <strong>area = ${area}</strong> and <strong>base = ${base}</strong>.<br>What is the height?`;
+    answer = String(height); explanation = `height = 2 x area / base = 2 x ${area} / ${base} = ${height}`;
+  } else {
+    // sum of angles: given two, find third + classify
+    const a1 = randInt(15, 80), a2 = randInt(15, 140-a1);
+    const a3 = 180-a1-a2;
+    const base = randInt(8, 30), height = randInt(6, 25);
+    const area = base*height/2;
+    question = `A triangle has angles ${a1}&deg;, ${a2}&deg;, ${a3}&deg; with <strong>base = ${base}</strong> and <strong>height = ${height}</strong>.<br>What is its area?`;
+    answer = String(area); explanation = `Area = 1/2 x ${base} x ${height} = ${area}`;
+  }
+
+  renderInputQuiz(question, answer, explanation, genTriQuiz, 0.01);
+}
+
+// ===================== CIRCLES =====================
+function topicCircles() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Circles</h2>
+          <p>A circle is the set of all points at a fixed distance (radius) from the center.</p>
+          <ul>
+            <li><span class="color-green">Radius (r)</span>: center to edge</li>
+            <li><span class="color-red">Diameter (d)</span> = 2r</li>
+            <li>Circumference = 2 x &pi; x r</li>
+            <li>Area = &pi; x r&sup2;</li>
+          </ul>
+          <div class="formula">&pi; &approx; 3.14159</div>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 340);
+  const cx=w/2, cy=h/2-10, R=110;
+  const views = [
+    ['Radius', (frac)=>{
+      const rad = frac*Math.PI*2;
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+R*Math.cos(rad), cy-R*Math.sin(rad));
+      ctx.strokeStyle=C.green; ctx.lineWidth=3; ctx.lineCap='round'; ctx.stroke();
+      const ex=cx+R*Math.cos(rad), ey=cy-R*Math.sin(rad);
+      ctx.beginPath(); ctx.arc(ex,ey,5,0,Math.PI*2); ctx.fillStyle=C.green; ctx.fill();
+      ctx.fillStyle=C.green; ctx.font='bold 14px Inter'; ctx.textAlign='center';
+      ctx.fillText('r', cx+(R/2)*Math.cos(rad)+10, cy-(R/2)*Math.sin(rad));
+    }],
+    ['Diameter', (frac)=>{
+      const rad = frac*Math.PI*2;
+      ctx.beginPath();
+      ctx.moveTo(cx-R*Math.cos(rad), cy+R*Math.sin(rad));
+      ctx.lineTo(cx+R*Math.cos(rad), cy-R*Math.sin(rad));
+      ctx.strokeStyle=C.red; ctx.lineWidth=3; ctx.lineCap='round'; ctx.stroke();
+      ctx.fillStyle=C.red; ctx.font='bold 14px Inter'; ctx.textAlign='center';
+      ctx.fillText('d = 2r', cx+15, cy-10);
+    }],
+    ['Circumference', (frac)=>{
+      ctx.beginPath();
+      ctx.arc(cx,cy,R, -Math.PI/2, -Math.PI/2 + frac*Math.PI*2);
+      ctx.strokeStyle=C.teal; ctx.lineWidth=4; ctx.lineCap='round'; ctx.stroke();
+      ctx.fillStyle=C.teal; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+      ctx.fillText('C = 2\u03C0r', cx, cy+R+24);
+    }],
+    ['Area', (frac)=>{
+      const rings = Math.floor(frac * 20);
+      for (let i=0; i<=rings; i++) {
+        ctx.beginPath(); ctx.arc(cx,cy, R*i/20, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(251,191,36,${0.03})`; ctx.fill();
+        ctx.strokeStyle = C.yellow+'44'; ctx.lineWidth=1; ctx.stroke();
+      }
+      ctx.fillStyle=C.yellow; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+      ctx.fillText('A = \u03C0r\u00B2', cx, cy+R+24);
+    }]
+  ];
+  let curView = {idx:0, progress:0, animating:false};
+
+  function drawCircle() {
+    cls(ctx,w,h);
+    // base circle
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.strokeStyle=C.accent+'66'; ctx.lineWidth=2; ctx.stroke();
+    // center dot
+    ctx.beginPath(); ctx.arc(cx,cy,4,0,Math.PI*2); ctx.fillStyle=C.fg; ctx.fill();
+
+    const [name, drawFn] = views[curView.idx];
+    const p = Math.min(curView.progress, 1);
+    drawFn(p);
+
+    ctx.fillStyle=C.fg; ctx.font='bold 18px Inter'; ctx.textAlign='center';
+    ctx.fillText(name, cx, 26);
+
+    if (curView.animating && curView.progress < 1) {
+      curView.progress += 0.02;
+      animId = requestAnimationFrame(drawCircle);
+    }
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  views.forEach(([name], i) => {
+    const b = document.createElement('button');
+    b.className = 'viz-btn'+(i===0?' active':'');
+    b.textContent = name;
+    b.onclick = () => {
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      stopAnim();
+      curView = {idx:i, progress:0, animating:true};
+      drawCircle();
+    };
+    ctrls.appendChild(b);
+  });
+
+  const expBtnC = document.createElement('button');
+  expBtnC.className = 'viz-btn explain-area-btn';
+  expBtnC.textContent = 'How is Area defined?';
+  expBtnC.onclick = () => showAreaExplain('circle');
+  ctrls.appendChild(expBtnC);
+
+  curView.animating = true;
+  drawCircle();
+  genCircleQuiz();
+}
+
+function genCircleQuiz() {
+  const d = difficulty;
+  let question, answer, explanation;
+
+  if (d <= 2) {
+    const r = randInt(2, 5+d*5);
+    const types = ['area','circumference','diameter'];
+    const qt = types[randInt(0,2)];
+    if (qt==='area') {
+      answer = Math.round(Math.PI*r*r*100)/100;
+      question = `Radius = <strong>${r}</strong>. What is the area? (round to 2 decimals)`;
+      explanation = `\u03C0 x ${r}\u00B2 = \u03C0 x ${r*r} = ${answer}`;
+    } else if (qt==='circumference') {
+      answer = Math.round(2*Math.PI*r*100)/100;
+      question = `Radius = <strong>${r}</strong>. What is the circumference? (round to 2 decimals)`;
+      explanation = `2 x \u03C0 x ${r} = ${answer}`;
+    } else {
+      answer = 2*r;
+      question = `Radius = <strong>${r}</strong>. What is the diameter?`;
+      explanation = `2 x ${r} = ${answer}`;
+    }
+  } else if (d === 3) {
+    const diam = randInt(4, 30);
+    const r = diam/2;
+    if (Math.random()<0.5) {
+      answer = Math.round(Math.PI*r*r*100)/100;
+      question = `Diameter = <strong>${diam}</strong>. What is the area? (round to 2 decimals)`;
+      explanation = `r = ${diam}/2 = ${r}. Area = \u03C0 x ${r}\u00B2 = ${answer}`;
+    } else {
+      answer = Math.round(Math.PI*diam*100)/100;
+      question = `Diameter = <strong>${diam}</strong>. What is the circumference? (round to 2 decimals)`;
+      explanation = `C = \u03C0 x d = \u03C0 x ${diam} = ${answer}`;
+    }
+  } else if (d === 4) {
+    const r = randInt(3, 20);
+    const circ = Math.round(2*Math.PI*r*100)/100;
+    answer = r;
+    question = `A circle has circumference <strong>${circ}</strong>.<br>What is the radius? (whole number)`;
+    explanation = `r = C / (2\u03C0) = ${circ} / ${Math.round(2*Math.PI*100)/100} = ${r}`;
+  } else {
+    const r1 = randInt(3, 10), r2 = r1 + randInt(2, 8);
+    answer = Math.round(Math.PI*(r2*r2-r1*r1)*100)/100;
+    question = `A ring has inner radius <strong>${r1}</strong> and outer radius <strong>${r2}</strong>.<br>What is the area of the ring? (round to 2 decimals)`;
+    explanation = `\u03C0(R\u00B2 - r\u00B2) = \u03C0(${r2*r2} - ${r1*r1}) = \u03C0 x ${r2*r2-r1*r1} = ${answer}`;
+  }
+
+  renderInputQuiz(question, String(answer), explanation, genCircleQuiz);
+}
+
+// ===================== QUADRILATERALS =====================
+function topicQuads() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Quadrilaterals</h2>
+          <p>A quadrilateral has 4 sides. Interior angles add up to 360&deg;.</p>
+          <ul>
+            <li><strong>Square</strong>: 4 equal sides, 4 right angles</li>
+            <li><strong>Rectangle</strong>: opposite sides equal, 4 right angles</li>
+            <li><strong>Parallelogram</strong>: opposite sides parallel & equal</li>
+            <li><strong>Rhombus</strong>: 4 equal sides (tilted square)</li>
+            <li><strong>Trapezoid</strong>: one pair of parallel sides</li>
+          </ul>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 340);
+  const sc = 80;
+  const quads = [
+    ['Square',[[0,0],[2,0],[2,2],[0,2]],C.accent,'4 equal sides\n4 right angles'],
+    ['Rectangle',[[0,0],[3,0],[3,1.5],[0,1.5]],C.green,'Opposite sides equal\n4 right angles'],
+    ['Parallelogram',[[0.5,0],[3,0],[2.5,2],[0,2]],C.yellow,'Opposite sides\nparallel & equal'],
+    ['Rhombus',[[1.5,0],[3,1],[1.5,2],[0,1]],C.mauve,'4 equal sides\nNo right angles'],
+    ['Trapezoid',[[0.5,0],[2.5,0],[2,2],[1,2]],C.teal,'One pair of\nparallel sides']
+  ];
+  let curQ = {idx:0, progress:0, animating:false};
+
+  function drawQuad() {
+    cls(ctx,w,h);
+    const [name, verts, color, desc] = quads[curQ.idx];
+    const p = Math.min(curQ.progress, 1);
+    const ox = w/2 - 1.5*sc, oy = h/2 + 0.8*sc;
+
+    const pts = verts.map(([vx,vy])=>[ox+vx*sc, oy-vy*sc]);
+    const totalLen = pts.reduce((sum,pt,i)=>{
+      const nxt = pts[(i+1)%pts.length];
+      return sum+Math.hypot(nxt[0]-pt[0],nxt[1]-pt[1]);
+    },0);
+
+    if (p>=1) {
+      ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]);
+      pts.forEach(([x,y])=>ctx.lineTo(x,y)); ctx.closePath();
+      ctx.fillStyle=color+'18'; ctx.fill();
+    }
+
+    ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]);
+    let rem = p*totalLen;
+    for (let i=0; i<pts.length; i++) {
+      const nxt = pts[(i+1)%pts.length];
+      const segLen = Math.hypot(nxt[0]-pts[i][0],nxt[1]-pts[i][1]);
+      if(rem>=segLen){ctx.lineTo(nxt[0],nxt[1]);rem-=segLen;}
+      else{const t=rem/segLen;ctx.lineTo(pts[i][0]+t*(nxt[0]-pts[i][0]),pts[i][1]+t*(nxt[1]-pts[i][1]));break;}
+    }
+    ctx.strokeStyle=color; ctx.lineWidth=3; ctx.lineCap='round'; ctx.stroke();
+
+    if(p>=1) pts.forEach(([x,y])=>{ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();});
+
+    ctx.fillStyle=color; ctx.font='bold 24px Inter'; ctx.textAlign='center';
+    ctx.fillText(name, w/2, h-40);
+    if(p>=1){ctx.fillStyle=C.fgDim;ctx.font='13px Inter';
+      desc.split('\n').forEach((l,i)=>ctx.fillText(l,w/2,h-18+i*16));}
+
+    if(curQ.animating&&curQ.progress<1){curQ.progress+=0.03;animId=requestAnimationFrame(drawQuad);}
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  quads.forEach(([name,,color],i)=>{
+    const b=document.createElement('button');
+    b.className='viz-btn'+(i===0?' active':'');
+    b.textContent=name;
+    b.onclick=()=>{
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); stopAnim();
+      curQ={idx:i,progress:0,animating:true}; drawQuad();
+    };
+    ctrls.appendChild(b);
+  });
+
+  const expBtnQ = document.createElement('button');
+  expBtnQ.className = 'viz-btn explain-area-btn';
+  expBtnQ.textContent = 'How is Area defined?';
+  expBtnQ.onclick = () => showAreaExplain(quadAreaKey[curQ.idx]);
+  ctrls.appendChild(expBtnQ);
+
+  curQ.animating=true; drawQuad();
+  genQuadQuiz();
+}
+
+function genQuadQuiz() {
+  const d = difficulty;
+  let question, answer, explanation, opts, isMultiChoice = true;
+
+  if (d <= 2) {
+    const descs = [
+      ['4 equal sides and 4 right angles','Square'],
+      ['Opposite sides equal, 4 right angles, not all sides equal','Rectangle'],
+      ['Opposite sides parallel and equal, no right angles','Parallelogram'],
+      ['4 equal sides but no right angles','Rhombus'],
+      ['Exactly one pair of parallel sides','Trapezoid']
+    ];
+    const [desc, ans] = descs[randInt(0, descs.length-1)];
+    answer = ans;
+    question = `Which shape has: <strong>"${desc}"</strong>?`;
+    explanation = `It's a ${answer}.`;
+    opts = ['Square','Rectangle','Parallelogram','Rhombus','Trapezoid'];
+  } else if (d === 3) {
+    // area of rhombus or parallelogram
+    if (Math.random() < 0.5) {
+      const d1 = randInt(4, 16), d2 = randInt(4, 16);
+      const area = d1*d2/2;
+      question = `A rhombus has diagonals <strong>${d1}</strong> and <strong>${d2}</strong>.<br>What is its area?`;
+      answer = String(area); explanation = `Area = (d1 x d2)/2 = (${d1} x ${d2})/2 = ${area}`;
+      isMultiChoice = false;
+    } else {
+      const base = randInt(4, 15), height = randInt(3, 12);
+      const area = base*height;
+      question = `A parallelogram has <strong>base = ${base}</strong> and <strong>height = ${height}</strong>.<br>What is its area?`;
+      answer = String(area); explanation = `Area = base x height = ${base} x ${height} = ${area}`;
+      isMultiChoice = false;
+    }
+  } else if (d === 4) {
+    // diagonal / property questions
+    const propQs = [
+      ['Diagonals bisect each other at right angles and are equal','Square','Diagonals of a square bisect at 90\u00B0 and are equal.'],
+      ['Diagonals bisect each other at right angles but are NOT equal','Rhombus','Rhombus diagonals bisect at 90\u00B0 but differ in length.'],
+      ['Diagonals bisect each other but NOT at right angles','Parallelogram','Parallelogram diagonals bisect each other.'],
+      ['Diagonals are equal but do NOT bisect at right angles','Rectangle','Rectangle diagonals are equal and bisect each other.']
+    ];
+    const [desc, ans, expl] = propQs[randInt(0, propQs.length-1)];
+    answer = ans; explanation = expl;
+    question = `Which shape: <strong>"${desc}"</strong>?`;
+    opts = ['Square','Rectangle','Parallelogram','Rhombus'];
+  } else {
+    // trapezoid area
+    const a = randInt(4, 15), b = randInt(4, 15), h = randInt(3, 12);
+    const area = (a+b)*h/2;
+    question = `A trapezoid has parallel sides <strong>${a}</strong> and <strong>${b}</strong>, and height <strong>${h}</strong>.<br>What is its area?`;
+    answer = String(area); explanation = `Area = (a+b)/2 x h = (${a}+${b})/2 x ${h} = ${(a+b)/2} x ${h} = ${area}`;
+    isMultiChoice = false;
+  }
+
+  if (isMultiChoice) {
+    document.getElementById('quizContent').innerHTML = `
+      <div class="quiz-question">${question} ${diffBadgeHTML()}</div>
+      <div class="quiz-options" id="qOpts">
+        ${opts.map(o=>`<button class="quiz-btn" data-opt="${o}">${o}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback hidden" id="qFeedback"></div>`;
+    document.querySelectorAll('#qOpts .quiz-btn').forEach(btn=>{
+      btn.onclick=()=>{
+        const chosen=btn.dataset.opt, ok=chosen===answer;
+        updateScore(ok);
+        document.querySelectorAll('#qOpts .quiz-btn').forEach(b=>{
+          b.disabled=true;
+          if(b.dataset.opt===answer) b.classList.add('correct-answer');
+        });
+        btn.classList.add(ok?'correct':'wrong');
+        showFeedback('qFeedback', ok, explanation, genQuadQuiz);
+      };
+    });
+  } else {
+    renderInputQuiz(question, answer, explanation, genQuadQuiz, 0.01);
+  }
+}
+
+// ===================== PERIMETER & AREA =====================
+function topicPerimArea() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Perimeter & Area</h2>
+          <p><strong>Perimeter</strong> = distance around a shape<br>
+          <strong>Area</strong> = space inside a shape</p>
+          <p style="margin-top:10px"><strong>Rectangle:</strong></p>
+          <div class="formula">P = 2(l + w) &emsp; A = l x w</div>
+          <p><strong>Triangle:</strong></p>
+          <div class="formula">A = 1/2 x base x height</div>
+          <p><strong>Circle:</strong></p>
+          <div class="formula">C = 2&pi;r &emsp; A = &pi;r&sup2;</div>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 340);
+  const rw=220, rh=140, rx=(w-rw)/2, ry=(h-rh)/2-10;
+  let curPA = {mode:'perimeter', progress:0, animating:false};
+
+  function drawPA() {
+    cls(ctx,w,h);
+    ctx.strokeStyle=C.accent+'44'; ctx.lineWidth=2;
+    ctx.strokeRect(rx,ry,rw,rh);
+
+    ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+    ctx.fillText('length = 4', rx+rw/2, ry+rh+22);
+    ctx.save(); ctx.translate(rx+rw+22, ry+rh/2); ctx.rotate(-Math.PI/2);
+    ctx.fillText('width = 3', 0, 0); ctx.restore();
+
+    const p = Math.min(curPA.progress, 1);
+
+    if (curPA.mode === 'perimeter') {
+      const perim = 2*(rw+rh);
+      const dist = p*perim;
+      const corners = [[rx,ry],[rx+rw,ry],[rx+rw,ry+rh],[rx,ry+rh],[rx,ry]];
+      ctx.beginPath(); ctx.moveTo(rx,ry);
+      let rem=dist;
+      for(let i=0;i<corners.length-1;i++){
+        const [sx,sy]=corners[i],[ex,ey]=corners[i+1];
+        const len=Math.hypot(ex-sx,ey-sy);
+        if(rem>=len){ctx.lineTo(ex,ey);rem-=len;}
+        else{const t=rem/len;ctx.lineTo(sx+t*(ex-sx),sy+t*(ey-sy));break;}
+      }
+      ctx.strokeStyle=C.green; ctx.lineWidth=4; ctx.lineCap='round'; ctx.stroke();
+
+      ctx.fillStyle=C.green; ctx.font='bold 16px Inter'; ctx.textAlign='center';
+      ctx.fillText('Perimeter', w/2, 26);
+      if(p>=1) ctx.fillText('P = 2(4+3) = 14', w/2, h-14);
+    } else {
+      const fillW = rw*p;
+      ctx.fillStyle=C.yellow+'25';
+      ctx.fillRect(rx,ry,fillW,rh);
+      ctx.strokeStyle=C.yellow; ctx.lineWidth=3;
+      ctx.strokeRect(rx,ry,rw,rh);
+
+      // grid lines
+      if(p>0.3){
+        ctx.strokeStyle=C.yellow+'22'; ctx.lineWidth=1;
+        for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(rx+rw*i/4,ry);ctx.lineTo(rx+rw*i/4,ry+rh);ctx.stroke();}
+        for(let i=1;i<3;i++){ctx.beginPath();ctx.moveTo(rx,ry+rh*i/3);ctx.lineTo(rx+rw,ry+rh*i/3);ctx.stroke();}
+      }
+
+      ctx.fillStyle=C.yellow; ctx.font='bold 16px Inter'; ctx.textAlign='center';
+      ctx.fillText('Area', w/2, 26);
+      if(p>=1) ctx.fillText('A = 4 x 3 = 12', w/2, h-14);
+    }
+
+    if(curPA.animating&&curPA.progress<1){curPA.progress+=0.025;animId=requestAnimationFrame(drawPA);}
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  ['Perimeter','Area'].forEach((name,i)=>{
+    const b=document.createElement('button');
+    b.className='viz-btn'+(i===0?' active':'');
+    b.textContent=name;
+    b.onclick=()=>{
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); stopAnim();
+      curPA={mode:name.toLowerCase(),progress:0,animating:true}; drawPA();
+    };
+    ctrls.appendChild(b);
+  });
+
+  const expBtnPA = document.createElement('button');
+  expBtnPA.className = 'viz-btn explain-area-btn';
+  expBtnPA.textContent = 'How is Area defined?';
+  expBtnPA.onclick = () => showAreaExplain('rectangle');
+  ctrls.appendChild(expBtnPA);
+
+  curPA.animating=true; drawPA();
+  genPAQuiz();
+}
+
+function genPAQuiz() {
+  const d = difficulty;
+  let question, answer, explanation;
+
+  if (d <= 1) {
+    const l=randInt(2,12), wi=randInt(2,10);
+    const isP = Math.random()<0.5;
+    answer = isP ? 2*(l+wi) : l*wi;
+    const label = isP ? 'Perimeter' : 'Area';
+    explanation = isP ? `2(${l}+${wi}) = 2 x ${l+wi} = ${answer}` : `${l} x ${wi} = ${answer}`;
+    question = `Rectangle: <strong>length = ${l}</strong>, <strong>width = ${wi}</strong>.<br>What is the <strong>${label}</strong>?`;
+  } else if (d === 2) {
+    // triangle area/perimeter
+    const base=randInt(3,15), height=randInt(3,12);
+    answer = base*height/2;
+    question = `Triangle: <strong>base = ${base}</strong>, <strong>height = ${height}</strong>.<br>What is the <strong>Area</strong>?`;
+    explanation = `1/2 x ${base} x ${height} = ${answer}`;
+  } else if (d === 3) {
+    // rhombus area using diagonals
+    const d1=randInt(4,18), d2=randInt(4,18);
+    answer = d1*d2/2;
+    question = `Rhombus: diagonals = <strong>${d1}</strong> and <strong>${d2}</strong>.<br>What is the <strong>Area</strong>?`;
+    explanation = `(d1 x d2) / 2 = (${d1} x ${d2}) / 2 = ${answer}`;
+  } else if (d === 4) {
+    // trapezoid area
+    const a=randInt(5,20), b=randInt(5,20), h=randInt(3,15);
+    answer = (a+b)*h/2;
+    question = `Trapezoid: parallel sides <strong>${a}</strong> and <strong>${b}</strong>, height <strong>${h}</strong>.<br>What is the <strong>Area</strong>?`;
+    explanation = `(${a}+${b})/2 x ${h} = ${(a+b)/2} x ${h} = ${answer}`;
+  } else {
+    // composite shapes
+    const l1=randInt(5,15), w1=randInt(4,10), base=randInt(3,l1), tH=randInt(3,8);
+    const rectArea = l1*w1, triArea = base*tH/2;
+    answer = rectArea + triArea;
+    question = `A shape is made of a rectangle (<strong>${l1} x ${w1}</strong>) with a triangle on top (<strong>base = ${base}</strong>, <strong>height = ${tH}</strong>).<br>What is the <strong>total area</strong>?`;
+    explanation = `Rectangle: ${l1} x ${w1} = ${rectArea}. Triangle: 1/2 x ${base} x ${tH} = ${triArea}. Total = ${answer}`;
+  }
+
+  renderInputQuiz(question, String(answer), explanation, genPAQuiz, 0.01);
+}
+
+// ===================== PYTHAGOREAN THEOREM =====================
+function topicPythag() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Pythagorean Theorem</h2>
+          <p>In a <strong>right triangle</strong>:</p>
+          <div class="formula">a&sup2; + b&sup2; = c&sup2;</div>
+          <p>where <em>c</em> is the hypotenuse (longest side, opposite the right angle).</p>
+          <p style="margin-top:10px"><strong>Common triples:</strong></p>
+          <ul>
+            <li>3, 4, 5</li>
+            <li>5, 12, 13</li>
+            <li>8, 15, 17</li>
+          </ul>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 380);
+  const steps = [
+    ['Triangle', 'The right triangle'],
+    ['Side a\u00B2', 'Square on side a'],
+    ['Side b\u00B2', 'Square on side b'],
+    ['a\u00B2 + b\u00B2 = c\u00B2', 'The theorem!']
+  ];
+  let curStep = {idx:0, progress:0, animating:false};
+  const sc=45, ox=150, oy=280;
+
+  function drawPythag() {
+    cls(ctx,w,h);
+    const p = Math.min(curStep.progress, 1);
+    const idx = curStep.idx;
+
+    // always draw triangle
+    ctx.beginPath();
+    ctx.moveTo(ox,oy); ctx.lineTo(ox+3*sc,oy); ctx.lineTo(ox,oy-4*sc); ctx.closePath();
+    ctx.fillStyle=C.accent+'15'; ctx.fill();
+    ctx.strokeStyle=C.accent; ctx.lineWidth=2.5; ctx.stroke();
+
+    // right angle mark
+    ctx.beginPath(); ctx.moveTo(ox+10,oy); ctx.lineTo(ox+10,oy-10); ctx.lineTo(ox,oy-10);
+    ctx.strokeStyle=C.fg; ctx.lineWidth=1.5; ctx.stroke();
+
+    // labels
+    ctx.font='bold 14px Inter'; ctx.textAlign='center';
+    ctx.fillStyle=C.green; ctx.fillText('a=3', ox+1.5*sc, oy+18);
+    ctx.fillStyle=C.yellow; ctx.save(); ctx.translate(ox-14,oy-2*sc); ctx.rotate(-Math.PI/2);
+    ctx.fillText('b=4',0,0); ctx.restore();
+    ctx.fillStyle=C.red; ctx.fillText('c=5', ox+2*sc+14, oy-2.2*sc);
+
+    if (idx>=1) { // a squared
+      const alpha = idx===1 ? p : 1;
+      ctx.globalAlpha=alpha*0.25; ctx.fillStyle=C.green;
+      ctx.fillRect(ox, oy+2, 3*sc, 3*sc);
+      ctx.globalAlpha=alpha; ctx.strokeStyle=C.green; ctx.lineWidth=2;
+      ctx.strokeRect(ox, oy+2, 3*sc, 3*sc);
+      ctx.globalAlpha=1;
+      if(alpha>0.5){ctx.fillStyle=C.green;ctx.font='bold 13px Inter';ctx.textAlign='center';
+        ctx.fillText('a\u00B2=9',ox+1.5*sc,oy+2+1.5*sc+5);}
+    }
+    if (idx>=2) { // b squared
+      const alpha = idx===2 ? p : 1;
+      ctx.globalAlpha=alpha*0.25; ctx.fillStyle=C.yellow;
+      ctx.fillRect(ox-4*sc, oy-4*sc, 4*sc, 4*sc);
+      ctx.globalAlpha=alpha; ctx.strokeStyle=C.yellow; ctx.lineWidth=2;
+      ctx.strokeRect(ox-4*sc, oy-4*sc, 4*sc, 4*sc);
+      ctx.globalAlpha=1;
+      if(alpha>0.5){ctx.fillStyle=C.yellow;ctx.font='bold 13px Inter';ctx.textAlign='center';
+        ctx.fillText('b\u00B2=16',ox-2*sc,oy-2*sc+5);}
+    }
+    if (idx>=3 && p>0.3) {
+      ctx.fillStyle=C.fg; ctx.font='bold 20px Inter'; ctx.textAlign='center';
+      ctx.fillText('a\u00B2 + b\u00B2 = c\u00B2', w/2+60, 30);
+      ctx.font='bold 16px Inter'; ctx.fillStyle=C.fgDim;
+      ctx.fillText('9 + 16 = 25', w/2+60, 56);
+    }
+
+    const [name, desc] = steps[curStep.idx];
+    ctx.fillStyle=C.fg; ctx.font='bold 15px Inter'; ctx.textAlign='center';
+    ctx.fillText(name, w/2, h-10);
+
+    if(curStep.animating&&curStep.progress<1){curStep.progress+=0.03;animId=requestAnimationFrame(drawPythag);}
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  steps.forEach(([name],i)=>{
+    const b=document.createElement('button');
+    b.className='viz-btn'+(i===0?' active':'');
+    b.textContent=name;
+    b.onclick=()=>{
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); stopAnim();
+      curStep={idx:i,progress:0,animating:true}; drawPythag();
+    };
+    ctrls.appendChild(b);
+  });
+
+  curStep.animating=true; drawPythag();
+  genPythagQuiz();
+}
+
+function genPythagQuiz() {
+  const d = difficulty;
+  let question, answer, explanation;
+
+  if (d <= 2) {
+    const triples = d===1 ? [[3,4,5],[6,8,10]] : [[3,4,5],[5,12,13],[6,8,10],[8,15,17]];
+    const [a,b,c] = triples[randInt(0,triples.length-1)];
+    const qt = ['c','a','b'][randInt(0,2)];
+    if(qt==='c'){answer=c;question=`a = ${a}, b = ${b}. Find <strong>c</strong> (hypotenuse).`;
+      explanation=`c = \u221A(${a}\u00B2+${b}\u00B2) = \u221A${a*a+b*b} = ${c}`;}
+    else if(qt==='a'){answer=a;question=`b = ${b}, c = ${c}. Find side <strong>a</strong>.`;
+      explanation=`a = \u221A(${c}\u00B2-${b}\u00B2) = \u221A${c*c-b*b} = ${a}`;}
+    else{answer=b;question=`a = ${a}, c = ${c}. Find side <strong>b</strong>.`;
+      explanation=`b = \u221A(${c}\u00B2-${a}\u00B2) = \u221A${c*c-a*a} = ${b}`;}
+  } else if (d === 3) {
+    // is it a right triangle?
+    const triples = [[3,4,5],[5,12,13],[7,24,25],[8,15,17]];
+    const isRight = Math.random() < 0.5;
+    let a, b, c;
+    if (isRight) {
+      [a,b,c] = triples[randInt(0,triples.length-1)];
+    } else {
+      a=randInt(3,12); b=randInt(3,12); c=randInt(Math.max(a,b)+1, a+b-1);
+      if (a*a+b*b===c*c) c++;
+    }
+    answer = isRight ? 'Yes' : 'No';
+    question = `Is a triangle with sides <strong>${a}</strong>, <strong>${b}</strong>, <strong>${c}</strong> a right triangle? (Yes/No)`;
+    explanation = `${a}\u00B2+${b}\u00B2 = ${a*a+b*b}, ${c}\u00B2 = ${c*c}. ${a*a+b*b===c*c?'Equal':'Not equal'} \u2192 ${answer}`;
+
+    // Use multiple choice for Yes/No
+    document.getElementById('quizContent').innerHTML = `
+      <div class="quiz-question">${question} ${diffBadgeHTML()}</div>
+      <div class="quiz-options" id="qOpts">
+        <button class="quiz-btn" data-opt="Yes">Yes</button>
+        <button class="quiz-btn" data-opt="No">No</button>
+      </div>
+      <div class="quiz-feedback hidden" id="qFeedback"></div>`;
+    document.querySelectorAll('#qOpts .quiz-btn').forEach(btn=>{
+      btn.onclick=()=>{
+        const ok=btn.dataset.opt===answer;
+        updateScore(ok);
+        document.querySelectorAll('#qOpts .quiz-btn').forEach(b=>{
+          b.disabled=true;
+          if(b.dataset.opt===answer) b.classList.add('correct-answer');
+        });
+        btn.classList.add(ok?'correct':'wrong');
+        showFeedback('qFeedback', ok, explanation, genPythagQuiz);
+      };
+    });
+    return;
+  } else if (d === 4) {
+    // distance between two points
+    const triples = [[3,4,5],[5,12,13],[6,8,10],[8,15,17]];
+    const [dx,dy,dist] = triples[randInt(0,triples.length-1)];
+    const x1=randInt(0,5), y1=randInt(0,5);
+    const x2=x1+dx, y2=y1+dy;
+    answer = dist;
+    question = `What is the distance between points <strong>(${x1}, ${y1})</strong> and <strong>(${x2}, ${y2})</strong>?`;
+    explanation = `d = \u221A((${x2}-${x1})\u00B2+(${y2}-${y1})\u00B2) = \u221A(${dx*dx}+${dy*dy}) = \u221A${dx*dx+dy*dy} = ${dist}`;
+  } else {
+    // diagonal of a rectangle (3D or large)
+    const triples = [[3,4,5],[5,12,13],[8,15,17],[7,24,25]];
+    const [a,b,c] = triples[randInt(0,triples.length-1)];
+    answer = c;
+    question = `A rectangle has sides <strong>${a}</strong> and <strong>${b}</strong>.<br>What is the length of its diagonal?`;
+    explanation = `diagonal = \u221A(${a}\u00B2+${b}\u00B2) = \u221A(${a*a}+${b*b}) = \u221A${a*a+b*b} = ${c}`;
+  }
+
+  renderInputQuiz(question, String(answer), explanation, genPythagQuiz);
+}
+
+// ===================== AREA EXPLANATION MODAL =====================
+const AM_W = 500, AM_H = 300; // logical canvas size
+
+function areaModalCls(ctx) {
+  ctx.setTransform(2, 0, 0, 2, 0, 0);
+  ctx.fillStyle = C.bg2; ctx.fillRect(0, 0, AM_W, AM_H);
+  ctx.setLineDash([]);
+}
+
+const areaExplains = {
+
+  triangle: [
+    { title: 'Start with a rectangle',
+      draw(ctx, p) {
+        const bw=200,bh=110, x=(AM_W-bw)/2, y=(AM_H-bh)/2-8;
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.accent+'28'; ctx.fillRect(x,y,bw,bh);
+        ctx.strokeStyle=C.accent+'88'; ctx.lineWidth=2; ctx.setLineDash([6,4]);
+        ctx.strokeRect(x,y,bw,bh); ctx.setLineDash([]);
+        ctx.globalAlpha=1;
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('base  b', x+bw/2, y+bh+20);
+        ctx.save(); ctx.translate(x-18,y+bh/2); ctx.rotate(-Math.PI/2);
+        ctx.fillText('height  h',0,0); ctx.restore();
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter';
+        ctx.fillText('Rectangle  =  b \u00D7 h', AM_W/2, y+bh+40);
+      }
+    },
+    { title: 'Draw the diagonal — splits it in half',
+      draw(ctx, p) {
+        const bw=200,bh=110, x=(AM_W-bw)/2, y=(AM_H-bh)/2-8;
+        ctx.fillStyle=C.accent+'20'; ctx.fillRect(x,y,bw,bh);
+        ctx.strokeStyle=C.accent+'66'; ctx.lineWidth=2; ctx.setLineDash([6,4]);
+        ctx.strokeRect(x,y,bw,bh); ctx.setLineDash([]);
+        ctx.beginPath(); ctx.moveTo(x,y);
+        ctx.lineTo(x+p*bw, y+p*bh);
+        ctx.strokeStyle=C.yellow; ctx.lineWidth=3; ctx.lineCap='round'; ctx.stroke();
+        if(p>0.5){ ctx.fillStyle=C.fgDim; ctx.font='13px Inter'; ctx.textAlign='center';
+          ctx.fillText('The diagonal cuts the rectangle into 2 equal triangles', AM_W/2, y+bh+30); }
+      }
+    },
+    { title: 'The triangle is exactly half the rectangle',
+      draw(ctx, p) {
+        const bw=200,bh=110, x=(AM_W-bw)/2, y=(AM_H-bh)/2-8;
+        // faded second triangle
+        ctx.globalAlpha=1-p*0.75;
+        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+bh); ctx.lineTo(x+bw,y+bh); ctx.closePath();
+        ctx.fillStyle=C.accent+'33'; ctx.fill();
+        ctx.strokeStyle=C.accent+'55'; ctx.lineWidth=1.5; ctx.stroke();
+        ctx.globalAlpha=1;
+        // highlighted triangle
+        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+bw,y); ctx.lineTo(x+bw,y+bh); ctx.closePath();
+        ctx.fillStyle=C.green+'50'; ctx.fill();
+        ctx.strokeStyle=C.green; ctx.lineWidth=2.5; ctx.stroke();
+        ctx.fillStyle=C.fg; ctx.font='bold 14px Inter'; ctx.textAlign='center';
+        ctx.fillText('Triangle = \u00BD of rectangle', AM_W/2, y+bh+30);
+      }
+    },
+    { title: 'Area = \u00BD \u00D7 base \u00D7 height',
+      draw(ctx, p) {
+        const bw=200,bh=110, x=(AM_W-bw)/2, y=(AM_H-bh)/2-18;
+        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+bw,y); ctx.lineTo(x+bw,y+bh); ctx.closePath();
+        ctx.fillStyle=C.green+'50'; ctx.fill();
+        ctx.strokeStyle=C.green; ctx.lineWidth=2.5; ctx.stroke();
+        // dimension lines
+        ctx.strokeStyle=C.fg+'aa'; ctx.lineWidth=1.5;
+        ctx.beginPath(); ctx.moveTo(x,y+bh+14); ctx.lineTo(x+bw,y+bh+14); ctx.stroke();
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('b', x+bw/2, y+bh+28);
+        ctx.beginPath(); ctx.moveTo(x+bw+14,y); ctx.lineTo(x+bw+14,y+bh); ctx.stroke();
+        ctx.save(); ctx.translate(x+bw+28,y+bh/2); ctx.rotate(-Math.PI/2);
+        ctx.fillText('h',0,0); ctx.restore();
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.yellow; ctx.font='bold 22px Inter'; ctx.textAlign='center';
+        ctx.fillText('Area = \u00BD \u00D7 b \u00D7 h', AM_W/2, y+bh+56);
+        ctx.globalAlpha=1;
+      }
+    }
+  ],
+
+  circle: [
+    { title: 'A circle of radius r',
+      draw(ctx, p) {
+        const cx=AM_W/2,cy=AM_H/2-10,r=95;
+        ctx.globalAlpha=p;
+        ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+        ctx.fillStyle=C.accent+'22'; ctx.fill();
+        ctx.strokeStyle=C.accent; ctx.lineWidth=2.5; ctx.stroke();
+        ctx.globalAlpha=1;
+        ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+r,cy);
+        ctx.strokeStyle=C.green; ctx.lineWidth=2.5; ctx.lineCap='round'; ctx.stroke();
+        ctx.beginPath(); ctx.arc(cx,cy,4,0,Math.PI*2); ctx.fillStyle=C.fg; ctx.fill();
+        ctx.fillStyle=C.green; ctx.font='bold 14px Inter'; ctx.textAlign='center';
+        ctx.fillText('r', cx+r/2, cy-10);
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter';
+        ctx.fillText('How do we find the area of a circle?', AM_W/2, cy+r+24);
+      }
+    },
+    { title: 'Slice into thin pizza sectors',
+      draw(ctx, p) {
+        const cx=AM_W/2,cy=AM_H/2-10,r=88,N=16;
+        for(let i=0;i<N;i++){
+          const a0=(i/N)*Math.PI*2-Math.PI/2, a1=((i+1)/N)*Math.PI*2-Math.PI/2;
+          ctx.beginPath(); ctx.moveTo(cx,cy);
+          ctx.arc(cx,cy,r*Math.min(p*1.6,1),a0,a1); ctx.closePath();
+          ctx.fillStyle=i%2===0?C.accent+'66':C.mauve+'66';
+          ctx.fill(); ctx.strokeStyle=C.bg2; ctx.lineWidth=1.5; ctx.stroke();
+        }
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter'; ctx.textAlign='center';
+        ctx.fillText('Slice the circle into N thin sectors', AM_W/2, cy+r+24);
+      }
+    },
+    { title: 'Rearrange sectors into a near-rectangle',
+      draw(ctx, p) {
+        const r=85,N=16;
+        const rw=Math.PI*r, rh=r;
+        const rx=(AM_W-rw)/2, ry=(AM_H-rh)/2-10;
+        ctx.globalAlpha=p;
+        for(let i=0;i<N;i++){
+          const sw=rw/N, sx=rx+i*sw;
+          ctx.beginPath();
+          if(i%2===0){ ctx.moveTo(sx,ry+rh); ctx.lineTo(sx+sw/2,ry); ctx.lineTo(sx+sw,ry+rh); }
+          else { ctx.moveTo(sx,ry); ctx.lineTo(sx+sw/2,ry+rh); ctx.lineTo(sx+sw,ry); }
+          ctx.closePath();
+          ctx.fillStyle=i%2===0?C.accent+'77':C.mauve+'77';
+          ctx.fill(); ctx.strokeStyle=C.bg2; ctx.lineWidth=1; ctx.stroke();
+        }
+        ctx.globalAlpha=1;
+        ctx.strokeStyle=C.yellow; ctx.lineWidth=2; ctx.setLineDash([5,4]);
+        ctx.strokeRect(rx,ry,rw,rh); ctx.setLineDash([]);
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('\u03C0r  (half the circumference)', rx+rw/2, ry+rh+20);
+        ctx.save(); ctx.translate(rx-18,ry+rh/2); ctx.rotate(-Math.PI/2);
+        ctx.fillText('r',0,0); ctx.restore();
+      }
+    },
+    { title: 'Area = \u03C0r\u00B2',
+      draw(ctx, p) {
+        const r=80,N=16;
+        const rw=Math.PI*r, rh=r;
+        const rx=(AM_W-rw)/2, ry=(AM_H-rh)/2-22;
+        for(let i=0;i<N;i++){
+          const sw=rw/N, sx=rx+i*sw;
+          ctx.beginPath();
+          if(i%2===0){ ctx.moveTo(sx,ry+rh); ctx.lineTo(sx+sw/2,ry); ctx.lineTo(sx+sw,ry+rh); }
+          else { ctx.moveTo(sx,ry); ctx.lineTo(sx+sw/2,ry+rh); ctx.lineTo(sx+sw,ry); }
+          ctx.closePath();
+          ctx.fillStyle=i%2===0?C.accent+'66':C.mauve+'66';
+          ctx.fill();
+        }
+        ctx.strokeStyle=C.yellow; ctx.lineWidth=2.5;
+        ctx.strokeRect(rx,ry,rw,rh);
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('\u03C0r', rx+rw/2, ry+rh+18);
+        ctx.save(); ctx.translate(rx-18,ry+rh/2); ctx.rotate(-Math.PI/2);
+        ctx.fillText('r',0,0); ctx.restore();
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.yellow; ctx.font='bold 21px Inter'; ctx.textAlign='center';
+        ctx.fillText('Area = \u03C0r \u00D7 r = \u03C0r\u00B2', AM_W/2, ry+rh+50);
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter';
+        ctx.fillText('(rectangle: height=r, width=\u03C0r)', AM_W/2, ry+rh+70);
+        ctx.globalAlpha=1;
+      }
+    }
+  ],
+
+  rectangle: [
+    { title: 'A rectangle: l \u00D7 w',
+      draw(ctx, p) {
+        const l=5,wi=3,cs=38;
+        const rw=l*cs,rh=wi*cs, x=(AM_W-rw)/2, y=(AM_H-rh)/2-8;
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.accent+'20'; ctx.fillRect(x,y,rw,rh);
+        ctx.strokeStyle=C.accent; ctx.lineWidth=2.5; ctx.strokeRect(x,y,rw,rh);
+        ctx.globalAlpha=1;
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('length = 5', x+rw/2, y+rh+20);
+        ctx.save(); ctx.translate(x-18,y+rh/2); ctx.rotate(-Math.PI/2);
+        ctx.fillText('width = 3',0,0); ctx.restore();
+      }
+    },
+    { title: 'Fill with unit squares',
+      draw(ctx, p) {
+        const l=5,wi=3,cs=38;
+        const rw=l*cs,rh=wi*cs, x=(AM_W-rw)/2, y=(AM_H-rh)/2-8;
+        const total=l*wi, show=Math.floor(p*total*(1+0.3))+1;
+        for(let i=0;i<Math.min(show,total);i++){
+          const col=i%l, row=Math.floor(i/l);
+          ctx.fillStyle=(col+row)%2===0?C.accent+'55':C.mauve+'40';
+          ctx.fillRect(x+col*cs+1,y+row*cs+1,cs-2,cs-2);
+          ctx.strokeStyle=C.accent+'88'; ctx.lineWidth=1;
+          ctx.strokeRect(x+col*cs+1,y+row*cs+1,cs-2,cs-2);
+        }
+        ctx.strokeStyle=C.accent; ctx.lineWidth=2.5; ctx.strokeRect(x,y,rw,rh);
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter'; ctx.textAlign='center';
+        ctx.fillText('Filling with unit squares\u2026', AM_W/2, y+rh+26);
+      }
+    },
+    { title: 'Count the squares: 5 columns \u00D7 3 rows = 15',
+      draw(ctx, p) {
+        const l=5,wi=3,cs=38;
+        const rw=l*cs,rh=wi*cs, x=(AM_W-rw)/2, y=(AM_H-rh)/2-8;
+        for(let row=0;row<wi;row++){ for(let col=0;col<l;col++){
+          ctx.fillStyle=(col+row)%2===0?C.accent+'55':C.mauve+'40';
+          ctx.fillRect(x+col*cs+1,y+row*cs+1,cs-2,cs-2);
+          ctx.fillStyle=C.fgDim; ctx.font='bold 11px Inter'; ctx.textAlign='center';
+          ctx.fillText(row*l+col+1, x+col*cs+cs/2, y+row*cs+cs/2+4);
+        }}
+        ctx.strokeStyle=C.accent; ctx.lineWidth=2.5; ctx.strokeRect(x,y,rw,rh);
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('5 columns \u00D7 3 rows = 15 unit squares', AM_W/2, y+rh+26);
+      }
+    },
+    { title: 'Area = l \u00D7 w',
+      draw(ctx, p) {
+        const l=5,wi=3,cs=38;
+        const rw=l*cs,rh=wi*cs, x=(AM_W-rw)/2, y=(AM_H-rh)/2-18;
+        for(let row=0;row<wi;row++){ for(let col=0;col<l;col++){
+          ctx.fillStyle=(col+row)%2===0?C.accent+'55':C.mauve+'40';
+          ctx.fillRect(x+col*cs+1,y+row*cs+1,cs-2,cs-2);
+        }}
+        ctx.strokeStyle=C.accent; ctx.lineWidth=2.5; ctx.strokeRect(x,y,rw,rh);
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('l = 5', x+rw/2, y+rh+20);
+        ctx.save(); ctx.translate(x-18,y+rh/2); ctx.rotate(-Math.PI/2);
+        ctx.fillText('w = 3',0,0); ctx.restore();
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.yellow; ctx.font='bold 22px Inter'; ctx.textAlign='center';
+        ctx.fillText('Area = l \u00D7 w = 5 \u00D7 3 = 15', AM_W/2, y+rh+50);
+        ctx.globalAlpha=1;
+      }
+    }
+  ],
+
+  parallelogram: [
+    { title: 'A parallelogram',
+      draw(ctx, p) {
+        const bw=190,bh=100,sl=44;
+        const x=(AM_W-bw-sl)/2, y=(AM_H-bh)/2-8;
+        ctx.globalAlpha=p;
+        ctx.beginPath();
+        ctx.moveTo(x+sl,y); ctx.lineTo(x+sl+bw,y);
+        ctx.lineTo(x+bw,y+bh); ctx.lineTo(x,y+bh); ctx.closePath();
+        ctx.fillStyle=C.yellow+'30'; ctx.fill();
+        ctx.strokeStyle=C.yellow; ctx.lineWidth=2.5; ctx.stroke();
+        ctx.globalAlpha=1;
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('base  b', x+sl+bw/2, y+bh+20);
+        ctx.beginPath(); ctx.moveTo(x+sl+bw+12,y); ctx.lineTo(x+sl+bw+12,y+bh);
+        ctx.strokeStyle=C.teal; ctx.lineWidth=2; ctx.setLineDash([5,4]); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle=C.teal; ctx.font='bold 13px Inter';
+        ctx.fillText('h', x+sl+bw+26, y+bh/2+5);
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter';
+        ctx.fillText('The height is perpendicular to the base', AM_W/2, y+bh+40);
+      }
+    },
+    { title: 'Cut the left triangle and slide it right',
+      draw(ctx, p) {
+        const bw=190,bh=100,sl=44;
+        const x=(AM_W-bw-sl)/2, y=(AM_H-bh)/2-8;
+        // remaining body (trapezoid)
+        ctx.beginPath();
+        ctx.moveTo(x+sl,y); ctx.lineTo(x+sl+bw,y);
+        ctx.lineTo(x+bw,y+bh); ctx.lineTo(x+sl,y+bh); ctx.closePath();
+        ctx.fillStyle=C.yellow+'30'; ctx.fill();
+        ctx.strokeStyle=C.yellow+'88'; ctx.lineWidth=2; ctx.stroke();
+        // moving triangle: at p=0 it's at left, at p=1 it fills the right notch
+        const dx=p*bw;
+        ctx.beginPath();
+        ctx.moveTo(x+sl+dx,y); ctx.lineTo(x+sl+dx,y+bh); ctx.lineTo(x+dx,y+bh); ctx.closePath();
+        ctx.fillStyle=C.red+'55'; ctx.fill();
+        ctx.strokeStyle=C.red; ctx.lineWidth=2; ctx.stroke();
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter'; ctx.textAlign='center';
+        ctx.fillText('Slide the red triangle to the right\u2026', AM_W/2, y+bh+28);
+      }
+    },
+    { title: 'It forms a rectangle!',
+      draw(ctx, p) {
+        const bw=190,bh=100;
+        const x=(AM_W-bw)/2, y=(AM_H-bh)/2-8;
+        ctx.fillStyle=C.yellow+'30'; ctx.fillRect(x,y,bw,bh);
+        ctx.strokeStyle=C.yellow; ctx.lineWidth=2.5; ctx.strokeRect(x,y,bw,bh);
+        // seam
+        ctx.beginPath(); ctx.moveTo(x+bw,y); ctx.lineTo(x+bw,y+bh);
+        ctx.strokeStyle=C.red+'99'; ctx.lineWidth=2; ctx.setLineDash([5,4]); ctx.stroke(); ctx.setLineDash([]);
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.fg; ctx.font='bold 14px Inter'; ctx.textAlign='center';
+        ctx.fillText('Same base, same height \u2014 now a rectangle!', AM_W/2, y+bh+28);
+        ctx.globalAlpha=1;
+      }
+    },
+    { title: 'Area = base \u00D7 height',
+      draw(ctx, p) {
+        const bw=190,bh=100;
+        const x=(AM_W-bw)/2, y=(AM_H-bh)/2-20;
+        ctx.fillStyle=C.yellow+'30'; ctx.fillRect(x,y,bw,bh);
+        ctx.strokeStyle=C.yellow; ctx.lineWidth=2.5; ctx.strokeRect(x,y,bw,bh);
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('b', x+bw/2, y+bh+20);
+        ctx.save(); ctx.translate(x-18,y+bh/2); ctx.rotate(-Math.PI/2);
+        ctx.fillText('h',0,0); ctx.restore();
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.yellow; ctx.font='bold 22px Inter'; ctx.textAlign='center';
+        ctx.fillText('Area = b \u00D7 h', AM_W/2, y+bh+50);
+        ctx.globalAlpha=1;
+      }
+    }
+  ],
+
+  trapezoid: [
+    { title: 'A trapezoid: two parallel sides a and b',
+      draw(ctx, p) {
+        const a=110,b=180,th=90,off=(b-a)/2;
+        const x=(AM_W-b)/2, y=(AM_H-th)/2-8;
+        ctx.globalAlpha=p;
+        ctx.beginPath();
+        ctx.moveTo(x+off,y); ctx.lineTo(x+off+a,y);
+        ctx.lineTo(x+b,y+th); ctx.lineTo(x,y+th); ctx.closePath();
+        ctx.fillStyle=C.teal+'33'; ctx.fill();
+        ctx.strokeStyle=C.teal; ctx.lineWidth=2.5; ctx.stroke();
+        ctx.globalAlpha=1;
+        ctx.fillStyle=C.green; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('a', x+off+a/2, y-8);
+        ctx.fillStyle=C.yellow; ctx.fillText('b', x+b/2, y+th+20);
+        ctx.beginPath(); ctx.moveTo(x+off+a+10,y); ctx.lineTo(x+b-4,y+th);
+        ctx.strokeStyle=C.teal; ctx.lineWidth=2; ctx.setLineDash([5,4]); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle=C.teal; ctx.fillText('h', x+b+14, y+th/2+5);
+      }
+    },
+    { title: 'Copy it, flip it, and attach below',
+      draw(ctx, p) {
+        const a=110,b=180,th=90,off=(b-a)/2;
+        const x=(AM_W-b)/2, y=(AM_H-th)/2-22;
+        // original
+        ctx.beginPath();
+        ctx.moveTo(x+off,y); ctx.lineTo(x+off+a,y);
+        ctx.lineTo(x+b,y+th); ctx.lineTo(x,y+th); ctx.closePath();
+        ctx.fillStyle=C.teal+'44'; ctx.fill();
+        ctx.strokeStyle=C.teal; ctx.lineWidth=2; ctx.stroke();
+        // flipped copy slides into place
+        const dy=p*(th+2);
+        ctx.globalAlpha=p;
+        ctx.beginPath();
+        ctx.moveTo(x+b-off,y+dy+th); ctx.lineTo(x+b-off-a,y+dy+th);
+        ctx.lineTo(x,y+dy+th+th); ctx.lineTo(x+b,y+dy+th+th); ctx.closePath();
+        ctx.fillStyle=C.mauve+'44'; ctx.fill();
+        ctx.strokeStyle=C.mauve; ctx.lineWidth=2; ctx.stroke();
+        ctx.globalAlpha=1;
+        if(p>0.7){ ctx.fillStyle=C.fgDim; ctx.font='13px Inter'; ctx.textAlign='center';
+          ctx.fillText('Flipped copy attached below', AM_W/2, y+th*2+dy+26); }
+      }
+    },
+    { title: 'Together they make a parallelogram',
+      draw(ctx, p) {
+        const a=110,b=180,th=90,off=(b-a)/2;
+        const x=(AM_W-b)/2, y=(AM_H-th*2)/2-8;
+        // parallelogram outline
+        ctx.beginPath();
+        ctx.moveTo(x+off,y); ctx.lineTo(x+off+a,y);
+        ctx.lineTo(x+b,y+th*2); ctx.lineTo(x,y+th*2); ctx.closePath();
+        ctx.fillStyle=C.teal+'22'; ctx.fill();
+        ctx.strokeStyle=C.teal+'88'; ctx.lineWidth=2; ctx.stroke();
+        // middle seam
+        ctx.beginPath(); ctx.moveTo(x,y+th); ctx.lineTo(x+b,y+th);
+        ctx.strokeStyle=C.mauve; ctx.lineWidth=2; ctx.setLineDash([6,4]); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('a + b', x+b/2+off/2, y-8);
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter';
+        ctx.fillText('2 trapezoids = 1 parallelogram with base (a+b) and height h', AM_W/2, y+th*2+26);
+        ctx.globalAlpha=1;
+      }
+    },
+    { title: 'Area = \u00BD \u00D7 (a + b) \u00D7 h',
+      draw(ctx, p) {
+        const a=110,b=180,th=90,off=(b-a)/2;
+        const x=(AM_W-b)/2, y=(AM_H-th)/2-22;
+        ctx.beginPath();
+        ctx.moveTo(x+off,y); ctx.lineTo(x+off+a,y);
+        ctx.lineTo(x+b,y+th); ctx.lineTo(x,y+th); ctx.closePath();
+        ctx.fillStyle=C.teal+'44'; ctx.fill();
+        ctx.strokeStyle=C.teal; ctx.lineWidth=2.5; ctx.stroke();
+        ctx.fillStyle=C.green; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('a', x+off+a/2, y-8);
+        ctx.fillStyle=C.yellow; ctx.fillText('b', x+b/2, y+th+20);
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.yellow; ctx.font='bold 20px Inter'; ctx.textAlign='center';
+        ctx.fillText('Area = \u00BD \u00D7 (a + b) \u00D7 h', AM_W/2, y+th+48);
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter';
+        ctx.fillText('(\u00BD of the parallelogram area)', AM_W/2, y+th+70);
+        ctx.globalAlpha=1;
+      }
+    }
+  ],
+
+  rhombus: [
+    { title: 'A rhombus with diagonals d\u2081 and d\u2082',
+      draw(ctx, p) {
+        const d1=160,d2=100, cx=AM_W/2, cy=AM_H/2-10;
+        ctx.globalAlpha=p;
+        ctx.beginPath();
+        ctx.moveTo(cx,cy-d2/2); ctx.lineTo(cx+d1/2,cy);
+        ctx.lineTo(cx,cy+d2/2); ctx.lineTo(cx-d1/2,cy); ctx.closePath();
+        ctx.fillStyle=C.mauve+'33'; ctx.fill();
+        ctx.strokeStyle=C.mauve; ctx.lineWidth=2.5; ctx.stroke();
+        ctx.globalAlpha=1;
+        ctx.beginPath(); ctx.moveTo(cx-d1/2,cy); ctx.lineTo(cx+d1/2,cy);
+        ctx.strokeStyle=C.green; ctx.lineWidth=2; ctx.setLineDash([5,4]); ctx.stroke(); ctx.setLineDash([]);
+        ctx.beginPath(); ctx.moveTo(cx,cy-d2/2); ctx.lineTo(cx,cy+d2/2);
+        ctx.strokeStyle=C.yellow; ctx.lineWidth=2; ctx.setLineDash([5,4]); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle=C.green; ctx.font='bold 13px Inter'; ctx.textAlign='left';
+        ctx.fillText('d\u2081', cx+d1/2+8, cy+5);
+        ctx.fillStyle=C.yellow; ctx.textAlign='center';
+        ctx.fillText('d\u2082', cx+8, cy-d2/2-8);
+      }
+    },
+    { title: 'Diagonals split it into 4 right triangles',
+      draw(ctx, p) {
+        const d1=160,d2=100, cx=AM_W/2, cy=AM_H/2-10;
+        const cols=[C.accent,C.green,C.mauve,C.yellow];
+        const tris=[[[cx,cy],[cx+d1/2,cy],[cx,cy-d2/2]],[[cx,cy],[cx,cy-d2/2],[cx-d1/2,cy]],
+                    [[cx,cy],[cx-d1/2,cy],[cx,cy+d2/2]],[[cx,cy],[cx,cy+d2/2],[cx+d1/2,cy]]];
+        const show=Math.min(Math.floor(p*5),4);
+        tris.forEach(([a,b,c],i)=>{
+          if(i<show){
+            ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.lineTo(c[0],c[1]); ctx.closePath();
+            ctx.fillStyle=cols[i]+'55'; ctx.fill();
+            ctx.strokeStyle=cols[i]; ctx.lineWidth=1.5; ctx.stroke();
+          }
+        });
+        ctx.fillStyle=C.fgDim; ctx.font='13px Inter'; ctx.textAlign='center';
+        ctx.fillText('4 right triangles, each base=d\u2081/2, height=d\u2082/2', AM_W/2, cy+d2/2+26);
+      }
+    },
+    { title: 'Rhombus fits inside a d\u2081\u00D7d\u2082 rectangle',
+      draw(ctx, p) {
+        const d1=160,d2=100, cx=AM_W/2, cy=AM_H/2-10;
+        ctx.globalAlpha=p*0.25;
+        ctx.fillStyle=C.yellow; ctx.fillRect(cx-d1/2,cy-d2/2,d1,d2);
+        ctx.globalAlpha=1;
+        ctx.strokeStyle=C.yellow; ctx.lineWidth=2; ctx.setLineDash([6,4]);
+        ctx.strokeRect(cx-d1/2,cy-d2/2,d1,d2); ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(cx,cy-d2/2); ctx.lineTo(cx+d1/2,cy);
+        ctx.lineTo(cx,cy+d2/2); ctx.lineTo(cx-d1/2,cy); ctx.closePath();
+        ctx.fillStyle=C.mauve+'55'; ctx.fill();
+        ctx.strokeStyle=C.mauve; ctx.lineWidth=2.5; ctx.stroke();
+        ctx.fillStyle=C.fg; ctx.font='bold 13px Inter'; ctx.textAlign='center';
+        ctx.fillText('Rhombus = \u00BD of the bounding rectangle (d\u2081 \u00D7 d\u2082)', AM_W/2, cy+d2/2+28);
+      }
+    },
+    { title: 'Area = \u00BD \u00D7 d\u2081 \u00D7 d\u2082',
+      draw(ctx, p) {
+        const d1=160,d2=100, cx=AM_W/2, cy=AM_H/2-22;
+        ctx.strokeStyle=C.yellow+'66'; ctx.lineWidth=2; ctx.setLineDash([6,4]);
+        ctx.strokeRect(cx-d1/2,cy-d2/2,d1,d2); ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(cx,cy-d2/2); ctx.lineTo(cx+d1/2,cy);
+        ctx.lineTo(cx,cy+d2/2); ctx.lineTo(cx-d1/2,cy); ctx.closePath();
+        ctx.fillStyle=C.mauve+'55'; ctx.fill();
+        ctx.strokeStyle=C.mauve; ctx.lineWidth=2.5; ctx.stroke();
+        ctx.fillStyle=C.green; ctx.font='bold 13px Inter'; ctx.textAlign='left';
+        ctx.fillText('d\u2081', cx+d1/2+8, cy+5);
+        ctx.fillStyle=C.yellow; ctx.textAlign='center';
+        ctx.fillText('d\u2082', cx+8, cy-d2/2-8);
+        ctx.globalAlpha=p;
+        ctx.fillStyle=C.yellow; ctx.font='bold 22px Inter'; ctx.textAlign='center';
+        ctx.fillText('Area = \u00BD \u00D7 d\u2081 \u00D7 d\u2082', AM_W/2, cy+d2/2+48);
+        ctx.globalAlpha=1;
+      }
+    }
+  ]
+};
+
+const quadAreaKey = ['rectangle','rectangle','parallelogram','rhombus','trapezoid'];
+
+let areaM = { topic: null, step: 0, progress: 0, animating: false, animId: null };
+
+function showAreaExplain(topic) {
+  const canvas = document.getElementById('areaModalCanvas');
+  canvas.width = AM_W * 2; canvas.height = AM_H * 2;
+  canvas.style.height = AM_H + 'px';
+  areaM = { topic, step: 0, progress: 0, animating: true, animId: null };
+  document.getElementById('areaModal').classList.add('open');
+  _areaUpdateUI();
+  _areaFrame();
+}
+
+function closeAreaModal() {
+  if (areaM.animId) { cancelAnimationFrame(areaM.animId); areaM.animId = null; }
+  document.getElementById('areaModal').classList.remove('open');
+}
+
+function _areaUpdateUI() {
+  const steps = areaExplains[areaM.topic];
+  document.getElementById('areaModalTitle').textContent = steps[areaM.step].title;
+  document.getElementById('areaStepInfo').textContent = 'Step ' + (areaM.step+1) + ' of ' + steps.length;
+  document.getElementById('areaModalPrev').disabled = areaM.step === 0;
+  document.getElementById('areaModalNext').textContent = areaM.step === steps.length-1 ? 'Done \u2714' : 'Next \u2192';
+}
+
+function _areaFrame() {
+  if (areaM.animId) { cancelAnimationFrame(areaM.animId); areaM.animId = null; }
+  const canvas = document.getElementById('areaModalCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function frame() {
+    areaModalCls(ctx);
+    areaExplains[areaM.topic][areaM.step].draw(ctx, areaM.progress);
+    if (areaM.animating && areaM.progress < 1) {
+      areaM.progress = Math.min(areaM.progress + 0.025, 1);
+      areaM.animId = requestAnimationFrame(frame);
+    } else { areaM.animating = false; }
+  }
+  frame();
+}
+
+function areaModalNav(dir) {
+  const steps = areaExplains[areaM.topic];
+  const next = areaM.step + dir;
+  if (next >= steps.length) { closeAreaModal(); return; }
+  if (next < 0) return;
+  if (areaM.animId) { cancelAnimationFrame(areaM.animId); areaM.animId = null; }
+  areaM.step = next; areaM.progress = 0; areaM.animating = true;
+  _areaUpdateUI(); _areaFrame();
+}
+
+// ===================== ADDITION =====================
+function topicAddition() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Addition</h2>
+          <p>Addition means putting two groups together to find the <strong>total</strong>.</p>
+          <div class="formula">3 + 4 = 7</div>
+          <ul>
+            <li>The <span class="color-green">+</span> sign means "add" or "plus"</li>
+            <li>The numbers you add are called <strong>addends</strong></li>
+            <li>The answer is called the <strong>sum</strong></li>
+            <li>Count on from the bigger number to add faster</li>
+            <li>Adding 0 to any number leaves it unchanged: 5 + 0 = 5</li>
+          </ul>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 320);
+  const examples = [{a:3,b:4},{a:5,b:6},{a:7,b:3}];
+  let curEx = 0;
+  let aAnim = {progress:0, animating:false};
+
+  function drawDotGroup(cx, cy, n, color) {
+    const cols = Math.min(n, 5), gap = 28, sz = 11;
+    const rows = Math.ceil(n / cols);
+    const sx = cx - ((cols-1)*gap)/2, sy = cy - ((rows-1)*gap)/2;
+    for (let i = 0; i < n; i++) {
+      ctx.beginPath();
+      ctx.arc(sx+(i%cols)*gap, sy+Math.floor(i/cols)*gap, sz, 0, Math.PI*2);
+      ctx.fillStyle = color; ctx.fill();
+      ctx.strokeStyle = C.bg2; ctx.lineWidth = 2; ctx.stroke();
+    }
+  }
+
+  function drawAdd() {
+    cls(ctx, w, h);
+    const {a, b} = examples[curEx], sum = a + b;
+    const p = Math.min(aAnim.progress, 1);
+    const cy = h/2 - 22;
+
+    if (p < 0.68) {
+      const fadeIn = Math.min(p/0.25, 1);
+      const slide = 1 - Math.min(p/0.4, 1);
+      ctx.globalAlpha = fadeIn;
+      drawDotGroup(w/2 - 108 - slide*50, cy, a, C.green);
+      drawDotGroup(w/2 + 108 + slide*50, cy, b, C.accent);
+      ctx.globalAlpha = 1;
+      if (p > 0.32) {
+        ctx.globalAlpha = Math.min((p-0.32)/0.15, 1);
+        ctx.fillStyle = C.yellow; ctx.font = 'bold 38px Inter'; ctx.textAlign = 'center';
+        ctx.fillText('+', w/2, cy+14);
+        ctx.globalAlpha = 1;
+      }
+    } else {
+      const mp = (p-0.68)/0.32;
+      const cols = Math.min(sum, 7), gap = 26, sz = 11;
+      const rows = Math.ceil(sum / cols);
+      const sx = w/2 - ((cols-1)*gap)/2, sy = cy - ((rows-1)*gap)/2;
+      for (let i = 0; i < sum; i++) {
+        ctx.beginPath();
+        ctx.arc(sx+(i%cols)*gap, sy+Math.floor(i/cols)*gap, sz, 0, Math.PI*2);
+        ctx.fillStyle = C.teal; ctx.fill();
+        ctx.strokeStyle = C.bg2; ctx.lineWidth = 2; ctx.stroke();
+      }
+      ctx.globalAlpha = Math.min(mp*2, 1);
+      ctx.fillStyle = C.green; ctx.font = 'bold 16px Inter'; ctx.textAlign = 'center';
+      ctx.fillText('They join together! Total = ' + sum, w/2, cy - (rows>1?80:58));
+      ctx.globalAlpha = 1;
+    }
+
+    ctx.fillStyle = C.fg; ctx.font = 'bold 26px Inter'; ctx.textAlign = 'center';
+    ctx.globalAlpha = Math.min(p/0.18, 1);
+    ctx.fillText(p >= 0.68 ? `${a}  +  ${b}  =  ${sum}` : `${a}  +  ${b}  =  ?`, w/2, h-16);
+    ctx.globalAlpha = 1;
+
+    if (aAnim.animating && aAnim.progress < 1) {
+      aAnim.progress += 0.016; animId = requestAnimationFrame(drawAdd);
+    } else { aAnim.animating = false; }
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  examples.forEach((ex, i) => {
+    const b = document.createElement('button');
+    b.className = 'viz-btn'+(i===0?' active':'');
+    b.textContent = `${ex.a} + ${ex.b}`;
+    b.onclick = () => {
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); stopAnim();
+      curEx = i; aAnim = {progress:0,animating:true}; drawAdd();
+    };
+    ctrls.appendChild(b);
+  });
+  aAnim.animating = true; drawAdd();
+  genAdditionQuiz();
+}
+
+function genAdditionQuiz() {
+  const d = difficulty;
+  let question, answer, explanation;
+  const useWord = Math.random() < 0.5;
+
+  const THINGS = [['apples','a basket'],['stars','the sky'],['cats','a room'],['toys','a box'],['fish','a pond'],['birds','a tree']];
+  const NAMES = ['Sam','Amy','Ben','Mia','Jake','Lily'];
+
+  if (d <= 1) {
+    const a = randInt(1,5), b = randInt(1,5);
+    answer = String(a+b);
+    if (!useWord) {
+      question = `What is <strong>${a} + ${b}</strong>?`;
+      explanation = `${a} + ${b} = ${a+b}`;
+    } else {
+      const [item, place] = THINGS[randInt(0,THINGS.length-1)];
+      question = `There are <strong>${a} ${item}</strong> in ${place}. You add <strong>${b} more</strong>. How many ${item} are there now?`;
+      explanation = `${a} + ${b} = ${a+b} ${item}`;
+    }
+  } else if (d === 2) {
+    const a = randInt(3,12), b = randInt(3,12);
+    answer = String(a+b);
+    if (!useWord) {
+      question = `What is <strong>${a} + ${b}</strong>?`;
+      explanation = `${a} + ${b} = ${a+b}`;
+    } else {
+      const name = NAMES[randInt(0,NAMES.length-1)];
+      const items = ['crayons','stickers','marbles','coins','buttons'][randInt(0,4)];
+      question = `<strong>${name}</strong> has <strong>${a} ${items}</strong> and gets <strong>${b} more</strong>. How many altogether?`;
+      explanation = `${a} + ${b} = ${a+b}`;
+    }
+  } else if (d === 3) {
+    const a = randInt(5,15), b = randInt(5,15);
+    answer = String(a+b);
+    const wps = [
+      `A farmer has <strong>${a} chickens</strong> and <strong>${b} ducks</strong>. How many birds in total?`,
+      `A library gets <strong>${a} new books</strong> on Monday and <strong>${b} more</strong> on Tuesday. How many new books altogether?`,
+      `A class has <strong>${a} boys</strong> and <strong>${b} girls</strong>. How many children are in the class?`,
+      `A jar has <strong>${a} red sweets</strong> and <strong>${b} blue sweets</strong>. How many sweets are in the jar?`,
+    ];
+    question = wps[randInt(0,wps.length-1)];
+    explanation = `${a} + ${b} = ${a+b}`;
+  } else if (d === 4) {
+    const a = randInt(3,10), b = randInt(3,10), sum = a+b;
+    if (Math.random() < 0.5) {
+      answer = String(a);
+      question = `<strong>? + ${b} = ${sum}</strong><br>What number goes in the box?`;
+      explanation = `${sum} \u2212 ${b} = ${a}`;
+    } else {
+      answer = String(b);
+      question = `<strong>${a} + ? = ${sum}</strong><br>What number goes in the box?`;
+      explanation = `${sum} \u2212 ${a} = ${b}`;
+    }
+  } else {
+    const a = randInt(8,20), b = randInt(8,20);
+    answer = String(a+b);
+    const wps = [
+      `A shop sold <strong>${a} sandwiches</strong> in the morning and <strong>${b}</strong> in the afternoon. How many were sold in all?`,
+      `A bus has <strong>${a} passengers</strong>. At the next stop <strong>${b} more</strong> get on. How many passengers are on the bus now?`,
+      `A garden has <strong>${a} red flowers</strong> and <strong>${b} yellow flowers</strong>. How many flowers altogether?`,
+      `${NAMES[randInt(0,NAMES.length-1)]} scores <strong>${a} points</strong> in the first round and <strong>${b} points</strong> in the second. What is the total score?`,
+    ];
+    question = wps[randInt(0,wps.length-1)];
+    explanation = `${a} + ${b} = ${a+b}`;
+  }
+
+  renderInputQuiz(question, answer, explanation, genAdditionQuiz, 0.01);
+}
+
+// ===================== SUBTRACTION =====================
+function topicSubtraction() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Subtraction</h2>
+          <p>Subtraction means <strong>taking away</strong> from a group to find what is left.</p>
+          <div class="formula">8 &minus; 3 = 5</div>
+          <ul>
+            <li>The <span class="color-red">&minus;</span> sign means "minus" or "take away"</li>
+            <li>The number you start with is the <strong>minuend</strong></li>
+            <li>The number you take away is the <strong>subtrahend</strong></li>
+            <li>The answer is called the <strong>difference</strong></li>
+            <li>Subtracting 0 changes nothing: 7 &minus; 0 = 7</li>
+          </ul>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 320);
+  const examples = [{a:8,b:3},{a:10,b:4},{a:7,b:5}];
+  let curEx = 0;
+  let sAnim = {progress:0, animating:false};
+
+  function drawSub() {
+    cls(ctx, w, h);
+    const {a, b} = examples[curEx], diff = a - b;
+    const p = Math.min(sAnim.progress, 1);
+    const cols = Math.min(a, 6), gap = 30, sz = 12;
+    const rows = Math.ceil(a / cols);
+    const cy = h/2 - 22;
+    const sx = w/2 - ((cols-1)*gap)/2, sy = cy - ((rows-1)*gap)/2;
+    const fadeIn = Math.min(p/0.18, 1);
+    const xP = Math.max(0, (p-0.3)/0.55); // 0→1 when p is 0.3→0.85
+
+    ctx.globalAlpha = fadeIn;
+    for (let i = 0; i < a; i++) {
+      const col = i%cols, row = Math.floor(i/cols);
+      const x = sx+col*gap, y = sy+row*gap;
+      const removed = i >= diff;
+      ctx.beginPath(); ctx.arc(x, y, sz, 0, Math.PI*2);
+      ctx.fillStyle = removed ? C.red+'44' : C.green; ctx.fill();
+      ctx.strokeStyle = C.bg2; ctx.lineWidth = 2; ctx.stroke();
+      if (removed && xP > 0) {
+        ctx.globalAlpha = Math.min(xP * 1.8, 1);
+        ctx.strokeStyle = C.red; ctx.lineWidth = 3; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(x-sz+3,y-sz+3); ctx.lineTo(x+sz-3,y+sz-3); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x+sz-3,y-sz+3); ctx.lineTo(x-sz+3,y+sz-3); ctx.stroke();
+        ctx.globalAlpha = fadeIn;
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    if (p > 0.85) {
+      ctx.globalAlpha = (p-0.85)/0.15;
+      ctx.fillStyle = C.green; ctx.font = 'bold 16px Inter'; ctx.textAlign = 'center';
+      ctx.fillText(`${diff} left!`, w/2, cy - (rows>1?80:58));
+      ctx.globalAlpha = 1;
+    }
+
+    ctx.fillStyle = C.fg; ctx.font = 'bold 26px Inter'; ctx.textAlign = 'center';
+    ctx.globalAlpha = fadeIn;
+    ctx.fillText(p >= 0.85 ? `${a}  \u2212  ${b}  =  ${diff}` : `${a}  \u2212  ${b}  =  ?`, w/2, h-16);
+    ctx.globalAlpha = 1;
+
+    if (sAnim.animating && sAnim.progress < 1) {
+      sAnim.progress += 0.016; animId = requestAnimationFrame(drawSub);
+    } else { sAnim.animating = false; }
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  examples.forEach((ex, i) => {
+    const b = document.createElement('button');
+    b.className = 'viz-btn'+(i===0?' active':'');
+    b.textContent = `${ex.a} \u2212 ${ex.b}`;
+    b.onclick = () => {
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); stopAnim();
+      curEx = i; sAnim = {progress:0,animating:true}; drawSub();
+    };
+    ctrls.appendChild(b);
+  });
+  sAnim.animating = true; drawSub();
+  genSubtractionQuiz();
+}
+
+function genSubtractionQuiz() {
+  const d = difficulty;
+  let question, answer, explanation;
+  const useWord = Math.random() < 0.5;
+
+  if (d <= 1) {
+    const b = randInt(1,4), a = b + randInt(1,5);
+    answer = String(a-b);
+    if (!useWord) {
+      question = `What is <strong>${a} &minus; ${b}</strong>?`;
+      explanation = `${a} \u2212 ${b} = ${a-b}`;
+    } else {
+      const rows = [['apples','ate','left'],['cookies','gave away','remaining'],['birds','flew away','stayed'],['balloons','popped','left']];
+      const [item,verb,rem] = rows[randInt(0,rows.length-1)];
+      question = `There are <strong>${a} ${item}</strong>. You ${verb} <strong>${b}</strong>. How many are ${rem}?`;
+      explanation = `${a} \u2212 ${b} = ${a-b} ${item}`;
+    }
+  } else if (d === 2) {
+    const b = randInt(2,8), a = b + randInt(2,10);
+    answer = String(a-b);
+    if (!useWord) {
+      question = `What is <strong>${a} &minus; ${b}</strong>?`;
+      explanation = `${a} \u2212 ${b} = ${a-b}`;
+    } else {
+      const rows = [['stickers','used up'],['pages','read'],['sweets','eaten'],['points','lost']];
+      const [item,verb] = rows[randInt(0,rows.length-1)];
+      question = `You have <strong>${a} ${item}</strong> and ${verb} <strong>${b}</strong>. How many are left?`;
+      explanation = `${a} \u2212 ${b} = ${a-b}`;
+    }
+  } else if (d === 3) {
+    const b = randInt(3,10), a = b + randInt(3,12);
+    answer = String(a-b);
+    const wps = [
+      `A bag had <strong>${a} grapes</strong>. Children ate <strong>${b}</strong>. How many grapes are left?`,
+      `A parking lot has <strong>${a} cars</strong>. <strong>${b}</strong> drive away. How many cars remain?`,
+      `A bookshelf has <strong>${a} books</strong>. A student borrows <strong>${b}</strong>. How many books are on the shelf now?`,
+      `There are <strong>${a} passengers</strong> on a bus. <strong>${b}</strong> get off at the next stop. How many are still on the bus?`,
+    ];
+    question = wps[randInt(0,wps.length-1)];
+    explanation = `${a} \u2212 ${b} = ${a-b}`;
+  } else if (d === 4) {
+    const b = randInt(2,8), diff = randInt(3,10), a = b+diff;
+    if (Math.random() < 0.5) {
+      answer = String(b);
+      question = `<strong>${a} &minus; ? = ${diff}</strong><br>What number goes in the box?`;
+      explanation = `${a} \u2212 ${diff} = ${b}`;
+    } else {
+      answer = String(a);
+      question = `<strong>? &minus; ${b} = ${diff}</strong><br>What number goes in the box?`;
+      explanation = `${diff} + ${b} = ${a}`;
+    }
+  } else {
+    const b = randInt(8,18), diff = randInt(8,20), a = b+diff;
+    answer = String(diff);
+    const wps = [
+      `A school has <strong>${a} students</strong>. <strong>${b}</strong> are absent today. How many students are present?`,
+      `A farmer had <strong>${a} eggs</strong> and sold <strong>${b}</strong> at the market. How many eggs does he have left?`,
+      `A swimming pool had <strong>${a} swimmers</strong>. After lunch <strong>${b}</strong> went home. How many are still in the pool?`,
+      `A shop had <strong>${a} loaves of bread</strong>. By midday <strong>${b}</strong> were sold. How many loaves are left?`,
+    ];
+    question = wps[randInt(0,wps.length-1)];
+    explanation = `${a} \u2212 ${b} = ${diff}`;
+  }
+
+  renderInputQuiz(question, answer, explanation, genSubtractionQuiz, 0.01);
+}
+
+// ===================== NUMBER LINE =====================
+function topicNumberLine() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Number Line</h2>
+          <p>A number line is a straight line with numbers in order. You can use it to <strong>add</strong> and <strong>subtract</strong>.</p>
+          <ul>
+            <li>Numbers get <span class="color-green">bigger</span> going <strong>right</strong></li>
+            <li>Numbers get <span class="color-red">smaller</span> going <strong>left</strong></li>
+            <li>To <strong>add</strong>: start at your number, hop <span class="color-green">right</span></li>
+            <li>To <strong>subtract</strong>: start at your number, hop <span class="color-red">left</span></li>
+          </ul>
+          <p style="margin-top:8px"><strong>Examples:</strong></p>
+          <ul>
+            <li>3 + 4: start at 3, hop 4 right &rarr; land on <strong>7</strong></li>
+            <li>9 &minus; 5: start at 9, hop 5 left &rarr; land on <strong>4</strong></li>
+          </ul>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 320);
+  const NL_MIN = 0, NL_MAX = 15;
+  const examples = [
+    {start:3, hops:4, dir:1,  label:'3 + 4'},
+    {start:9, hops:5, dir:-1, label:'9 \u2212 5'},
+    {start:2, hops:6, dir:1,  label:'2 + 6'},
+  ];
+  let curEx = 0;
+  let nlAnim = {progress:0, animating:false};
+
+  function toX(n) { return 28 + (n - NL_MIN) / (NL_MAX - NL_MIN) * (w - 56); }
+
+  function drawNL() {
+    cls(ctx, w, h);
+    const ex = examples[curEx];
+    const p = Math.min(nlAnim.progress, 1);
+    const {start, hops, dir, label} = ex;
+    const end = start + dir * hops;
+    const nlY = h/2 + 8;
+    const arcH = 26;
+    const arcColor = dir === 1 ? C.green : C.red;
+
+    // Number line
+    ctx.strokeStyle = C.card; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(toX(NL_MIN), nlY); ctx.lineTo(toX(NL_MAX), nlY); ctx.stroke();
+    // Arrow
+    ctx.fillStyle = C.card;
+    ctx.beginPath(); ctx.moveTo(toX(NL_MAX)+10,nlY); ctx.lineTo(toX(NL_MAX),nlY-5); ctx.lineTo(toX(NL_MAX),nlY+5); ctx.closePath(); ctx.fill();
+
+    // Ticks and labels
+    for (let i = NL_MIN; i <= NL_MAX; i++) {
+      const x = toX(i);
+      ctx.beginPath(); ctx.moveTo(x,nlY-6); ctx.lineTo(x,nlY+6);
+      ctx.strokeStyle = C.surface; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.fillStyle = C.fgDim; ctx.font = '12px Inter'; ctx.textAlign = 'center';
+      ctx.fillText(String(i), x, nlY+20);
+    }
+
+    // Hop arcs
+    const totalHopsDone = p * hops;
+    ctx.strokeStyle = arcColor; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
+    for (let i = 0; i < hops; i++) {
+      const hopFrac = Math.min(Math.max(totalHopsDone - i, 0), 1);
+      if (hopFrac <= 0) break;
+      const x1 = toX(start + dir*i), x2 = toX(start + dir*(i+1));
+      const N = 20, steps = Math.ceil(N * hopFrac);
+      ctx.beginPath(); ctx.moveTo(x1, nlY);
+      for (let k = 1; k <= steps; k++) {
+        const t = k / N;
+        ctx.lineTo(x1 + (x2-x1)*t, nlY - arcH*Math.sin(t*Math.PI));
+      }
+      ctx.stroke();
+    }
+
+    // Start dot (accent)
+    ctx.beginPath(); ctx.arc(toX(start), nlY, 8, 0, Math.PI*2);
+    ctx.fillStyle = C.accent; ctx.fill();
+    ctx.fillStyle = C.fg; ctx.font = 'bold 11px Inter'; ctx.textAlign = 'center';
+    ctx.fillText(String(start), toX(start), nlY-16);
+
+    // Moving dot position
+    if (p > 0 && p < 1) {
+      const frac = totalHopsDone - Math.floor(totalHopsDone);
+      const curHop = Math.floor(totalHopsDone);
+      if (curHop < hops) {
+        const x1 = toX(start + dir*curHop), x2 = toX(start + dir*(curHop+1));
+        const dotX = x1 + (x2-x1)*frac;
+        const dotY = nlY - arcH*Math.sin(frac*Math.PI);
+        ctx.beginPath(); ctx.arc(dotX, dotY, 7, 0, Math.PI*2);
+        ctx.fillStyle = arcColor; ctx.fill();
+      }
+    }
+
+    // End dot
+    if (p > 0.92) {
+      const ep = (p-0.92)/0.08;
+      ctx.globalAlpha = ep;
+      ctx.beginPath(); ctx.arc(toX(end), nlY, 9, 0, Math.PI*2);
+      ctx.fillStyle = arcColor; ctx.fill();
+      ctx.fillStyle = C.fg; ctx.font = 'bold 13px Inter'; ctx.textAlign = 'center';
+      ctx.fillText(String(end), toX(end), nlY-20);
+      ctx.globalAlpha = 1;
+    }
+
+    // Equation
+    ctx.fillStyle = C.fg; ctx.font = 'bold 22px Inter'; ctx.textAlign = 'center';
+    ctx.fillText(p > 0.9 ? `${label} = ${end}` : `${label} = ?`, w/2, h-14);
+
+    if (nlAnim.animating && nlAnim.progress < 1) {
+      nlAnim.progress += 0.013; animId = requestAnimationFrame(drawNL);
+    } else { nlAnim.animating = false; }
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  examples.forEach((ex, i) => {
+    const b = document.createElement('button');
+    b.className = 'viz-btn'+(i===0?' active':'');
+    b.textContent = ex.label;
+    b.onclick = () => {
+      ctrls.querySelectorAll('.viz-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); stopAnim();
+      curEx = i; nlAnim = {progress:0,animating:true}; drawNL();
+    };
+    ctrls.appendChild(b);
+  });
+  nlAnim.animating = true; drawNL();
+  genNumberLineQuiz();
+}
+
+function genNumberLineQuiz() {
+  const d = difficulty;
+  let question, answer, explanation;
+  const useWord = Math.random() < 0.45;
+
+  if (d <= 1) {
+    const start = randInt(0,6), hops = randInt(1,4);
+    answer = String(start+hops);
+    question = `Start at <strong>${start}</strong> on the number line. Hop <strong>${hops}</strong> spaces to the <span class="color-green">right</span>. Where do you land?`;
+    explanation = `${start} + ${hops} = ${start+hops}`;
+  } else if (d === 2) {
+    const hops = randInt(1,5), start = randInt(hops, 12);
+    answer = String(start-hops);
+    question = `Start at <strong>${start}</strong> on the number line. Hop <strong>${hops}</strong> spaces to the <span class="color-red">left</span>. Where do you land?`;
+    explanation = `${start} \u2212 ${hops} = ${start-hops}`;
+  } else if (d === 3) {
+    const dir = Math.random()<0.5 ? 1 : -1;
+    const start = dir===1 ? randInt(0,8) : randInt(5,14);
+    const hops = randInt(2,6), end = start + dir*hops;
+    answer = String(end);
+    if (!useWord) {
+      question = `On a number line, start at <strong>${start}</strong> and make <strong>${hops}</strong> hops to the ${dir===1?'<span class="color-green">right</span>':'<span class="color-red">left</span>'}. Where do you end up?`;
+    } else {
+      question = `A frog sits on <strong>${start}</strong>. It jumps <strong>${hops}</strong> spaces to the ${dir===1?'right':'left'}. What number is it on now?`;
+    }
+    explanation = `${start} ${dir===1?'+':'\u2212'} ${hops} = ${end}`;
+  } else if (d === 4) {
+    const start = randInt(1,8), hops = randInt(2,7), end = start+hops;
+    answer = String(hops);
+    if (!useWord) {
+      question = `On a number line you start at <strong>${start}</strong> and land on <strong>${end}</strong> by hopping right. How many hops did you make?`;
+    } else {
+      question = `A snail starts at <strong>${start}</strong> and crawls to <strong>${end}</strong> moving right. How many spaces did it travel?`;
+    }
+    explanation = `${end} \u2212 ${start} = ${hops} hops`;
+  } else {
+    const hops = randInt(3,8), start = randInt(hops+1, 15), end = start-hops;
+    answer = String(end);
+    const wps = [
+      `A caterpillar is on number <strong>${start}</strong>. It crawls back <strong>${hops}</strong> spaces. What number is it on?`,
+      `You are at <strong>${start}</strong> on the number line and take <strong>${hops}</strong> steps to the left. What number do you reach?`,
+      `A toy car starts at position <strong>${start}</strong> and rolls back <strong>${hops}</strong> spaces. Where does it stop?`,
+      `A frog is on <strong>${start}</strong> and hops <strong>${hops}</strong> times to the left. Where does it land?`,
+    ];
+    question = wps[randInt(0,wps.length-1)];
+    explanation = `${start} \u2212 ${hops} = ${end}`;
+  }
+
+  renderInputQuiz(question, answer, explanation, genNumberLineQuiz, 0.01);
+}
+
+// ===================== ABSOLUTE VALUE =====================
+function topicAbsoluteValue() {
+  document.getElementById('app').innerHTML = `
+    <div class="topic-layout">
+      <div class="left-col">
+        <div class="viz-panel" id="vizPanel"></div>
+        <div class="viz-controls" id="vizControls"></div>
+      </div>
+      <div class="info-panel">
+        <div class="info-card">
+          <h2>Absolute Value</h2>
+          <p>The <strong>absolute value</strong> of a number is its <strong>distance from 0</strong> on the number line &mdash; always &ge; 0.</p>
+          <div class="formula">|x| = x &nbsp;if x &ge; 0<br>|x| = &minus;x &nbsp;if x &lt; 0</div>
+          <p style="margin-top:10px"><strong>Removing the absolute value signs:</strong></p>
+          <ul>
+            <li>|expr| = <em>a</em>, &nbsp;<em>a</em> &gt; 0 &rarr; expr = <em>a</em> &nbsp;<span class="color-green">OR</span>&nbsp; expr = &minus;<em>a</em></li>
+            <li>|expr| = 0 &rarr; expr = 0 &nbsp;(one solution)</li>
+            <li>|expr| = <em>a</em>, &nbsp;<em>a</em> &lt; 0 &rarr; <span class="color-red">No solution</span></li>
+          </ul>
+          <p style="margin-top:8px"><strong>Example:</strong></p>
+          <ul>
+            <li>|x + 2| = 5 &rarr; x + 2 = 5 &nbsp;or&nbsp; x + 2 = &minus;5</li>
+            <li style="list-style:none;padding-left:14px;">&rarr; x = 3 &nbsp;or&nbsp; x = &minus;7</li>
+          </ul>
+        </div>
+        <div class="quiz-card"><h3>Quiz</h3><div id="quizContent"></div></div>
+      </div>
+    </div>`;
+
+  const {ctx, w, h} = makeCanvas(document.getElementById('vizPanel'), 460, 340);
+  const examples = [
+    { label: '|4|', val: 4, expr: null },
+    { label: '|\u22126|', val: -6, expr: null },
+    { label: '|2\u22127|', val: -5, expr: '2 \u2212 7 = \u22125' },
+  ];
+  let curEx = 0;
+  let avAnim = { progress: 0, animating: false };
+
+  function drawAV() {
+    cls(ctx, w, h);
+    const ex = examples[curEx];
+    const p = Math.min(avAnim.progress, 1);
+    const nlY = h / 2 + 10;
+    const cxPos = w / 2;
+    const scale = 28;
+    const range = 8;
+
+    // Number line
+    ctx.strokeStyle = C.card; ctx.lineWidth = 2; ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(cxPos - range * scale, nlY); ctx.lineTo(cxPos + range * scale, nlY);
+    ctx.stroke();
+
+    // Ticks and labels
+    for (let i = -range; i <= range; i++) {
+      const x = cxPos + i * scale;
+      ctx.beginPath(); ctx.moveTo(x, nlY - 5); ctx.lineTo(x, nlY + 5);
+      ctx.strokeStyle = C.surface; ctx.lineWidth = 1.5; ctx.stroke();
+      if (i !== 0 && i % 2 === 0) {
+        ctx.fillStyle = C.fgDim; ctx.font = '11px Inter'; ctx.textAlign = 'center';
+        ctx.fillText(String(i), x, nlY + 18);
+      }
+    }
+    ctx.fillStyle = C.fg; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('0', cxPos, nlY + 18);
+
+    const rawVal = ex.val;
+    const absVal = Math.abs(rawVal);
+    const animPtX = cxPos + rawVal * scale * p;
+    const arrowEndX = cxPos + (rawVal >= 0 ? 1 : -1) * absVal * scale * p;
+    const arrowY = nlY - 32;
+
+    // Distance arrow
+    ctx.strokeStyle = C.teal; ctx.fillStyle = C.teal; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(cxPos, arrowY); ctx.lineTo(arrowEndX, arrowY); ctx.stroke();
+
+    // Arrowhead
+    if (p > 0.05) {
+      ctx.beginPath();
+      if (rawVal >= 0) {
+        ctx.moveTo(arrowEndX, arrowY); ctx.lineTo(arrowEndX - 8, arrowY - 5); ctx.lineTo(arrowEndX - 8, arrowY + 5);
+      } else {
+        ctx.moveTo(arrowEndX, arrowY); ctx.lineTo(arrowEndX + 8, arrowY - 5); ctx.lineTo(arrowEndX + 8, arrowY + 5);
+      }
+      ctx.closePath(); ctx.fill();
+    }
+
+    // Distance label above arrow
+    if (p > 0.3) {
+      ctx.fillStyle = C.teal; ctx.font = 'bold 13px Inter'; ctx.textAlign = 'center';
+      ctx.fillText(`distance = ${Math.round(absVal * p)}`, (cxPos + arrowEndX) / 2, arrowY - 10);
+    }
+
+    // Dotted vertical from arrowhead to number line
+    if (p > 0.1) {
+      ctx.beginPath(); ctx.setLineDash([4, 4]);
+      ctx.moveTo(arrowEndX, arrowY + 4); ctx.lineTo(arrowEndX, nlY - 10);
+      ctx.strokeStyle = C.teal + '88'; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // Origin dot
+    ctx.beginPath(); ctx.arc(cxPos, nlY, 5, 0, Math.PI * 2);
+    ctx.fillStyle = C.fg; ctx.fill();
+
+    // Animated point
+    ctx.beginPath(); ctx.arc(animPtX, nlY, 8, 0, Math.PI * 2);
+    ctx.fillStyle = C.accent; ctx.fill();
+    ctx.strokeStyle = C.fg; ctx.lineWidth = 2; ctx.stroke();
+
+    // Labels at bottom
+    const labelY = h - 60;
+    ctx.textAlign = 'center';
+    if (ex.expr && p > 0) {
+      ctx.fillStyle = C.fgDim; ctx.font = '14px Inter';
+      ctx.fillText(ex.expr, cxPos, labelY - 22);
+    }
+    ctx.fillStyle = C.accent; ctx.font = 'bold 20px Inter';
+    ctx.fillText(ex.label, cxPos, labelY);
+    if (p > 0.6) {
+      ctx.fillStyle = C.teal; ctx.font = 'bold 24px Inter';
+      ctx.fillText('= ' + absVal, cxPos, labelY + 30);
+    }
+
+    if (avAnim.animating && avAnim.progress < 1) {
+      avAnim.progress += 0.022; animId = requestAnimationFrame(drawAV);
+    } else { avAnim.animating = false; }
+  }
+
+  const ctrls = document.getElementById('vizControls');
+  examples.forEach((ex, i) => {
+    const b = document.createElement('button');
+    b.className = 'viz-btn' + (i === 0 ? ' active' : '');
+    b.textContent = ex.label;
+    b.onclick = () => {
+      ctrls.querySelectorAll('.viz-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active'); stopAnim();
+      curEx = i; avAnim = { progress: 0, animating: true }; drawAV();
+    };
+    ctrls.appendChild(b);
+  });
+
+  avAnim.animating = true; drawAV();
+  genAbsValQuiz();
+}
+
+function genAbsValQuiz() {
+  const d = difficulty;
+  let question, answer, explanation, opts;
+  let isMultiChoice = false;
+  const useWord = Math.random() < 0.55;
+
+  if (d <= 1) {
+    if (!useWord) {
+      const n = Math.random() < 0.6 ? -randInt(1, 20) : randInt(1, 20);
+      answer = String(Math.abs(n));
+      question = `Evaluate: <strong>|${n}|</strong>`;
+      explanation = `|${n}| = ${Math.abs(n)} &mdash; distance from 0 is always non-negative`;
+    } else {
+      const pick = randInt(0, 2);
+      if (pick === 0) {
+        const t = -randInt(3, 18);
+        answer = String(-t);
+        question = `The temperature is <strong>${t}&deg;C</strong>. How many degrees from zero is that?`;
+        explanation = `|${t}| = ${-t} &mdash; distance from 0 on the number line`;
+      } else if (pick === 1) {
+        const d = randInt(5, 25);
+        answer = String(d);
+        question = `A submarine is at <strong>&minus;${d} metres</strong> relative to sea level. What is its distance from sea level?`;
+        explanation = `|&minus;${d}| = ${d} metres`;
+      } else {
+        const pts = -randInt(2, 15);
+        answer = String(-pts);
+        question = `A football team loses <strong>${-pts} yards</strong> on a play (recorded as ${pts}). What is the absolute value of the yardage?`;
+        explanation = `|${pts}| = ${-pts} yards`;
+      }
+    }
+
+  } else if (d === 2) {
+    if (!useWord) {
+      const a = randInt(1, 15), b = randInt(1, 15);
+      const diff = a - b;
+      answer = String(Math.abs(diff));
+      question = `Evaluate: <strong>|${a} &minus; ${b}|</strong>`;
+      explanation = `|${a} \u2212 ${b}| = |${diff}| = ${Math.abs(diff)}`;
+    } else {
+      const pick = randInt(0, 2);
+      if (pick === 0) {
+        const p1 = randInt(10, 90), p2 = randInt(10, 90);
+        answer = String(Math.abs(p1 - p2));
+        question = `A stock was <strong>$${p1}</strong> on Monday and <strong>$${p2}</strong> on Friday.<br>What is the absolute change in price?`;
+        explanation = `|${p1} \u2212 ${p2}| = |${p1 - p2}| = $${Math.abs(p1 - p2)}`;
+      } else if (pick === 1) {
+        const a1 = randInt(200, 900), a2 = randInt(200, 900);
+        answer = String(Math.abs(a1 - a2));
+        question = `Plane A flies at <strong>${a1} m</strong> and Plane B at <strong>${a2} m</strong>.<br>What is the absolute difference in their altitudes?`;
+        explanation = `|${a1} \u2212 ${a2}| = ${Math.abs(a1 - a2)} metres`;
+      } else {
+        const measured = randInt(10, 50) / 10, actual = randInt(10, 50) / 10;
+        const err = Math.round(Math.abs(measured - actual) * 10) / 10;
+        answer = String(err);
+        question = `A ruler shows <strong>${measured} cm</strong> but the true value is <strong>${actual} cm</strong>.<br>What is the absolute measurement error?`;
+        explanation = `|${measured} \u2212 ${actual}| = ${err} cm`;
+      }
+    }
+
+  } else if (d === 3) {
+    if (!useWord) {
+      const a = randInt(1, 15);
+      answer = `x = ${a} or x = \u2212${a}`;
+      opts = [`x = ${a} or x = \u2212${a}`, `x = ${a} only`, `x = \u2212${a} only`, 'No solution'];
+      question = `Solve: <strong>|x| = ${a}</strong>`;
+      explanation = `|x| = ${a} \u2192 x = ${a} OR x = \u2212${a} (two cases)`;
+    } else {
+      const pick = randInt(0, 1);
+      if (pick === 0) {
+        const target = randInt(8, 25), tol = randInt(1, 4);
+        const s1 = target + tol, s2 = target - tol;
+        answer = `x = ${s1} or x = ${s2}`;
+        opts = [`x = ${s1} or x = ${s2}`, `x = ${s1} only`, `x = ${s2} only`, 'No solution'];
+        question = `A factory produces bolts that must be exactly <strong>${tol} mm</strong> away from the target of <strong>${target} mm</strong>.<br>The condition is <strong>|x &minus; ${target}| = ${tol}</strong>. Which lengths are at the limit?`;
+        explanation = `x \u2212 ${target} = ${tol} \u2192 x = ${s1}, or x \u2212 ${target} = \u2212${tol} \u2192 x = ${s2}`;
+      } else {
+        const ideal = randInt(60, 80), dev = randInt(3, 10);
+        const s1 = ideal + dev, s2 = ideal - dev;
+        answer = `T = ${s1} or T = ${s2}`;
+        opts = [`T = ${s1} or T = ${s2}`, `T = ${s1} only`, `T = ${s2} only`, 'No solution'];
+        question = `A lab's thermostat triggers an alarm when the temperature is exactly <strong>${dev}&deg;C</strong> from <strong>${ideal}&deg;C</strong>.<br><strong>|T &minus; ${ideal}| = ${dev}</strong>. At which temperatures does the alarm trigger?`;
+        explanation = `T \u2212 ${ideal} = ${dev} \u2192 T = ${s1}, or T \u2212 ${ideal} = \u2212${dev} \u2192 T = ${s2}`;
+      }
+    }
+    isMultiChoice = true;
+
+  } else if (d === 4) {
+    if (!useWord) {
+      const b = randInt(1, 8), c = randInt(b + 1, b + 10);
+      const sol1 = c - b, sol2 = -c - b;
+      answer = String(sol1);
+      question = `Solve <strong>|x + ${b}| = ${c}</strong>.<br>Enter the <em>larger</em> solution.`;
+      explanation = `x + ${b} = ${c} \u2192 x = ${sol1}, or x + ${b} = \u2212${c} \u2192 x = ${sol2}. Larger = ${sol1}`;
+    } else {
+      const pick = randInt(0, 2);
+      if (pick === 0) {
+        const base = randInt(300, 1500), dev = randInt(50, 300);
+        const s1 = base + dev, s2 = base - dev;
+        answer = String(s1);
+        question = `A drone's altitude <em>h</em> satisfies <strong>|h &minus; ${base}| = ${dev}</strong> metres from its home altitude.<br>Enter the <em>higher</em> possible altitude (in metres).`;
+        explanation = `h \u2212 ${base} = ${dev} \u2192 h = ${s1} m, or h \u2212 ${base} = \u2212${dev} \u2192 h = ${s2} m. Higher = ${s1}`;
+      } else if (pick === 1) {
+        const budget = randInt(200, 800), diff = randInt(50, 200);
+        const s1 = budget + diff, s2 = budget - diff;
+        answer = String(s1);
+        question = `A project's actual cost <em>c</em> differs from the <strong>&pound;${budget}</strong> budget by exactly <strong>&pound;${diff}</strong>.<br><strong>|c &minus; ${budget}| = ${diff}</strong>. Enter the <em>higher</em> possible cost.`;
+        explanation = `c \u2212 ${budget} = ${diff} \u2192 c = \u00A3${s1}, or c \u2212 ${budget} = \u2212${diff} \u2192 c = \u00A3${s2}. Higher = \u00A3${s1}`;
+      } else {
+        const limit = randInt(40, 80), dev = randInt(5, 20);
+        const s1 = limit + dev, s2 = limit - dev;
+        answer = String(s1);
+        question = `A car's speed <em>s</em> satisfies <strong>|s &minus; ${limit}| = ${dev}</strong> km/h.<br>Enter the <em>faster</em> possible speed.`;
+        explanation = `s \u2212 ${limit} = ${dev} \u2192 s = ${s1} km/h, or s \u2212 ${limit} = \u2212${dev} \u2192 s = ${s2} km/h. Faster = ${s1}`;
+      }
+    }
+
+  } else {
+    const noSol = Math.random() < 0.3;
+    if (noSol) {
+      const rhs = -randInt(1, 10);
+      if (!useWord) {
+        answer = 'No solution';
+        opts = ['No solution', `x = ${-rhs}`, `x = \u2212${-rhs}`, 'x = 0'];
+        question = `Solve: <strong>|x| = ${rhs}</strong>`;
+        explanation = `Absolute value is always \u2265 0, so |x| = ${rhs} has no solution.`;
+      } else {
+        answer = 'No solution';
+        opts = ['No solution', `x = ${-rhs}`, `x = \u2212${-rhs}`, 'x = 0'];
+        question = `An engineer writes the quality-control condition <strong>|x \u2212 10| = ${rhs}</strong>.<br>How many values of <em>x</em> satisfy this?`;
+        explanation = `Absolute value cannot be negative. |x \u2212 10| = ${rhs} has no solution.`;
+      }
+      isMultiChoice = true;
+    } else {
+      const pick = randInt(0, 2);
+      if (pick === 0) {
+        const city = randInt(20, 60), dist = randInt(8, 25);
+        const s1 = city + dist, s2 = city - dist;
+        answer = String(s2);
+        question = `Two train stations are both <strong>${dist} km</strong> from a junction at position <strong>${city}</strong> on a route map.<br><strong>|p \u2212 ${city}| = ${dist}</strong>. Enter the <em>smaller</em> position value.`;
+        explanation = `p \u2212 ${city} = ${dist} \u2192 p = ${s1}, or p \u2212 ${city} = \u2212${dist} \u2192 p = ${s2}. Smaller = ${s2}`;
+      } else if (pick === 1) {
+        const mean = randInt(4, 9), amp = randInt(1, mean - 1);
+        const s1 = mean + amp, s2 = mean - amp;
+        answer = String(s2);
+        question = `Ocean tide height <em>h</em> (metres) satisfies <strong>|h \u2212 ${mean}| = ${amp}</strong>, where ${mean} m is the mean sea level.<br>Enter the <em>lower</em> tide height.`;
+        explanation = `h \u2212 ${mean} = ${amp} \u2192 h = ${s1} m, or h \u2212 ${mean} = \u2212${amp} \u2192 h = ${s2} m. Lower = ${s2} m`;
+      } else {
+        const base = randInt(30, 90), diff = randInt(8, 25);
+        const s1 = base + diff, s2 = base - diff;
+        answer = String(s2);
+        question = `Two delivery routes each take exactly <strong>${diff} minutes</strong> more or less than the expected <strong>${base} minutes</strong>.<br><strong>|t \u2212 ${base}| = ${diff}</strong>. Enter the <em>shorter</em> journey time.`;
+        explanation = `t \u2212 ${base} = ${diff} \u2192 t = ${s1} min, or t \u2212 ${base} = \u2212${diff} \u2192 t = ${s2} min. Shorter = ${s2}`;
+      }
+    }
+  }
+
+  if (isMultiChoice) {
+    document.getElementById('quizContent').innerHTML = `
+      <div class="quiz-question">${question} ${diffBadgeHTML()}</div>
+      <div class="quiz-options" id="qOpts">
+        ${opts.map(o => `<button class="quiz-btn" data-opt="${o}">${o}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback hidden" id="qFeedback"></div>`;
+    document.querySelectorAll('#qOpts .quiz-btn').forEach(btn => {
+      btn.onclick = () => {
+        const ok = btn.dataset.opt === answer;
+        updateScore(ok);
+        document.querySelectorAll('#qOpts .quiz-btn').forEach(b => {
+          b.disabled = true;
+          if (b.dataset.opt === answer) b.classList.add('correct-answer');
+        });
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        showFeedback('qFeedback', ok, explanation, genAbsValQuiz);
+      };
+    });
+  } else {
+    renderInputQuiz(question, answer, explanation, genAbsValQuiz, 0.01);
+  }
+}
+
+showHome();
+</script>
+</body>
+</html>
