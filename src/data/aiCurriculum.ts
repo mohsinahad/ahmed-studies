@@ -369,8 +369,6 @@ export function getAITopicById(id: string): Topic | undefined {
   return aiCurriculum.find((t) => t.id === id);
 }
 
-export function isAITopicUnlocked(topicIndex: number, completedIds: string[]): boolean {
-  if (topicIndex === 0) return true;
-  const prev = aiCurriculum[topicIndex - 1];
-  return completedIds.includes(prev.id);
+export function isAITopicUnlocked(_topicIndex: number, _completedIds: string[]): boolean {
+  return true;
 }

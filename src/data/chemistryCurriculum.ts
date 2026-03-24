@@ -730,8 +730,6 @@ export function getChemTopicById(id: string): Topic | undefined {
   return chemistryCurriculum.find((t) => t.id === id);
 }
 
-export function isChemTopicUnlocked(topicIndex: number, completedIds: string[]): boolean {
-  if (topicIndex === 0) return true;
-  const prev = chemistryCurriculum[topicIndex - 1];
-  return completedIds.includes(prev.id);
+export function isChemTopicUnlocked(_topicIndex: number, _completedIds: string[]): boolean {
+  return true;
 }

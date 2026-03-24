@@ -594,8 +594,6 @@ export function getELATopicById(id: string): Topic | undefined {
   return elaCurriculum.find((t) => t.id === id);
 }
 
-export function isELATopicUnlocked(topicIndex: number, completedIds: string[]): boolean {
-  if (topicIndex === 0) return true;
-  const prev = elaCurriculum[topicIndex - 1];
-  return completedIds.includes(prev.id);
+export function isELATopicUnlocked(_topicIndex: number, _completedIds: string[]): boolean {
+  return true;
 }

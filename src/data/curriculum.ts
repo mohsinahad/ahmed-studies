@@ -465,8 +465,6 @@ export function getTopicById(id: string): Topic | undefined {
   return curriculum.find((t) => t.id === id);
 }
 
-export function isTopicUnlocked(topicIndex: number, completedIds: string[]): boolean {
-  if (topicIndex === 0) return true;
-  const prev = curriculum[topicIndex - 1];
-  return completedIds.includes(prev.id);
+export function isTopicUnlocked(_topicIndex: number, _completedIds: string[]): boolean {
+  return true;
 }

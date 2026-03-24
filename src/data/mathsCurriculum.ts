@@ -225,8 +225,6 @@ export function getMathsTopicById(id: string): Topic | undefined {
   return mathsCurriculum.find((t) => t.id === id);
 }
 
-export function isMathsTopicUnlocked(topicIndex: number, completedIds: string[]): boolean {
-  if (topicIndex === 0) return true;
-  const prev = mathsCurriculum[topicIndex - 1];
-  return completedIds.includes(prev.id);
+export function isMathsTopicUnlocked(_topicIndex: number, _completedIds: string[]): boolean {
+  return true;
 }
