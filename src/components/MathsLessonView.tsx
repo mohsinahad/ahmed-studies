@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import type { Topic } from '../data/curriculum';
 import Quiz from './Quiz';
-import { GeometryEmbedSim, AbsoluteValueSim } from '../simulations/maths';
+import { GeometryEmbedSim, AbsoluteValueSim, AlgebraSim } from '../simulations/maths';
 
 const simMap: Record<string, React.ComponentType> = {
   'geometry-embed': GeometryEmbedSim,
   'absolute-value-sim': AbsoluteValueSim,
+  'algebra-sim': AlgebraSim,
 };
 
 type Tab = 'lesson' | 'simulation' | 'quiz';

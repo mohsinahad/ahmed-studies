@@ -219,6 +219,151 @@ Think of absolute value as distance. Distance is always positive — you can't t
       },
     ] satisfies Question[],
   },
+  {
+    id: 'algebra',
+    unit: 1,
+    title: 'Algebra',
+    grade: '7th',
+    shortExplanation:
+      'Algebra uses letters (called variables) to represent unknown numbers. By following the golden rule — do the same thing to both sides — you can solve equations and find what the variable equals.',
+    detailedExplanation: `**What is Algebra?**
+Algebra is a branch of maths where we use letters like x, y, or n to stand for unknown numbers. An equation is a statement that two things are equal, like x + 5 = 12.
+
+**The Golden Rule of Algebra:**
+Whatever you do to one side of the equation, you MUST do to the other side. This keeps the equation balanced — like a set of scales.
+
+**Solving one-step equations:**
+x + 5 = 12 → Subtract 5 from both sides → x = 7
+3x = 21 → Divide both sides by 3 → x = 7
+x ÷ 3 = 4 → Multiply both sides by 3 → x = 12
+
+**Solving two-step equations:**
+Work backwards through the order of operations — undo addition/subtraction first, then multiplication/division.
+2x + 4 = 14 → Subtract 4: 2x = 10 → Divide by 2: x = 5
+5x − 3 = 22 → Add 3: 5x = 25 → Divide by 5: x = 5
+
+**Checking your answer:**
+Always substitute your answer back into the original equation.
+If x = 7 and the equation was x + 5 = 12: 7 + 5 = 12 ✓
+
+**Why does algebra matter?**
+Algebra is the language of problem-solving. Scientists, engineers, and programmers use it every day to model real situations and find unknown values.`,
+    simulationId: 'algebra-sim',
+    questions: [
+      {
+        id: 'algebra-q1',
+        type: 'numeric',
+        text: 'Solve: x + 8 = 15',
+        answer: 7,
+        unit: '',
+        tolerance: 0,
+        hint: 'Subtract 8 from both sides.',
+        explanation: 'x + 8 = 15 → Subtract 8: x = 15 − 8 = 7.',
+      },
+      {
+        id: 'algebra-q2',
+        type: 'numeric',
+        text: 'Solve: x − 4 = 9',
+        answer: 13,
+        unit: '',
+        tolerance: 0,
+        hint: 'Add 4 to both sides.',
+        explanation: 'x − 4 = 9 → Add 4: x = 9 + 4 = 13.',
+      },
+      {
+        id: 'algebra-q3',
+        type: 'numeric',
+        text: 'Solve: 5x = 35',
+        answer: 7,
+        unit: '',
+        tolerance: 0,
+        hint: 'Divide both sides by 5.',
+        explanation: '5x = 35 → Divide by 5: x = 35 ÷ 5 = 7.',
+      },
+      {
+        id: 'algebra-q4',
+        type: 'numeric',
+        text: 'Solve: x ÷ 4 = 6',
+        answer: 24,
+        unit: '',
+        tolerance: 0,
+        hint: 'Multiply both sides by 4.',
+        explanation: 'x ÷ 4 = 6 → Multiply by 4: x = 6 × 4 = 24.',
+      },
+      {
+        id: 'algebra-q5',
+        type: 'numeric',
+        text: 'Solve: 2x + 3 = 11',
+        answer: 4,
+        unit: '',
+        tolerance: 0,
+        hint: 'First subtract 3 from both sides, then divide by 2.',
+        explanation: '2x + 3 = 11 → Subtract 3: 2x = 8 → Divide by 2: x = 4.',
+      },
+      {
+        id: 'algebra-q6',
+        type: 'numeric',
+        text: 'Solve: 3x − 6 = 12',
+        answer: 6,
+        unit: '',
+        tolerance: 0,
+        hint: 'First add 6, then divide by 3.',
+        explanation: '3x − 6 = 12 → Add 6: 3x = 18 → Divide by 3: x = 6.',
+      },
+      {
+        id: 'algebra-q7',
+        type: 'multiple-choice',
+        text: 'What is the "golden rule" of algebra?',
+        options: [
+          'Add the same number to both sides only',
+          'Whatever you do to one side, do the same to the other',
+          'Always divide before you subtract',
+          'Move all numbers to the left side',
+        ],
+        answer: 'Whatever you do to one side, do the same to the other',
+        hint: 'Think about keeping an equation balanced like a set of scales.',
+        explanation: 'The golden rule keeps the equation balanced — both sides must always stay equal.',
+      },
+      {
+        id: 'algebra-q8',
+        type: 'multiple-choice',
+        text: 'You solve x + 7 = 20 and get x = 13. How do you check this is correct?',
+        options: [
+          'Divide 20 by 7',
+          'Substitute 13 back: 13 + 7 = 20 ✓',
+          'Subtract 13 from 7',
+          'You cannot check algebra answers',
+        ],
+        answer: 'Substitute 13 back: 13 + 7 = 20 ✓',
+        hint: 'Replace x with your answer and see if both sides are equal.',
+        explanation: 'Substituting x = 13: 13 + 7 = 20 ✓. Both sides match, so the answer is correct.',
+      },
+      {
+        id: 'algebra-q9',
+        type: 'numeric',
+        text: 'Solve: 4x + 1 = 17',
+        answer: 4,
+        unit: '',
+        tolerance: 0,
+        hint: 'Subtract 1 first, then divide by 4.',
+        explanation: '4x + 1 = 17 → Subtract 1: 4x = 16 → Divide by 4: x = 4.',
+      },
+      {
+        id: 'algebra-q10',
+        type: 'multiple-choice',
+        text: 'In algebra, what does a variable (like x) represent?',
+        options: [
+          'A multiplication symbol',
+          'An unknown number we want to find',
+          'The answer to any equation',
+          'A very large number',
+        ],
+        answer: 'An unknown number we want to find',
+        hint: 'Think about what we are trying to solve for.',
+        explanation: 'A variable is a letter that stands for an unknown number. Solving the equation means finding what number the variable equals.',
+      },
+    ] satisfies Question[],
+  },
 ];
 
 export function getMathsTopicById(id: string): Topic | undefined {
