@@ -351,11 +351,8 @@ function handleAction(e) {
   if (action === 'home')     goHome();
   else if (action === 'subjects') goSubjects();
   else if (action === 'lessons')  goLessons(state.subject);
-  else if (action === 'lesson')   goLesson(state.lessonIndex);
+  else if (action === 'lesson')   goLesson(el.dataset.index !== undefined ? parseInt(el.dataset.index) : state.lessonIndex);
   else if (action === 'quiz')     goQuiz();
-  else if (action === 'lesson' && el.dataset.index !== undefined) {
-    goLesson(parseInt(el.dataset.index));
-  }
   else if (action === 'grade') {
     state.grade = parseInt(el.dataset.grade);
     goSubjects();
