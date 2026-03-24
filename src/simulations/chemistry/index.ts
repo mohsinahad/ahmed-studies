@@ -6,3 +6,4 @@ export { default as PeriodicTableSim } from './PeriodicTableSim';
 export { default as BondingSim } from './BondingSim';
 export { default as PHSim } from './PHSim';
 export { default as SolutionSim } from './SolutionSim';
+export { default as MineralsSim } from './MineralsSim';

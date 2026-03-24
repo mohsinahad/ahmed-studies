@@ -504,6 +504,148 @@ The pH scale is **logarithmic** — each unit represents a 10× change in acidit
     ],
   },
   {
+    id: 'minerals',
+    unit: 1,
+    title: 'Minerals',
+    grade: '7th',
+    shortExplanation:
+      'A mineral is a naturally occurring, solid, inorganic substance with a defined chemical composition and crystal structure. Minerals are the building blocks of rocks and have countless uses in everyday life.',
+    detailedExplanation: `**What is a Mineral?**
+
+A mineral must satisfy 5 criteria: 1) Naturally occurring (not man-made), 2) Inorganic (not from living things), 3) Solid at room temperature, 4) Definite chemical composition, 5) Ordered crystal structure. Ice is technically a mineral; glass is not (it has no crystal structure).
+
+**Mineral Properties (how scientists identify them):**
+- Colour — but unreliable alone (quartz can be clear, purple, pink, or yellow)
+- Streak — the colour of the powder when scraped on a ceramic plate (more reliable than colour)
+- Lustre — how light reflects: metallic, vitreous (glassy), silky, pearly, earthy
+- Hardness — resistance to scratching. Measured on the Mohs scale (1=talc, softest → 10=diamond, hardest). A fingernail is ~2.5, a steel knife ~5.5
+- Cleavage — the tendency to break along flat planes. Halite breaks into perfect cubes
+- Fracture — irregular breaking (like glass or quartz)
+- Specific gravity (density relative to water)
+
+**The Mohs Hardness Scale:**
+1-Talc, 2-Gypsum, 3-Calcite, 4-Fluorite, 5-Apatite, 6-Feldspar, 7-Quartz, 8-Topaz, 9-Corundum (ruby/sapphire), 10-Diamond
+
+**Common Mineral Groups:**
+- Silicates (quartz, feldspar) — most abundant, contain silicon and oxygen
+- Carbonates (calcite, dolomite) — contain CO₃
+- Oxides (magnetite, haematite) — minerals combined with oxygen
+- Sulfides (pyrite, galena) — minerals combined with sulfur
+- Native elements (gold, silver, copper, diamond) — single elements in mineral form
+
+**Minerals vs Rocks:**
+A rock is a mixture of one or more minerals. Granite is a rock made of quartz, feldspar, and mica. Limestone is made mostly of calcite.
+
+**Uses of Minerals:**
+- Construction: calcite (limestone/marble), gypsum (plasterboard)
+- Technology: quartz (electronics, glass), magnetite (magnets)
+- Food & health: halite (salt), calcium minerals in bones and teeth
+- Jewellery: diamond, malachite, amethyst (purple quartz)`,
+    simulationId: 'minerals',
+    questions: [
+      {
+        id: 'minerals-q1',
+        type: 'multiple-choice',
+        text: 'Which of the following is NOT required for a substance to be classified as a mineral?',
+        options: [
+          'It must be naturally occurring',
+          'It must have a definite chemical composition',
+          'It must come from a living organism',
+          'It must be solid at room temperature',
+        ],
+        answer: 'It must come from a living organism',
+        hint: 'Think about the 5 requirements — living things are excluded.',
+        explanation:
+          'Minerals must be INORGANIC — meaning they do NOT come from living organisms. Coal (from plants) and amber (from tree resin) are not minerals.',
+      },
+      {
+        id: 'minerals-q2',
+        type: 'multiple-choice',
+        text: 'What does the Mohs scale measure?',
+        options: ["A mineral's colour", "A mineral's hardness", "A mineral's density", "A mineral's age"],
+        answer: "A mineral's hardness",
+        hint: 'It is used to compare how easily minerals scratch each other.',
+        explanation:
+          'The Mohs scale measures hardness — a mineral\'s resistance to being scratched. It runs from 1 (talc, softest) to 10 (diamond, hardest).',
+      },
+      {
+        id: 'minerals-q3',
+        type: 'multiple-choice',
+        text: "Pyrite is nicknamed 'Fool's Gold' because:",
+        options: [
+          'It contains real gold',
+          'Its brassy yellow colour resembles gold',
+          'It is worth more than gold',
+          'It is found in the same places as gold',
+        ],
+        answer: 'Its brassy yellow colour resembles gold',
+        hint: 'Think about how gold and pyrite look similar.',
+        explanation:
+          'Pyrite (FeS₂) has a shiny, brassy-yellow appearance that fooled many miners into thinking they had struck gold.',
+      },
+      {
+        id: 'minerals-q4',
+        type: 'numeric',
+        text: 'Diamond has a Mohs hardness of 10. Quartz has a hardness of 7. How many steps apart are they on the Mohs scale?',
+        answer: 3,
+        unit: 'steps',
+        tolerance: 0,
+        hint: 'Subtract: 10 − 7 = ?',
+        explanation:
+          '10 − 7 = 3 steps apart. Diamond can scratch quartz, but quartz cannot scratch diamond.',
+      },
+      {
+        id: 'minerals-q5',
+        type: 'multiple-choice',
+        text: 'What is the chemical formula for common table salt (halite)?',
+        options: ['CaCO₃', 'SiO₂', 'NaCl', 'Fe₃O₄'],
+        answer: 'NaCl',
+        hint: 'Na = Sodium, Cl = Chlorine.',
+        explanation: 'Halite is NaCl — sodium chloride. It is the mineral form of the salt we use every day.',
+      },
+      {
+        id: 'minerals-q6',
+        type: 'multiple-choice',
+        text: "Which mineral group is the MOST abundant in Earth's crust?",
+        options: ['Carbonates', 'Sulfides', 'Silicates', 'Native elements'],
+        answer: 'Silicates',
+        hint: 'Think about which elements are most common in rocks.',
+        explanation:
+          "Silicates (containing silicon and oxygen) make up about 90% of Earth's crust. Quartz and feldspar are both silicates.",
+      },
+      {
+        id: 'minerals-q7',
+        type: 'multiple-choice',
+        text: "A mineral's STREAK is:",
+        options: [
+          'The pattern on its surface',
+          'The colour of its powdered form when scraped on a ceramic plate',
+          'How shiny it appears',
+          'The way it breaks',
+        ],
+        answer: 'The colour of its powdered form when scraped on a ceramic plate',
+        hint: "It's more reliable than just looking at the mineral's colour.",
+        explanation:
+          'Streak is the colour of a mineral\'s powder, tested by scraping it on an unglazed ceramic plate. It is more reliable than surface colour for identification.',
+      },
+      {
+        id: 'minerals-q8',
+        type: 'multiple-choice',
+        text: 'Diamond and graphite (pencil lead) are both made of pure carbon. Why are they so different?',
+        options: [
+          'They contain different numbers of protons',
+          'The carbon atoms are arranged differently',
+          'Graphite contains oxygen',
+          'Diamond is artificial',
+        ],
+        answer: 'The carbon atoms are arranged differently',
+        hint: 'Same element, different atomic arrangement = different properties.',
+        explanation:
+          'Both are pure carbon (C), but diamond has carbon atoms in a rigid 3D tetrahedral structure (making it incredibly hard), while graphite has atoms in flat layers that slide apart (making it soft and useful as a lubricant/pencil lead).',
+      },
+    ],
+  },
+  {
     id: 'solutions',
     unit: 4,
     title: 'Solutions & Concentration',

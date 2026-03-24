@@ -3,7 +3,7 @@ import type { Topic } from '../data/curriculum';
 import Quiz from './Quiz';
 import {
   AtomSim, StatesSim, ChangesSim, MassConservationSim,
-  PeriodicTableSim, BondingSim, PHSim, SolutionSim,
+  PeriodicTableSim, BondingSim, PHSim, SolutionSim, MineralsSim,
 } from '../simulations/chemistry';
 
 const simMap: Record<string, React.ComponentType> = {
@@ -15,6 +15,7 @@ const simMap: Record<string, React.ComponentType> = {
   bonding: BondingSim,
   ph: PHSim,
   solution: SolutionSim,
+  minerals: MineralsSim,
 };
 
 type Tab = 'lesson' | 'simulation' | 'quiz';
