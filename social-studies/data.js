@@ -74,6 +74,130 @@ const CURRICULUM = {
             { type: "fb", q: "The famous philosopher who taught Alexander the Great was ___.", answer: "aristotle", hint: "One of the three great Greek philosophers...", explanation: "Aristotle tutored Alexander the Great and wrote influential works on logic, science, politics, and ethics." },
             { type: "mc", q: "Which building in Athens was dedicated to the goddess Athena?", options: ["The Forum", "The Colosseum", "The Parthenon", "The Pantheon"], answer: 2, explanation: "The Parthenon, built on the Acropolis hill in Athens, was a temple dedicated to the goddess Athena." }
           ]
+        },
+        {
+          id: "ancient-mesopotamia",
+          title: "Ancient Mesopotamia",
+          subtitle: "The Cradle of Civilisation",
+          illustration: `<svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="260" fill="#fef3c7"/>
+  <circle cx="530" cy="50" r="38" fill="#fbbf24" opacity="0.85"/>
+  <rect x="0" y="220" width="600" height="40" fill="#92400e" opacity="0.15"/>
+  <rect x="60" y="130" width="130" height="110" fill="#d97706" opacity="0.2"/>
+  <polygon points="80,240 125,160 170,240" fill="#b45309"/>
+  <polygon points="95,240 125,185 155,240" fill="#92400e"/>
+  <polygon points="105,240 125,205 145,240" fill="#78350f"/>
+  <rect x="112" y="225" width="26" height="15" fill="#78350f"/>
+  <rect x="270" y="185" width="60" height="28" rx="3" fill="#d97706" opacity="0.5"/>
+  <rect x="340" y="195" width="45" height="18" rx="3" fill="#d97706" opacity="0.45"/>
+  <rect x="400" y="190" width="50" height="22" rx="3" fill="#d97706" opacity="0.45"/>
+  <path d="M 220 210 Q 240 200 260 215 Q 280 225 300 210 Q 320 200 340 215 Q 360 225 380 210 Q 400 200 420 215" stroke="#3b82f6" stroke-width="4" fill="none" opacity="0.7"/>
+  <path d="M 215 230 Q 235 220 255 235 Q 275 245 295 230 Q 315 220 335 235 Q 355 245 375 230 Q 395 220 415 235" stroke="#60a5fa" stroke-width="4" fill="none" opacity="0.6"/>
+  <text x="225" y="200" font-size="10" fill="#1d4ed8" font-family="sans-serif" font-weight="bold">Euphrates</text>
+  <text x="225" y="248" font-size="10" fill="#1e40af" font-family="sans-serif" font-weight="bold">Tigris</text>
+</svg>`,
+          content: [
+            "Mesopotamia means \"land between the rivers\" in Greek — referring to the Tigris and Euphrates rivers in what is now Iraq. Around 3500 BCE, the Sumerians built the world's first cities here, including Ur and Uruk. The fertile land between the rivers allowed farming to flourish, supporting large populations and complex societies.",
+            "The Mesopotamians made one of humanity's greatest contributions: the invention of writing. Around 3200 BCE, the Sumerians developed cuneiform — a system of wedge-shaped marks pressed into clay tablets. At first used for record-keeping and trade, writing eventually allowed them to record laws, stories, and history. The Epic of Gilgamesh, written around 2100 BCE, is one of the world's oldest pieces of literature.",
+            "Mesopotamia was ruled by powerful city-states, each with its own king. The most famous ruler was Hammurabi of Babylon (ruled c. 1792–1750 BCE), who created one of history's first written law codes. Hammurabi's Code included 282 laws covering trade, property, marriage, and crime. The principle of \"an eye for an eye\" comes from this ancient code.",
+            "The Mesopotamians also made remarkable advances in mathematics and astronomy. They developed a number system based on 60 (which is why we have 60 minutes in an hour and 360 degrees in a circle), tracked the movements of planets and stars, and built enormous temple towers called ziggurats as centres of religious and civic life."
+          ],
+          fact: "The 60-minute hour and 360-degree circle both come from ancient Mesopotamian mathematics — a system based on the number 60.",
+          quiz: [
+            { type: "mc", q: "What does the word 'Mesopotamia' mean?", options: ["Land of the pharaohs", "Land between the rivers", "The fertile crescent", "Home of the gods"], answer: 1, explanation: "Mesopotamia comes from Greek: mesos (middle) and potamos (river) — land between the Tigris and Euphrates rivers." },
+            { type: "mc", q: "Which civilisation invented cuneiform writing?", options: ["Egyptians", "Babylonians", "Sumerians", "Persians"], answer: 2, explanation: "The Sumerians of Mesopotamia invented cuneiform around 3200 BCE — one of the world's earliest writing systems." },
+            { type: "tf", q: "Hammurabi's Code was one of the first written collections of laws in history.", answer: true, explanation: "Hammurabi's Code (c. 1754 BCE) is one of the oldest and most complete written legal codes ever discovered." },
+            { type: "fb", q: "The enormous stepped temple towers built by the Mesopotamians were called ___.", answer: "ziggurats", hint: "They look like stepped pyramids...", explanation: "Ziggurats were massive stepped structures built as temples. The Tower of Babel in the Bible may have been inspired by a ziggurat." },
+            { type: "mc", q: "Our 60-minute hour and 360-degree circle come from which ancient civilisation?", options: ["Ancient Greece", "Ancient Egypt", "Ancient Mesopotamia", "Ancient Rome"], answer: 2, explanation: "The Mesopotamians used a base-60 number system. We still use their units for time and angles today." }
+          ]
+        },
+        {
+          id: "ancient-china",
+          title: "Ancient China",
+          subtitle: "The Middle Kingdom",
+          illustration: `<svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="260" fill="#f0f9ff"/>
+  <circle cx="70" cy="55" r="32" fill="#fde68a" opacity="0.8"/>
+  <ellipse cx="100" cy="160" rx="100" ry="55" fill="#86efac" opacity="0.7"/>
+  <ellipse cx="280" cy="150" rx="130" ry="60" fill="#4ade80" opacity="0.6"/>
+  <ellipse cx="460" cy="155" rx="110" ry="50" fill="#86efac" opacity="0.65"/>
+  <polyline points="30,148 70,138 110,145 150,132 190,140 230,128 270,136 310,122 350,130 390,120 430,128 470,115 510,124 550,135 590,128" stroke="#9ca3af" stroke-width="5" fill="none"/>
+  <rect x="498" y="108" width="6" height="18" fill="#6b7280"/>
+  <rect x="308" y="115" width="6" height="18" fill="#6b7280"/>
+  <rect x="148" y="125" width="6" height="18" fill="#6b7280"/>
+  <polyline points="30,148 70,138 110,145 150,132 190,140 230,128 270,136 310,122 350,130 390,120 430,128 470,115 510,124 550,135 590,128" stroke="#d1d5db" stroke-width="2" fill="none" opacity="0.5"/>
+  <rect x="490" y="155" width="28" height="70" fill="#7f1d1d" opacity="0.8"/>
+  <polygon points="476,155 518,155 504,138 490,155" fill="#991b1b"/>
+  <rect x="480" y="138" width="38" height="8" fill="#b91c1c"/>
+  <polygon points="480,138 520,138 510,124 490,124" fill="#dc2626"/>
+  <rect x="484" y="124" width="32" height="6" fill="#b91c1c"/>
+  <polygon points="484,124 516,124 508,114 492,114" fill="#ef4444"/>
+  <text x="290" y="108" font-size="10" fill="#374151" font-family="sans-serif" font-weight="bold">Great Wall</text>
+  <line x1="310" y1="110" x2="330" y2="120" stroke="#374151" stroke-width="1.5"/>
+</svg>`,
+          content: [
+            "Ancient China developed along the Yellow River (Huang He) and the Yangtze River, beginning over 4,000 years ago. Chinese civilisation is one of the world's oldest continuous cultures. The Shang Dynasty (c. 1600–1046 BCE) was the first historically confirmed Chinese dynasty, known for its bronze work and an early form of Chinese writing carved onto oracle bones.",
+            "China was unified for the first time under Qin Shi Huang in 221 BCE, who became the first emperor of China. He standardised weights, measures, and writing across the empire, and began construction of what would become the Great Wall — a massive defensive structure stretching thousands of kilometres to protect China's northern border from nomadic invasions. After his death, a life-size army of 8,000 terracotta soldiers was buried with him.",
+            "The Han Dynasty (206 BCE – 220 CE) is often called China's golden age. It established the Silk Road — a network of trade routes connecting China to Central Asia, the Middle East, and eventually Europe. Through the Silk Road, China exported silk, porcelain, and spices, while importing ideas, religions, and goods. Buddhism entered China along these routes.",
+            "Ancient China gave the world some of its most important inventions: paper (105 CE), the printing press, gunpowder, the compass, and silk weaving. Chinese philosophers also left a lasting legacy — Confucius (551–479 BCE) taught that social harmony depended on respect for family, education, and proper behaviour, ideas that still shape East Asian cultures today."
+          ],
+          fact: "China is the world's oldest continuous civilisation — Chinese culture, writing, and governance have developed without interruption for over 4,000 years.",
+          quiz: [
+            { type: "mc", q: "Along which river did ancient Chinese civilisation first develop?", options: ["Yangtze only", "The Nile", "The Yellow River (Huang He)", "The Indus"], answer: 2, explanation: "Ancient China developed along the Yellow River (Huang He), whose floods deposited fertile soil ideal for farming." },
+            { type: "mc", q: "Who was the first emperor to unify China?", options: ["Confucius", "Han Wudi", "Qin Shi Huang", "Kublai Khan"], answer: 2, explanation: "Qin Shi Huang unified China in 221 BCE, standardised the writing system and measurements, and began the Great Wall." },
+            { type: "tf", q: "The Silk Road was a network of trade routes connecting China to the rest of the world.", answer: true, explanation: "The Silk Road connected China to Central Asia, the Middle East, and Europe, enabling the exchange of goods and ideas." },
+            { type: "fb", q: "The Chinese philosopher ___ taught that social harmony depends on respect for family and proper behaviour.", answer: "confucius", hint: "His teachings are called Confucianism...", explanation: "Confucius (551–479 BCE) was one of the world's most influential thinkers. His ideas on ethics and society shaped Chinese culture for millennia." },
+            { type: "mc", q: "Which of these was NOT invented in ancient China?", options: ["Paper", "Gunpowder", "The printing press", "The steam engine"], answer: 3, explanation: "The steam engine was invented in 18th-century Britain during the Industrial Revolution. Paper, gunpowder, and the printing press all originated in ancient China." }
+          ]
+        },
+        {
+          id: "ancient-india",
+          title: "Ancient India",
+          subtitle: "The Indus Valley & Beyond",
+          illustration: `<svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="260" fill="#fffbeb"/>
+  <ellipse cx="300" cy="180" rx="290" ry="55" fill="#86efac" opacity="0.5"/>
+  <ellipse cx="150" cy="165" rx="90" ry="40" fill="#4ade80" opacity="0.4"/>
+  <ellipse cx="480" cy="160" rx="80" ry="38" fill="#4ade80" opacity="0.35"/>
+  <path d="M 180 80 Q 185 120 183 160 Q 181 200 185 240" stroke="#3b82f6" stroke-width="6" fill="none" opacity="0.65"/>
+  <path d="M 193 80 Q 198 120 196 160 Q 194 200 198 240" stroke="#60a5fa" stroke-width="3" fill="none" opacity="0.45"/>
+  <rect x="50" y="130" width="18" height="14" rx="1" fill="#92400e" opacity="0.7"/>
+  <rect x="72" y="125" width="18" height="19" rx="1" fill="#92400e" opacity="0.7"/>
+  <rect x="94" y="132" width="18" height="12" rx="1" fill="#92400e" opacity="0.7"/>
+  <rect x="50" y="148" width="62" height="6" fill="#78350f" opacity="0.5"/>
+  <rect x="50" y="118" width="18" height="14" rx="1" fill="#a16207" opacity="0.6"/>
+  <rect x="72" y="112" width="18" height="15" rx="1" fill="#a16207" opacity="0.6"/>
+  <rect x="94" y="119" width="18" height="13" rx="1" fill="#a16207" opacity="0.6"/>
+  <rect x="50" y="130" width="62" height="5" fill="#92400e" opacity="0.4"/>
+  <line x1="60" y1="112" x2="60" y2="154" stroke="#92400e" stroke-width="1.5" opacity="0.3"/>
+  <line x1="82" y1="112" x2="82" y2="154" stroke="#92400e" stroke-width="1.5" opacity="0.3"/>
+  <line x1="104" y1="112" x2="104" y2="154" stroke="#92400e" stroke-width="1.5" opacity="0.3"/>
+  <ellipse cx="430" cy="175" rx="28" ry="18" fill="#374151" opacity="0.8"/>
+  <ellipse cx="418" cy="165" rx="12" ry="20" fill="#4b5563" opacity="0.75"/>
+  <circle cx="418" cy="152" r="10" fill="#374151"/>
+  <ellipse cx="410" cy="170" rx="5" ry="3" fill="#6b7280"/>
+  <ellipse cx="440" cy="172" rx="5" ry="3" fill="#6b7280"/>
+  <path d="M 422 148 Q 415 138 408 142" stroke="#374151" stroke-width="3" fill="none"/>
+  <circle cx="340" cy="120" r="14" fill="#fde68a" opacity="0.9"/>
+  <path d="M 330 120 Q 340 108 350 120 Q 340 132 330 120" fill="#fbbf24" opacity="0.6"/>
+  <path d="M 340 110 Q 352 120 340 130 Q 328 120 340 110" fill="#f59e0b" opacity="0.6"/>
+  <text x="50" y="108" font-size="10" fill="#78350f" font-family="sans-serif" font-weight="bold">Mohenjo-daro</text>
+  <text x="194" y="100" font-size="10" fill="#1d4ed8" font-family="sans-serif" font-weight="bold">Indus</text>
+</svg>`,
+          content: [
+            "One of the world's earliest and most sophisticated civilisations emerged in the Indus Valley (in what is now Pakistan and northwestern India) around 2600 BCE. Cities like Mohenjo-daro and Harappa were remarkably advanced — they had grid-planned streets, multi-storey brick houses, and an elaborate drainage and sewage system more advanced than many cities in Europe thousands of years later.",
+            "The Indus Valley Civilisation eventually declined around 1900 BCE, possibly due to climate change and shifts in river patterns. Around the same time, the Vedic Period began, brought by the Indo-Aryan peoples who migrated into the subcontinent. They composed the Vedas — among the world's oldest religious texts — and established the foundations of Hinduism, one of the world's oldest living religions.",
+            "Ancient India's greatest empire was the Maurya Empire (322–185 BCE), founded by Chandragupta Maurya and reaching its peak under Emperor Ashoka. After witnessing the devastation of war, Ashoka converted to Buddhism and spent the rest of his reign spreading its message of non-violence and compassion across Asia. He erected stone pillars with his edicts across the empire — some still stand today.",
+            "Ancient India made extraordinary contributions to human knowledge. Indian mathematicians invented the decimal number system and the concept of zero — arguably the most important mathematical invention in history. They also made advances in astronomy, medicine (Ayurveda), linguistics, and metallurgy. The Arthashastra, written around 300 BCE, was a sophisticated treatise on economics and statecraft."
+          ],
+          fact: "Ancient Indian mathematicians invented zero and the decimal number system — the foundation of all modern mathematics and computing.",
+          quiz: [
+            { type: "mc", q: "Where was the Indus Valley Civilisation located?", options: ["Along the Nile in Africa", "In what is now Pakistan and northwest India", "Along the Yellow River in China", "In modern-day Iraq"], answer: 1, explanation: "The Indus Valley Civilisation thrived in what is now Pakistan and northwestern India, centred on cities like Mohenjo-daro and Harappa." },
+            { type: "tf", q: "The cities of the Indus Valley Civilisation had advanced drainage and sewage systems.", answer: true, explanation: "Mohenjo-daro and Harappa had sophisticated drainage systems — more advanced than many contemporary civilisations." },
+            { type: "mc", q: "Which emperor spread Buddhism across Asia after converting to its teachings?", options: ["Chandragupta", "Ashoka", "Akbar", "Harsha"], answer: 1, explanation: "Emperor Ashoka converted to Buddhism after the bloody Kalinga War and spent his reign spreading Buddhist teachings of non-violence across Asia." },
+            { type: "fb", q: "Ancient Indian mathematicians invented ___ — a concept essential to all modern mathematics.", answer: "zero", hint: "It's the number that means 'nothing'...", explanation: "The concept of zero was developed in ancient India. Without zero, modern mathematics, computing, and science would be impossible." },
+            { type: "mc", q: "What were the Vedas?", options: ["A collection of laws like Hammurabi's Code", "A set of trade routes", "Ancient religious texts that formed the basis of Hinduism", "A type of ancient Indian currency"], answer: 2, explanation: "The Vedas are among the world's oldest religious texts, composed during India's Vedic Period and forming the foundation of Hinduism." }
+          ]
         }
       ]
     },
