@@ -9,9 +9,64 @@ export const mathsCurriculum: Topic[] = [
     grade: '6th',
     shortExplanation:
       'Geometry is the study of shapes, sizes, and properties of figures. Explore angles, area, perimeter, and more through the interactive geometry explorer.',
-    detailedExplanation: `**Geometry**
+    detailedExplanation: `**Geometry — Middle School Advanced**
 
-Geometry covers basic geometry concepts — points, lines, angles (acute < 90°, right = 90°, obtuse 90–180°), triangles (equilateral, isosceles, scalene), quadrilaterals (square, rectangle, parallelogram, trapezoid), area formulas (rectangle: l×w, triangle: ½bh, circle: πr²), perimeter, and the Pythagorean theorem (a² + b² = c² for right triangles). The interactive explorer below lets you experiment with shapes and their properties.`,
+**Angles**
+- Acute: < 90° | Right: = 90° | Obtuse: 90°–180° | Straight: 180° | Reflex: 180°–360°
+- Complementary angles sum to 90°; supplementary angles sum to 180°.
+- Vertical angles (formed by two intersecting lines) are always equal.
+- Alternate interior angles are equal when a transversal crosses parallel lines.
+- Co-interior (same-side interior) angles are supplementary when lines are parallel.
+
+**Triangles**
+- Interior angles always sum to 180°.
+- Exterior angle = sum of the two non-adjacent interior angles.
+- Types by sides: equilateral (all equal), isosceles (two equal), scalene (none equal).
+- Types by angles: acute (all < 90°), right (one = 90°), obtuse (one > 90°).
+- Area = ½ × base × height.
+
+**Pythagorean Theorem** (right triangles only)
+a² + b² = c²  where c is the hypotenuse (longest side, opposite the right angle).
+Common triples: 3-4-5, 5-12-13, 8-15-17, 7-24-25.
+Converse: if a² + b² = c², the triangle is a right triangle.
+
+**Quadrilaterals** — interior angles always sum to 360°.
+- Square: 4 equal sides, 4 right angles. Area = s². Perimeter = 4s.
+- Rectangle: opposite sides equal, 4 right angles. Area = lw. Perimeter = 2(l+w).
+- Parallelogram: opposite sides parallel and equal. Area = base × height.
+- Trapezoid: exactly one pair of parallel sides. Area = ½(b₁ + b₂) × h.
+- Rhombus: 4 equal sides. Area = ½ × d₁ × d₂ (diagonals).
+
+**Circles**
+- Circumference = 2πr = πd.
+- Area = πr².
+- A diameter is twice the radius.
+- Arc length = (central angle / 360°) × 2πr.
+- Sector area = (central angle / 360°) × πr².
+
+**3D Figures**
+- Rectangular prism: Volume = l×w×h. Surface Area = 2(lw + lh + wh).
+- Cylinder: Volume = πr²h. Surface Area = 2πr² + 2πrh.
+- Cone: Volume = ⅓πr²h.
+- Sphere: Volume = (4/3)πr³. Surface Area = 4πr².
+- Pyramid (rectangular base): Volume = ⅓ × base area × height.
+
+**Coordinate Geometry**
+- Distance between (x₁,y₁) and (x₂,y₂): d = √[(x₂−x₁)² + (y₂−y₁)²].
+- Midpoint = ((x₁+x₂)/2 , (y₁+y₂)/2).
+- Slope = (y₂−y₁)/(x₂−x₁). Parallel lines have equal slopes; perpendicular lines have slopes that are negative reciprocals.
+
+**Transformations**
+- Translation: slides a figure (x+a, y+b).
+- Reflection: flips across a line (e.g., over x-axis: (x,y)→(x,−y)).
+- Rotation: turns around a point.
+- Dilation: scales by a factor k from a center point. If k>1 enlargement; 0<k<1 reduction.
+- Congruent figures have the same shape and size. Similar figures have the same shape, proportional sides.
+
+**Angle Relationships in Polygons**
+- Sum of interior angles of an n-gon = (n−2) × 180°.
+- Each interior angle of a regular n-gon = (n−2) × 180° / n.
+- Sum of exterior angles of any convex polygon = 360°.`,
     simulationId: 'geometry-embed',
     questions: [
       {
@@ -67,6 +122,222 @@ Geometry covers basic geometry concepts — points, lines, angles (acute < 90°,
         answer: '180°',
         hint: 'This is a fundamental property of all triangles.',
         explanation: 'The three interior angles of any triangle always add up to exactly 180°.',
+      },
+      {
+        id: 'geometry-q7',
+        type: 'multiple-choice',
+        text: 'Two angles are supplementary. One measures 73°. What is the other?',
+        options: ['17°', '107°', '117°', '97°'],
+        answer: '107°',
+        hint: 'Supplementary angles add up to 180°.',
+        explanation: '180° − 73° = 107°. Supplementary means the two angles sum to 180°.',
+      },
+      {
+        id: 'geometry-q8',
+        type: 'multiple-choice',
+        text: 'What is the sum of the interior angles of a hexagon?',
+        options: ['540°', '720°', '900°', '360°'],
+        answer: '720°',
+        hint: 'Use the formula (n−2) × 180°.',
+        explanation: 'A hexagon has 6 sides. (6−2) × 180° = 4 × 180° = 720°.',
+      },
+      {
+        id: 'geometry-q9',
+        type: 'multiple-choice',
+        text: 'A right triangle has legs of 5 cm and 12 cm. What is the hypotenuse?',
+        options: ['13 cm', '17 cm', '11 cm', '15 cm'],
+        answer: '13 cm',
+        hint: 'a² + b² = c². Try 5² + 12².',
+        explanation: '5² + 12² = 25 + 144 = 169. √169 = 13 cm. This is the 5-12-13 Pythagorean triple.',
+      },
+      {
+        id: 'geometry-q10',
+        type: 'multiple-choice',
+        text: 'What is the area of a trapezoid with parallel sides 8 and 14 and height 5?',
+        options: ['55', '110', '70', '22'],
+        answer: '55',
+        hint: 'Area of trapezoid = ½(b₁ + b₂) × h.',
+        explanation: 'Area = ½ × (8 + 14) × 5 = ½ × 22 × 5 = 55 square units.',
+      },
+      {
+        id: 'geometry-q11',
+        type: 'multiple-choice',
+        text: 'A circle has a radius of 7 cm. What is its circumference? (Use π ≈ 3.14)',
+        options: ['21.98 cm', '43.96 cm', '153.86 cm', '87.92 cm'],
+        answer: '43.96 cm',
+        hint: 'Circumference = 2πr.',
+        explanation: 'C = 2 × 3.14 × 7 = 43.96 cm.',
+      },
+      {
+        id: 'geometry-q12',
+        type: 'multiple-choice',
+        text: 'What is the area of a circle with diameter 10? (Use π ≈ 3.14)',
+        options: ['31.4', '78.5', '314', '62.8'],
+        answer: '78.5',
+        hint: 'Radius = diameter ÷ 2. Area = πr².',
+        explanation: 'Radius = 10 ÷ 2 = 5. Area = π × 5² = 3.14 × 25 = 78.5 square units.',
+      },
+      {
+        id: 'geometry-q13',
+        type: 'multiple-choice',
+        text: 'Two parallel lines are cut by a transversal. One alternate interior angle is 65°. What is the other alternate interior angle?',
+        options: ['115°', '25°', '65°', '45°'],
+        answer: '65°',
+        hint: 'Alternate interior angles are equal when lines are parallel.',
+        explanation: 'When a transversal crosses parallel lines, alternate interior angles are congruent. So the other angle is also 65°.',
+      },
+      {
+        id: 'geometry-q14',
+        type: 'multiple-choice',
+        text: 'An exterior angle of a triangle is 110°. One non-adjacent interior angle is 48°. What is the other non-adjacent interior angle?',
+        options: ['62°', '70°', '48°', '110°'],
+        answer: '62°',
+        hint: 'The exterior angle equals the sum of the two non-adjacent interior angles.',
+        explanation: 'Exterior angle = sum of two non-adjacent interior angles. So 110° = 48° + x → x = 62°.',
+      },
+      {
+        id: 'geometry-q15',
+        type: 'multiple-choice',
+        text: 'What is the volume of a rectangular prism with dimensions 4 × 6 × 3?',
+        options: ['13', '72', '48', '36'],
+        answer: '72',
+        hint: 'Volume = length × width × height.',
+        explanation: 'V = 4 × 6 × 3 = 72 cubic units.',
+      },
+      {
+        id: 'geometry-q16',
+        type: 'multiple-choice',
+        text: 'What is the distance between points (1, 2) and (4, 6)?',
+        options: ['5', '7', '3', '6'],
+        answer: '5',
+        hint: 'Distance = √[(x₂−x₁)² + (y₂−y₁)²].',
+        explanation: 'd = √[(4−1)² + (6−2)²] = √[9 + 16] = √25 = 5.',
+      },
+      {
+        id: 'geometry-q17',
+        type: 'multiple-choice',
+        text: 'A parallelogram has a base of 9 cm and height of 7 cm. What is its area?',
+        options: ['32', '63', '16', '126'],
+        answer: '63',
+        hint: 'Area of parallelogram = base × height.',
+        explanation: 'Area = 9 × 7 = 63 cm². Note: height is the perpendicular distance between the parallel sides, not the slant side.',
+      },
+      {
+        id: 'geometry-q18',
+        type: 'multiple-choice',
+        text: 'What is each interior angle of a regular pentagon?',
+        options: ['108°', '72°', '120°', '90°'],
+        answer: '108°',
+        hint: 'Sum of interior angles = (n−2) × 180°. Divide by n for each angle.',
+        explanation: 'Sum = (5−2) × 180° = 540°. Each angle = 540° ÷ 5 = 108°.',
+      },
+      {
+        id: 'geometry-q19',
+        type: 'multiple-choice',
+        text: 'A triangle has sides 7, 24, and 25. Is it a right triangle?',
+        options: ['Yes', 'No', 'Cannot be determined', 'Only if the angles are measured'],
+        answer: 'Yes',
+        hint: 'Check if a² + b² = c² where c is the longest side.',
+        explanation: '7² + 24² = 49 + 576 = 625 = 25². Since a² + b² = c², it is a right triangle (7-24-25 triple).',
+      },
+      {
+        id: 'geometry-q20',
+        type: 'multiple-choice',
+        text: 'What is the surface area of a rectangular prism with l=5, w=3, h=4?',
+        options: ['60', '94', '47', '120'],
+        answer: '94',
+        hint: 'SA = 2(lw + lh + wh).',
+        explanation: 'SA = 2(5×3 + 5×4 + 3×4) = 2(15 + 20 + 12) = 2 × 47 = 94 square units.',
+      },
+      {
+        id: 'geometry-q21',
+        type: 'multiple-choice',
+        text: 'What is the midpoint of the segment from (−2, 4) to (6, −8)?',
+        options: ['(2, −2)', '(4, −4)', '(2, 2)', '(−4, 4)'],
+        answer: '(2, −2)',
+        hint: 'Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2).',
+        explanation: 'Midpoint = ((−2+6)/2, (4+(−8))/2) = (4/2, −4/2) = (2, −2).',
+      },
+      {
+        id: 'geometry-q22',
+        type: 'multiple-choice',
+        text: 'A sector of a circle has a central angle of 90° and radius 8. What is its area? (Use π ≈ 3.14)',
+        options: ['50.24', '200.96', '25.12', '100.48'],
+        answer: '50.24',
+        hint: 'Sector area = (central angle / 360°) × πr².',
+        explanation: 'Sector area = (90/360) × 3.14 × 64 = 0.25 × 200.96 = 50.24 square units.',
+      },
+      {
+        id: 'geometry-q23',
+        type: 'multiple-choice',
+        text: 'Two vertical angles are formed at an intersection. One is (3x + 15)°. The other is (5x − 5)°. What is x?',
+        options: ['10', '15', '20', '5'],
+        answer: '10',
+        hint: 'Vertical angles are equal. Set them equal and solve.',
+        explanation: '3x + 15 = 5x − 5 → 20 = 2x → x = 10.',
+      },
+      {
+        id: 'geometry-q24',
+        type: 'multiple-choice',
+        text: 'A dilation with scale factor 3 is applied to a triangle with area 12 cm². What is the new area?',
+        options: ['36 cm²', '108 cm²', '15 cm²', '24 cm²'],
+        answer: '108 cm²',
+        hint: 'When you dilate by factor k, area scales by k².',
+        explanation: 'Area scales by k². New area = 12 × 3² = 12 × 9 = 108 cm².',
+      },
+      {
+        id: 'geometry-q25',
+        type: 'multiple-choice',
+        text: 'What is the volume of a cone with radius 6 cm and height 10 cm? (Use π ≈ 3.14)',
+        options: ['376.8 cm³', '1130.4 cm³', '125.6 cm³', '188.4 cm³'],
+        answer: '376.8 cm³',
+        hint: 'Volume of cone = ⅓ × π × r² × h.',
+        explanation: 'V = ⅓ × 3.14 × 36 × 10 = ⅓ × 1130.4 = 376.8 cm³.',
+      },
+      {
+        id: 'geometry-q26',
+        type: 'multiple-choice',
+        text: 'Lines p and q are parallel. A transversal crosses them, creating a co-interior angle of 72° on one side. What is the co-interior angle on the same side?',
+        options: ['72°', '108°', '18°', '118°'],
+        answer: '108°',
+        hint: 'Co-interior (same-side interior) angles are supplementary — they add to 180°.',
+        explanation: 'Co-interior angles sum to 180° when lines are parallel. 180° − 72° = 108°.',
+      },
+      {
+        id: 'geometry-q27',
+        type: 'multiple-choice',
+        text: 'A rhombus has diagonals of length 10 cm and 24 cm. What is its area?',
+        options: ['120 cm²', '240 cm²', '60 cm²', '34 cm²'],
+        answer: '120 cm²',
+        hint: 'Area of rhombus = ½ × d₁ × d₂.',
+        explanation: 'Area = ½ × 10 × 24 = ½ × 240 = 120 cm².',
+      },
+      {
+        id: 'geometry-q28',
+        type: 'multiple-choice',
+        text: 'A point (3, −5) is reflected over the x-axis. What are its new coordinates?',
+        options: ['(−3, 5)', '(3, 5)', '(−3, −5)', '(5, −3)'],
+        answer: '(3, 5)',
+        hint: 'Reflecting over the x-axis negates the y-coordinate.',
+        explanation: 'Reflection over the x-axis: (x, y) → (x, −y). So (3, −5) → (3, 5).',
+      },
+      {
+        id: 'geometry-q29',
+        type: 'multiple-choice',
+        text: 'What is the volume of a cylinder with radius 5 and height 12? (Use π ≈ 3.14)',
+        options: ['942', '188.4', '1884', '471'],
+        answer: '942',
+        hint: 'Volume of cylinder = π × r² × h.',
+        explanation: 'V = 3.14 × 5² × 12 = 3.14 × 25 × 12 = 3.14 × 300 = 942 cubic units.',
+      },
+      {
+        id: 'geometry-q30',
+        type: 'multiple-choice',
+        text: 'Triangle ABC is similar to triangle DEF. AB = 4, BC = 6, DE = 10. What is EF?',
+        options: ['15', '12', '8', '24'],
+        answer: '15',
+        hint: 'Similar triangles have proportional sides. Set up the ratio AB/DE = BC/EF.',
+        explanation: 'AB/DE = BC/EF → 4/10 = 6/EF → EF = 6 × 10/4 = 60/4 = 15.',
       },
     ] satisfies Question[],
   },
