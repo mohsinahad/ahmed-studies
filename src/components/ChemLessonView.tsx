@@ -157,7 +157,7 @@ export default function ChemLessonView({ topic, alreadyCompleted, onComplete, on
               <h2 className="text-white font-bold text-lg">Test your knowledge</h2>
               <p className="text-slate-400 text-sm">{topic.questions.length} questions · Hints available</p>
             </div>
-            <Quiz topic={topic} onComplete={handleQuizComplete} />
+            <Quiz topic={topic} onComplete={handleQuizComplete} subjectId="chemistry" />
             {quizDone && (
               <button onClick={onBack}
                 className="mt-6 w-full py-3 rounded-xl bg-green-500 hover:bg-green-400 font-semibold transition">

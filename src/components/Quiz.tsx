@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import type { Topic, Question } from '../data/curriculum';
+import { trackQuestionAttempt } from '../lib/analytics';
 
 interface Props {
   topic: Topic;
   onComplete: (score: number) => void;
+  subjectId?: string;
 }
 
-export default function Quiz({ topic, onComplete }: Props) {
+export default function Quiz({ topic, onComplete, subjectId }: Props) {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<string>('');
   const [numInput, setNumInput] = useState('');
@@ -30,6 +32,7 @@ export default function Quiz({ topic, onComplete }: Props) {
       isCorrect = !isNaN(val) && Math.abs(val - ans) <= tol;
     }
 
+    if (subjectId) trackQuestionAttempt(subjectId, isCorrect);
     setCorrect(isCorrect);
     setShowResult(true);
   }

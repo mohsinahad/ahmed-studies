@@ -5,8 +5,10 @@ import SocialStudies from './subjects/SocialStudies';
 import Chemistry from './subjects/Chemistry';
 import AI from './subjects/AI';
 import ELA from './subjects/ELA';
+import Finance from './subjects/Finance';
+import AnalyticsDashboard from './components/AnalyticsDashboard';
 
-type Subject = 'home' | 'physics' | 'maths' | 'social-studies' | 'chemistry' | 'ai' | 'ela';
+type Subject = 'home' | 'physics' | 'maths' | 'social-studies' | 'chemistry' | 'ai' | 'ela' | 'finance' | 'analytics';
 
 const subjects = [
   {
@@ -63,6 +65,15 @@ const subjects = [
     border: 'border-rose-700',
     glow: 'hover:shadow-rose-500/20',
   },
+  {
+    id: 'finance' as const,
+    label: 'Finance',
+    description: 'Stocks, Bonds, ETFs & Investing',
+    icon: '💰',
+    accent: 'from-green-500 to-emerald-600',
+    border: 'border-green-700',
+    glow: 'hover:shadow-green-500/20',
+  },
 ];
 
 export default function App() {
@@ -74,11 +85,19 @@ export default function App() {
   if (subject === 'chemistry') return <Chemistry onBack={() => setSubject('home')} />;
   if (subject === 'ai') return <AI onBack={() => setSubject('home')} />;
   if (subject === 'ela') return <ELA onBack={() => setSubject('home')} />;
+  if (subject === 'finance') return <Finance onBack={() => setSubject('home')} />;
+  if (subject === 'analytics') return <AnalyticsDashboard onBack={() => setSubject('home')} />;
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-8">
       <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">Ahmed's Studies</h1>
-      <p className="text-slate-400 mb-12 text-sm">Choose a subject to start learning</p>
+      <p className="text-slate-400 mb-4 text-sm">Choose a subject to start learning</p>
+      <button
+        onClick={() => setSubject('analytics')}
+        className="mb-10 px-4 py-2 rounded-lg border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 text-xs transition"
+      >
+        View Progress Stats
+      </button>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-2xl">
         {subjects.map((s) => (
           <button
