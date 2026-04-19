@@ -350,31 +350,159 @@ Converse: if a² + b² = c², the triangle is a right triangle.
       'The absolute value of a number is its distance from zero on a number line. It is always zero or positive — never negative. Written as |x|, it ignores the direction (positive or negative) and only cares about size.',
     detailedExplanation: `**What is absolute value?**
 The absolute value of a number is how far it is from zero on the number line, regardless of direction.
-|−7| = 7 (seven steps from zero)
-|7| = 7 (also seven steps from zero)
-|0| = 0 (zero is already at zero)
+|−7| = 7   (seven steps from zero)
+|7|  = 7   (also seven steps from zero)
+|0|  = 0   (zero is already at zero)
 
-**Key rule:** Absolute value is ALWAYS zero or positive.
+Key rule: Absolute value is ALWAYS zero or positive — it can NEVER be negative.
+Notation: Written with vertical bars. |−5| is read "the absolute value of negative five."
 
-**Notation:** Written with vertical bars: |−5| is read as "the absolute value of negative five."
+Formal definition:
+  |x| = x    when x ≥ 0
+  |x| = −x   when x < 0   (the negative of a negative gives a positive)
 
-**Why it matters:**
-Real-world situations use absolute value whenever direction doesn't matter but size does.
-- A submarine at −200 metres: the depth is |−200| = 200 metres.
-- A temperature of −15°C: the magnitude is |−15| = 15 degrees.
-- Profit and loss: a loss of £50 has a magnitude of |−50| = £50.
+Real-world meaning: anytime you care about SIZE but not DIRECTION — depth of a submarine, temperature difference, manufacturing error, price change.
 
-**Operations with absolute value:**
+──────────────────────────────────────────
+**Operations with absolute value**
 Evaluate the absolute value FIRST, then do the arithmetic.
-|−8| + |3| = 8 + 3 = 11
-|−10| − |4| = 10 − 4 = 6
-|−6| × |−2| = 6 × 2 = 12
+  |−8| + |3| = 8 + 3 = 11
+  |−10| − |4| = 10 − 4 = 6
+  |−6| × |−2| = 6 × 2 = 12
+  3 × |−4| − |−6| ÷ 2 = 12 − 3 = 9   (BIDMAS applies after resolving bars)
 
-**Solving |x| = n:**
-If |x| = 5, then x = 5 OR x = −5. There are always TWO solutions (unless n = 0, where x = 0 is the only solution).
+──────────────────────────────────────────
+**ABSOLUTE VALUE EQUATIONS**
 
-**Absolute value on a number line:**
-Think of absolute value as distance. Distance is always positive — you can't travel a negative distance.`,
+Basic form: |x| = n
+  If n > 0 → two solutions: x = n  OR  x = −n
+  If n = 0 → one solution:  x = 0
+  If n < 0 → NO solution (absolute value can never equal a negative)
+
+Example 1 — Simple
+  |x| = 9
+  x = 9   or   x = −9
+
+Example 2 — Linear inside: |2x − 3| = 7
+  Case 1: 2x − 3 = 7  →  2x = 10  →  x = 5
+  Case 2: 2x − 3 = −7 →  2x = −4  →  x = −2
+  Solutions: x = 5 or x = −2
+  Check: |2(5)−3| = |7| = 7 ✓   |2(−2)−3| = |−7| = 7 ✓
+
+Example 3 — Coefficient outside: 3|x + 1| − 6 = 9
+  Step 1 — isolate the absolute value:
+    3|x + 1| = 15  →  |x + 1| = 5
+  Case 1: x + 1 = 5  →  x = 4
+  Case 2: x + 1 = −5 →  x = −6
+  Solutions: x = 4 or x = −6
+
+Example 4 — Two absolute values: |x + 4| = |2x − 1|
+  Case 1 (expressions equal):    x + 4 = 2x − 1  →  5 = x  →  x = 5
+  Case 2 (expressions opposite): x + 4 = −(2x − 1)  →  x + 4 = −2x + 1  →  3x = −3  →  x = −1
+  Solutions: x = 5 or x = −1
+
+Example 5 — No solution: |3x − 2| = −5
+  Absolute value can NEVER be negative. No solution.
+
+Key steps for any absolute value equation:
+  1. Isolate the absolute value expression on one side.
+  2. If the right side is negative → write "No solution."
+  3. Otherwise split into two cases (positive and negative) and solve each.
+  4. Always CHECK by substituting back.
+
+──────────────────────────────────────────
+**ABSOLUTE VALUE INEQUALITIES**
+
+There are two types. Remember the key phrases:
+  "Less than" → AND → one connected interval (between two values)
+  "Greater than" → OR → two separate rays (outside two values)
+
+TYPE 1: |x| < n   (or ≤)  →  "AND"  →  −n < x < n
+  |x| < 4  means x is within 4 of zero:  −4 < x < 4
+  On a number line: a segment with open circles at −4 and 4, shaded between.
+
+  General rule: |ax + b| < c  (c > 0)
+    →  −c < ax + b < c
+    →  Solve the compound inequality.
+
+  Example: |2x − 1| ≤ 5
+    −5 ≤ 2x − 1 ≤ 5
+    −4 ≤ 2x ≤ 6       (add 1 throughout)
+    −2 ≤ x ≤ 3        (divide by 2)
+  Graph: closed circles at −2 and 3, shaded between.
+
+TYPE 2: |x| > n   (or ≥)  →  "OR"  →  x < −n  or  x > n
+  |x| > 4  means x is more than 4 away from zero:  x < −4  or  x > 4
+  On a number line: two rays going outward with open circles at −4 and 4.
+
+  General rule: |ax + b| > c  (c > 0)
+    →  ax + b < −c  OR  ax + b > c
+    →  Solve each inequality separately.
+
+  Example: |3x + 2| ≥ 8
+    Case 1: 3x + 2 ≥ 8   →  3x ≥ 6   →  x ≥ 2
+    Case 2: 3x + 2 ≤ −8  →  3x ≤ −10 →  x ≤ −10/3
+  Graph: closed circles at −10/3 and 2, shaded outward.
+
+Special cases:
+  |x| < 0  →  No solution (absolute value is never negative)
+  |x| ≤ 0  →  x = 0 only (only zero has absolute value 0)
+  |x| > 0  →  All real numbers EXCEPT x = 0
+  |x| ≥ 0  →  All real numbers (always true)
+
+Solving strategy — isolate first, then split:
+  2|x − 5| + 3 > 11
+  Step 1: 2|x − 5| > 8  →  |x − 5| > 4
+  Step 2 (OR): x − 5 > 4 → x > 9   or   x − 5 < −4 → x < 1
+  Answer: x < 1 or x > 9
+
+──────────────────────────────────────────
+**GRAPHING ABSOLUTE VALUE FUNCTIONS**
+
+The parent function y = |x| produces a V-shape:
+  • The vertex (the tip of the V) is at the origin (0, 0).
+  • The left arm has slope −1; the right arm has slope +1.
+  • The graph is symmetric about the y-axis.
+
+Standard form: y = a|x − h| + k
+  (h, k) is the vertex.
+  a controls the steepness and direction:
+    a > 0 → V opens upward
+    a < 0 → V opens downward
+    |a| > 1 → steeper (narrower) than y = |x|
+    0 < |a| < 1 → shallower (wider) than y = |x|
+
+Transformations from y = |x|:
+  y = |x − h|     → shifts RIGHT by h
+  y = |x + h|     → shifts LEFT by h  (because +h means h is subtracted from inside)
+  y = |x| + k     → shifts UP by k
+  y = |x| − k     → shifts DOWN by k
+  y = −|x|        → reflects over x-axis (V flips downward)
+  y = a|x|        → vertical stretch (|a|>1) or compression (|a|<1)
+
+Example 1 — y = |x − 3| + 2
+  Vertex: (3, 2). Opens upward. Slope ±1.
+  Table of values:
+    x=0: |0−3|+2 = 3+2 = 5
+    x=3: |3−3|+2 = 0+2 = 2  ← vertex
+    x=6: |6−3|+2 = 3+2 = 5
+
+Example 2 — y = −2|x + 1| + 4
+  Vertex: (−1, 4). Opens DOWNWARD (a = −2 < 0). Steeper than parent.
+  x=−1: −2|0|+4 = 4 ← vertex (maximum point)
+  x=1:  −2|2|+4 = −4+4 = 0
+  x=−3: −2|−2|+4 = −4+4 = 0
+
+Finding x-intercepts of y = a|x − h| + k:
+  Set y = 0 and solve the resulting absolute value equation.
+  0 = −2|x + 1| + 4  →  |x + 1| = 2  →  x = 1 or x = −3
+
+Domain: all real numbers for any absolute value function.
+Range: depends on vertex and direction.
+  Opens up: y ≥ k
+  Opens down: y ≤ k
+
+Axis of symmetry: x = h (vertical line through the vertex).`,
     simulationId: 'absolute-value-sim',
     questions: [
       {
@@ -471,6 +599,195 @@ Think of absolute value as distance. Distance is always positive — you can't t
         tolerance: 0,
         hint: 'Midpoint = (a + b) ÷ 2. Then take the absolute value of that result.',
         explanation: 'Midpoint = (−8 + 14) ÷ 2 = 6 ÷ 2 = 3. The meeting point is at 3, and |3| = 3.',
+      },
+      {
+        id: 'abs-q11',
+        type: 'multiple-choice',
+        text: 'Solve: |2x − 3| = 7. What are the two solutions?',
+        options: ['x = 5 or x = 2', 'x = 5 or x = −2', 'x = −5 or x = 2', 'x = 5 or x = −5'],
+        answer: 'x = 5 or x = −2',
+        hint: 'Split into two cases: 2x − 3 = 7 and 2x − 3 = −7. Solve each.',
+        explanation: 'Case 1: 2x − 3 = 7 → 2x = 10 → x = 5. Case 2: 2x − 3 = −7 → 2x = −4 → x = −2.',
+      },
+      {
+        id: 'abs-q12',
+        type: 'multiple-choice',
+        text: 'How many solutions does |5x + 2| = −3 have?',
+        options: ['Two solutions', 'One solution', 'No solution', 'Infinitely many solutions'],
+        answer: 'No solution',
+        hint: 'Absolute value is always ≥ 0. Can it ever equal a negative number?',
+        explanation: 'Absolute value is always ≥ 0. It can never equal −3. There is no solution.',
+      },
+      {
+        id: 'abs-q13',
+        type: 'numeric',
+        text: 'Solve: 3|x + 1| − 6 = 9. Find the positive solution.',
+        answer: 4,
+        unit: '',
+        tolerance: 0,
+        hint: 'First isolate |x + 1| by adding 6 and dividing by 3. Then split into two cases.',
+        explanation: '3|x+1| = 15 → |x+1| = 5. Case 1: x+1=5 → x=4. Case 2: x+1=−5 → x=−6. Positive solution is x=4.',
+      },
+      {
+        id: 'abs-q14',
+        type: 'multiple-choice',
+        text: 'Solve: |x + 4| = |2x − 1|. What are the solutions?',
+        options: ['x = 5 or x = 1', 'x = 5 or x = −1', 'x = −5 or x = 1', 'x = 3 or x = −5'],
+        answer: 'x = 5 or x = −1',
+        hint: 'Two cases: (1) x+4 = 2x−1 and (2) x+4 = −(2x−1). Solve each.',
+        explanation: 'Case 1: x+4=2x−1 → 5=x. Case 2: x+4=−2x+1 → 3x=−3 → x=−1. Solutions: x=5 or x=−1.',
+      },
+      {
+        id: 'abs-q15',
+        type: 'numeric',
+        text: 'Solve: 2|3x − 6| + 4 = 16. Find the larger solution.',
+        answer: 4,
+        unit: '',
+        tolerance: 0,
+        hint: 'Isolate the absolute value: subtract 4 then divide by 2. Then split into two cases.',
+        explanation: '2|3x−6|=12 → |3x−6|=6. Case 1: 3x−6=6 → 3x=12 → x=4. Case 2: 3x−6=−6 → 3x=0 → x=0. Larger is x=4.',
+      },
+      {
+        id: 'abs-q16',
+        type: 'multiple-choice',
+        text: 'Which compound inequality correctly represents |2x − 1| ≤ 5?',
+        options: ['−5 ≤ 2x − 1 ≤ 5', '2x − 1 ≤ 5 only', 'x ≤ 3 or x ≥ −2', '2x − 1 ≥ −5 only'],
+        answer: '−5 ≤ 2x − 1 ≤ 5',
+        hint: '|expression| ≤ c means −c ≤ expression ≤ c.',
+        explanation: '|2x−1| ≤ 5 splits into −5 ≤ 2x−1 ≤ 5 (the AND / between rule for less-than inequalities).',
+      },
+      {
+        id: 'abs-q17',
+        type: 'multiple-choice',
+        text: 'Solve: |2x − 1| ≤ 5. What is the solution set?',
+        options: ['−2 ≤ x ≤ 3', '−3 ≤ x ≤ 2', 'x ≤ −2 or x ≥ 3', 'x ≤ 3 only'],
+        answer: '−2 ≤ x ≤ 3',
+        hint: '−5 ≤ 2x−1 ≤ 5 → add 1 throughout → −4 ≤ 2x ≤ 6 → divide by 2.',
+        explanation: '−5 ≤ 2x−1 ≤ 5 → −4 ≤ 2x ≤ 6 → −2 ≤ x ≤ 3.',
+      },
+      {
+        id: 'abs-q18',
+        type: 'multiple-choice',
+        text: 'Solve: |3x + 2| ≥ 8. What is the solution set?',
+        options: ['x ≤ −10/3 or x ≥ 2', '−10/3 ≤ x ≤ 2', 'x ≥ 2 only', 'x ≤ −10/3 only'],
+        answer: 'x ≤ −10/3 or x ≥ 2',
+        hint: '|expression| ≥ c means expression ≥ c OR expression ≤ −c (the OR / outside rule).',
+        explanation: 'Case 1: 3x+2 ≥ 8 → 3x ≥ 6 → x ≥ 2. Case 2: 3x+2 ≤ −8 → 3x ≤ −10 → x ≤ −10/3.',
+      },
+      {
+        id: 'abs-q19',
+        type: 'multiple-choice',
+        text: 'How many solutions does |x + 3| ≤ 0 have?',
+        options: ['No solutions', 'Exactly one: x = −3', 'All real numbers', 'Two solutions'],
+        answer: 'Exactly one: x = −3',
+        hint: 'Absolute value is always ≥ 0, so |x+3| ≤ 0 can only be true when |x+3| = 0.',
+        explanation: '|x+3| ≥ 0 always. For ≤ 0 to hold, |x+3| must equal 0 exactly, which means x+3=0 → x=−3.',
+      },
+      {
+        id: 'abs-q20',
+        type: 'multiple-choice',
+        text: 'Solve: 2|x − 5| + 3 > 11. What is the solution?',
+        options: ['x < 1 or x > 9', '1 < x < 9', 'x < 9 only', 'x > 1 only'],
+        answer: 'x < 1 or x > 9',
+        hint: 'First isolate the absolute value: subtract 3, divide by 2. Then apply the OR rule for >.',
+        explanation: '2|x−5| > 8 → |x−5| > 4. OR rule: x−5 > 4 → x > 9, or x−5 < −4 → x < 1.',
+      },
+      {
+        id: 'abs-q21',
+        type: 'multiple-choice',
+        text: 'What is the vertex of y = |x − 4| + 7?',
+        options: ['(4, 7)', '(−4, 7)', '(4, −7)', '(7, 4)'],
+        answer: '(4, 7)',
+        hint: 'Standard form: y = a|x − h| + k. The vertex is (h, k).',
+        explanation: 'y = |x − 4| + 7 has h = 4 and k = 7. Vertex is (4, 7). The V tip is at x=4, y=7.',
+      },
+      {
+        id: 'abs-q22',
+        type: 'multiple-choice',
+        text: 'The graph of y = −3|x + 2| + 6 opens in which direction and has what vertex?',
+        options: ['Upward, vertex (2, 6)', 'Downward, vertex (2, 6)', 'Downward, vertex (−2, 6)', 'Upward, vertex (−2, 6)'],
+        answer: 'Downward, vertex (−2, 6)',
+        hint: 'a = −3 < 0 means downward. For |x + 2|, think |x − (−2)|, so h = −2.',
+        explanation: 'a = −3 < 0 → opens downward. Standard form: y = −3|x − (−2)| + 6, so h = −2, k = 6. Vertex (−2, 6).',
+      },
+      {
+        id: 'abs-q23',
+        type: 'multiple-choice',
+        text: 'Compared to y = |x|, the graph of y = |x| − 5 is:',
+        options: ['Shifted left 5', 'Shifted right 5', 'Shifted down 5', 'Shifted up 5'],
+        answer: 'Shifted down 5',
+        hint: 'Adding or subtracting outside the bars shifts vertically.',
+        explanation: 'y = |x| − 5 subtracts 5 from the output (y-value), shifting the entire graph 5 units downward.',
+      },
+      {
+        id: 'abs-q24',
+        type: 'multiple-choice',
+        text: 'What is the range of y = 2|x − 1| − 3?',
+        options: ['y ≥ −3', 'y ≤ −3', 'y ≥ 2', 'All real numbers'],
+        answer: 'y ≥ −3',
+        hint: 'a = 2 > 0, so the parabola opens upward. The minimum is at the vertex.',
+        explanation: 'a = 2 > 0 → opens upward → minimum at vertex. Vertex is (1, −3). So y ≥ −3.',
+      },
+      {
+        id: 'abs-q25',
+        type: 'multiple-choice',
+        text: 'Find the x-intercepts of y = |x + 3| − 5.',
+        options: ['x = 2 or x = −8', 'x = 2 or x = 8', 'x = −2 or x = 8', 'x = 5 or x = −3'],
+        answer: 'x = 2 or x = −8',
+        hint: 'Set y = 0: |x+3| = 5, then split into two cases.',
+        explanation: '|x+3| = 5 → x+3=5 → x=2, or x+3=−5 → x=−8. X-intercepts at (2,0) and (−8,0).',
+      },
+      {
+        id: 'abs-q26',
+        type: 'multiple-choice',
+        text: 'Which graph transformation maps y = |x| onto y = |x + 6| + 1?',
+        options: [
+          'Shift right 6, up 1',
+          'Shift left 6, up 1',
+          'Shift left 6, down 1',
+          'Shift right 6, down 1',
+        ],
+        answer: 'Shift left 6, up 1',
+        hint: 'y = |x + 6| + 1 → |x − (−6)| + 1. h = −6 (left 6), k = 1 (up 1).',
+        explanation: 'h = −6 (shift left 6 units), k = 1 (shift up 1 unit). New vertex is (−6, 1).',
+      },
+      {
+        id: 'abs-q27',
+        type: 'numeric',
+        text: 'A factory specifies that a part must be 50 mm long with a tolerance of ±2 mm. Write this as |x − 50| ≤ 2 and find the minimum acceptable length in mm.',
+        answer: 48,
+        unit: 'mm',
+        tolerance: 0,
+        hint: 'Solve −2 ≤ x − 50 ≤ 2 by adding 50 throughout.',
+        explanation: '|x−50| ≤ 2 → −2 ≤ x−50 ≤ 2 → 48 ≤ x ≤ 52. Minimum is 48 mm.',
+      },
+      {
+        id: 'abs-q28',
+        type: 'numeric',
+        text: 'Solve: |4x − 8| = |2x + 4|. Find the positive solution.',
+        answer: 6,
+        unit: '',
+        tolerance: 0,
+        hint: 'Two cases: 4x−8 = 2x+4 and 4x−8 = −(2x+4). Solve each.',
+        explanation: 'Case 1: 4x−8=2x+4 → 2x=12 → x=6. Case 2: 4x−8=−2x−4 → 6x=4 → x=2/3. Positive integer solution: x=6.',
+      },
+      {
+        id: 'abs-q29',
+        type: 'multiple-choice',
+        text: 'A thermometer reading must satisfy |T − 20| < 3 (in °C). Which temperatures are acceptable?',
+        options: ['17 < T < 23', '17 ≤ T ≤ 23', 'T < 17 or T > 23', 'T > 23 only'],
+        answer: '17 < T < 23',
+        hint: 'Use the AND rule: −3 < T − 20 < 3, then add 20 throughout.',
+        explanation: '−3 < T−20 < 3 → 17 < T < 23. Temperatures strictly between 17°C and 23°C are acceptable.',
+      },
+      {
+        id: 'abs-q30',
+        type: 'multiple-choice',
+        text: 'The axis of symmetry of y = |2x − 10| + 3 is:',
+        options: ['x = 5', 'x = 10', 'x = −5', 'x = 3'],
+        answer: 'x = 5',
+        hint: 'Vertex is at x = h. Rewrite |2x − 10| = 2|x − 5|. What is h?',
+        explanation: '|2x−10| = 2|x−5|. So y = 2|x−5|+3, vertex at (5, 3). Axis of symmetry: x = 5.',
       },
     ] satisfies Question[],
   },
