@@ -6,9 +6,10 @@ import Chemistry from './subjects/Chemistry';
 import AI from './subjects/AI';
 import ELA from './subjects/ELA';
 import Finance from './subjects/Finance';
+import IslamicStudies from './subjects/IslamicStudies';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 
-type Subject = 'home' | 'physics' | 'maths' | 'social-studies' | 'chemistry' | 'ai' | 'ela' | 'finance' | 'analytics';
+type Subject = 'home' | 'physics' | 'maths' | 'social-studies' | 'chemistry' | 'ai' | 'ela' | 'finance' | 'islamic-studies' | 'analytics';
 
 const subjects = [
   {
@@ -74,6 +75,15 @@ const subjects = [
     border: 'border-green-700',
     glow: 'hover:shadow-green-500/20',
   },
+  {
+    id: 'islamic-studies' as const,
+    label: 'Islamic Studies',
+    description: 'Quran, Kalimas, Faith & Worship',
+    icon: '☾',
+    accent: 'from-emerald-600 to-teal-700',
+    border: 'border-emerald-800',
+    glow: 'hover:shadow-emerald-500/20',
+  },
 ];
 
 export default function App() {
@@ -86,6 +96,7 @@ export default function App() {
   if (subject === 'ai') return <AI onBack={() => setSubject('home')} />;
   if (subject === 'ela') return <ELA onBack={() => setSubject('home')} />;
   if (subject === 'finance') return <Finance onBack={() => setSubject('home')} />;
+  if (subject === 'islamic-studies') return <IslamicStudies onBack={() => setSubject('home')} />;
   if (subject === 'analytics') return <AnalyticsDashboard onBack={() => setSubject('home')} />;
 
   return (
