@@ -1355,7 +1355,236 @@ Combined mean = (sum₁ + sum₂) / (n₁ + n₂).
 **Effect of Outliers**
 Mean: most affected by outliers.
 Median: resistant to outliers.
-Mode: not affected by outliers.`,simulationId:``,questions:[{id:`mc-stat-q1`,type:`numeric`,text:`Find the mean of 4, 7, 13, 2, 9.`,answer:7,unit:``,tolerance:0,hint:`Sum them, then divide by 5.`,explanation:`(4+7+13+2+9)/5 = 35/5 = 7.`},{id:`mc-stat-q2`,type:`numeric`,text:`Find the median of 3, 8, 1, 6, 2, 9, 5.`,answer:5,unit:``,tolerance:0,hint:`Sort first: 1,2,3,5,6,8,9.`,explanation:`Middle value (4th of 7) = 5.`},{id:`mc-stat-q3`,type:`numeric`,text:`The mean of 5 numbers is 12. Four of them are 8, 14, 11, 15. What is the 5th number?`,answer:12,unit:``,tolerance:0,hint:`Sum = 5×12 = 60. Subtract the four known values.`,explanation:`60 − (8+14+11+15) = 60 − 48 = 12.`},{id:`mc-stat-q4`,type:`numeric`,text:`Data set: 3, 5, 7, 5, 9, 2, 5. What is the mode?`,answer:5,unit:``,tolerance:0,hint:`Which value appears most often?`,explanation:`5 appears three times — it is the mode.`},{id:`mc-stat-q5`,type:`numeric`,text:`The mean of 10 numbers is 8. When one number is removed, the mean of the remaining 9 is 7. What was the removed number?`,answer:17,unit:``,tolerance:0,hint:`Removed = (10×8) − (9×7).`,explanation:`80 − 63 = 17.`},{id:`mc-stat-q6`,type:`numeric`,text:`Find the median of 2, 8, 3, 7, 1, 9, 4, 6.`,answer:5,unit:``,tolerance:0,hint:`Sort and average the two middle values.`,explanation:`Sorted: 1,2,3,4,6,7,8,9. Median = (4+6)/2 = 5.`},{id:`mc-stat-q7`,type:`numeric`,text:`What is the range of 14, 7, 22, 3, 18, 11?`,answer:19,unit:``,tolerance:0,hint:`Range = max − min.`,explanation:`22 − 3 = 19.`},{id:`mc-stat-q8`,type:`numeric`,text:`The mean of a, a+5, a+10, a+15, a+20 is 18. What is a?`,answer:8,unit:``,tolerance:0,hint:`Mean of an arithmetic sequence = middle term.`,explanation:`Middle term is a+10 = 18 → a = 8.`},{id:`mc-stat-q9`,type:`numeric`,text:`A student scores 72, 85, 90, and 78 on four tests. What score is needed on the 5th test to average 82?`,answer:85,unit:``,tolerance:0,hint:`5×82 = 410. Subtract the four known scores.`,explanation:`410 − (72+85+90+78) = 410 − 325 = 85.`},{id:`mc-stat-q10`,type:`multiple-choice`,text:`Which measure of central tendency is MOST affected by outliers?`,options:[`Mean`,`Median`,`Mode`,`Range`],answer:`Mean`,hint:`One extreme value can pull the average far from the center.`,explanation:`The mean uses every value in its calculation, so outliers move it significantly.`},{id:`mc-stat-q11`,type:`numeric`,text:`The mean of 6 numbers is 15 and the mean of 4 other numbers is 20. What is the combined mean of all 10 numbers?`,answer:17,unit:``,tolerance:0,hint:`Combined sum = 6×15 + 4×20. Divide by 10.`,explanation:`(90 + 80)/10 = 170/10 = 17.`},{id:`mc-stat-q12`,type:`numeric`,text:`Data: 5, 8, 10, 12, x. The mean is 9. What is x?`,answer:10,unit:``,tolerance:0,hint:`Sum = 5×9 = 45.`,explanation:`5+8+10+12+x = 45 → x = 10.`}]}];function _r(e){return gr.find(t=>t.id===e)}var vr={1:`Number Theory`,2:`Algebra`,3:`Geometry`,4:`Counting & Probability`,5:`Computation Strategies`},yr={1:{text:`text-sky-400`,bg:`bg-sky-500/20`,bar:`from-sky-500 to-blue-500`},2:{text:`text-violet-400`,bg:`bg-violet-500/20`,bar:`from-violet-500 to-purple-500`},3:{text:`text-emerald-400`,bg:`bg-emerald-500/20`,bar:`from-emerald-500 to-teal-500`},4:{text:`text-orange-400`,bg:`bg-orange-500/20`,bar:`from-orange-500 to-amber-500`},5:{text:`text-rose-400`,bg:`bg-rose-500/20`,bar:`from-rose-500 to-pink-500`}};function br({completedTopics:e,scores:t,onSelect:n,onReset:r,onBackToHome:i}){let a=[...new Set(gr.map(e=>e.unit))],o=gr.length,s=e.length;return(0,v.jsxs)(`div`,{className:`min-h-screen bg-slate-950 p-6`,children:[(0,v.jsxs)(`div`,{className:`max-w-3xl mx-auto mb-8`,children:[(0,v.jsxs)(`div`,{className:`flex items-center justify-between mb-2`,children:[(0,v.jsxs)(`div`,{children:[(0,v.jsx)(`button`,{onClick:i,className:`text-xs text-slate-500 hover:text-slate-300 mb-2 flex items-center gap-1 transition`,children:`← All Subjects`}),(0,v.jsx)(`h1`,{className:`text-3xl font-bold text-white`,children:`MathCounts`}),(0,v.jsx)(`p`,{className:`text-slate-400 text-sm mt-1`,children:`Competition Mathematics · Number Theory, Algebra, Geometry & More`})]}),(0,v.jsx)(`button`,{onClick:r,className:`text-xs text-slate-500 hover:text-slate-300 px-3 py-1.5 border border-slate-700 rounded-lg transition`,children:`Reset Progress`})]}),(0,v.jsxs)(`div`,{className:`mt-4`,children:[(0,v.jsxs)(`div`,{className:`flex justify-between text-xs text-slate-400 mb-1`,children:[(0,v.jsxs)(`span`,{children:[s,` of `,o,` topics completed`]}),(0,v.jsxs)(`span`,{children:[Math.round(s/o*100),`%`]})]}),(0,v.jsx)(`div`,{className:`h-2 bg-slate-800 rounded-full overflow-hidden`,children:(0,v.jsx)(`div`,{className:`h-full bg-gradient-to-r from-orange-500 to-rose-500 transition-all duration-500`,style:{width:`${s/o*100}%`}})})]})]}),(0,v.jsx)(`div`,{className:`max-w-3xl mx-auto space-y-8`,children:a.map(r=>{let i=gr.filter(e=>e.unit===r),a=yr[r],o=i.filter(t=>e.includes(t.id)).length;return(0,v.jsxs)(`div`,{children:[(0,v.jsxs)(`div`,{className:`flex items-center justify-between mb-3`,children:[(0,v.jsxs)(`h2`,{className:`text-xs font-bold uppercase tracking-widest ${a.text}`,children:[`Unit `,r,` — `,vr[r]]}),(0,v.jsxs)(`span`,{className:`text-xs text-slate-500`,children:[o,`/`,i.length]})]}),(0,v.jsx)(`div`,{className:`grid gap-3`,children:i.map(r=>{let i=e.includes(r.id),o=t[r.id];return(0,v.jsx)(`button`,{onClick:()=>n(r.id),className:`
+Mode: not affected by outliers.`,simulationId:``,questions:[{id:`mc-stat-q1`,type:`numeric`,text:`Find the mean of 4, 7, 13, 2, 9.`,answer:7,unit:``,tolerance:0,hint:`Sum them, then divide by 5.`,explanation:`(4+7+13+2+9)/5 = 35/5 = 7.`},{id:`mc-stat-q2`,type:`numeric`,text:`Find the median of 3, 8, 1, 6, 2, 9, 5.`,answer:5,unit:``,tolerance:0,hint:`Sort first: 1,2,3,5,6,8,9.`,explanation:`Middle value (4th of 7) = 5.`},{id:`mc-stat-q3`,type:`numeric`,text:`The mean of 5 numbers is 12. Four of them are 8, 14, 11, 15. What is the 5th number?`,answer:12,unit:``,tolerance:0,hint:`Sum = 5×12 = 60. Subtract the four known values.`,explanation:`60 − (8+14+11+15) = 60 − 48 = 12.`},{id:`mc-stat-q4`,type:`numeric`,text:`Data set: 3, 5, 7, 5, 9, 2, 5. What is the mode?`,answer:5,unit:``,tolerance:0,hint:`Which value appears most often?`,explanation:`5 appears three times — it is the mode.`},{id:`mc-stat-q5`,type:`numeric`,text:`The mean of 10 numbers is 8. When one number is removed, the mean of the remaining 9 is 7. What was the removed number?`,answer:17,unit:``,tolerance:0,hint:`Removed = (10×8) − (9×7).`,explanation:`80 − 63 = 17.`},{id:`mc-stat-q6`,type:`numeric`,text:`Find the median of 2, 8, 3, 7, 1, 9, 4, 6.`,answer:5,unit:``,tolerance:0,hint:`Sort and average the two middle values.`,explanation:`Sorted: 1,2,3,4,6,7,8,9. Median = (4+6)/2 = 5.`},{id:`mc-stat-q7`,type:`numeric`,text:`What is the range of 14, 7, 22, 3, 18, 11?`,answer:19,unit:``,tolerance:0,hint:`Range = max − min.`,explanation:`22 − 3 = 19.`},{id:`mc-stat-q8`,type:`numeric`,text:`The mean of a, a+5, a+10, a+15, a+20 is 18. What is a?`,answer:8,unit:``,tolerance:0,hint:`Mean of an arithmetic sequence = middle term.`,explanation:`Middle term is a+10 = 18 → a = 8.`},{id:`mc-stat-q9`,type:`numeric`,text:`A student scores 72, 85, 90, and 78 on four tests. What score is needed on the 5th test to average 82?`,answer:85,unit:``,tolerance:0,hint:`5×82 = 410. Subtract the four known scores.`,explanation:`410 − (72+85+90+78) = 410 − 325 = 85.`},{id:`mc-stat-q10`,type:`multiple-choice`,text:`Which measure of central tendency is MOST affected by outliers?`,options:[`Mean`,`Median`,`Mode`,`Range`],answer:`Mean`,hint:`One extreme value can pull the average far from the center.`,explanation:`The mean uses every value in its calculation, so outliers move it significantly.`},{id:`mc-stat-q11`,type:`numeric`,text:`The mean of 6 numbers is 15 and the mean of 4 other numbers is 20. What is the combined mean of all 10 numbers?`,answer:17,unit:``,tolerance:0,hint:`Combined sum = 6×15 + 4×20. Divide by 10.`,explanation:`(90 + 80)/10 = 170/10 = 17.`},{id:`mc-stat-q12`,type:`numeric`,text:`Data: 5, 8, 10, 12, x. The mean is 9. What is x?`,answer:10,unit:``,tolerance:0,hint:`Sum = 5×9 = 45.`,explanation:`5+8+10+12+x = 45 → x = 10.`}]},{id:`mc-fractions-decimals`,unit:1,title:`Fractions, Decimals & Repeating Decimals`,grade:`Competition`,shortExplanation:`Convert between fractions and decimals, simplify complex fractions, and express repeating decimals as exact fractions.`,detailedExplanation:`**Fraction Operations**
+Add/subtract: find a common denominator.
+  1/3 + 1/4 = 4/12 + 3/12 = 7/12
+Multiply: numerator × numerator, denominator × denominator.
+  2/3 × 3/5 = 6/15 = 2/5
+Divide: multiply by the reciprocal.
+  2/3 ÷ 4/5 = 2/3 × 5/4 = 10/12 = 5/6
+
+**Complex Fractions**
+Simplify the numerator and denominator separately, then divide.
+  (1/2 + 1/3) / (1/4) = (5/6) / (1/4) = 5/6 × 4 = 10/3
+
+**Terminating vs. Repeating Decimals**
+A fraction p/q (in lowest terms) terminates iff q has only factors of 2 and 5.
+  1/8 = 0.125 (terminates)
+  1/6 = 0.1666... = 0.1̄6̄ (repeating)
+
+**Repeating Decimal → Fraction**
+Let x = 0.363636...
+100x = 36.3636...
+99x = 36  →  x = 36/99 = 4/11
+
+For a single repeating digit: 0.d̄ = d/9
+  0.7̄ = 7/9
+For two repeating digits: 0.ab̄ = ab/99
+  0.27̄ = 27/99 = 3/11
+
+**Mixed Numbers**
+3 2/5 = 17/5  (multiply whole by denominator, add numerator)`,simulationId:``,questions:[{id:`mc-frac-q1`,type:`multiple-choice`,text:`What is 2/3 + 3/4?`,options:[`5/7`,`17/12`,`5/12`,`1 5/12`],answer:`17/12`,hint:`Common denominator is 12.`,explanation:`8/12 + 9/12 = 17/12.`},{id:`mc-frac-q2`,type:`multiple-choice`,text:`What is 5/6 ÷ 5/9?`,options:[`3/2`,`25/54`,`1/3`,`2/3`],answer:`3/2`,hint:`Multiply by the reciprocal of 5/9.`,explanation:`5/6 × 9/5 = 45/30 = 3/2.`},{id:`mc-frac-q3`,type:`numeric`,text:`Express 0.363636... as a fraction in lowest terms. Give the numerator (denominator is 11).`,answer:4,unit:``,tolerance:0,hint:`Let x = 0.36̄. Then 99x = 36.`,explanation:`36/99 = 4/11. Numerator = 4.`},{id:`mc-frac-q4`,type:`numeric`,text:`What fraction equals 0.888...?`,answer:8,unit:`/9`,tolerance:0,hint:`Single repeating digit: d/9.`,explanation:`0.8̄ = 8/9.`},{id:`mc-frac-q5`,type:`multiple-choice`,text:`Which fraction produces a terminating decimal?`,options:[`1/6`,`1/7`,`1/12`,`1/8`],answer:`1/8`,hint:`Terminating decimals come from fractions whose denominator (in lowest terms) has only factors of 2 and 5.`,explanation:`8 = 2³. Only factors of 2 → terminates. 1/8 = 0.125.`},{id:`mc-frac-q6`,type:`numeric`,text:`Simplify: (1/2 + 1/3) ÷ (5/6). Express as a fraction — what is the numerator? (denominator is 1)`,answer:1,unit:``,tolerance:0,hint:`1/2 + 1/3 = 5/6. Then 5/6 ÷ 5/6.`,explanation:`5/6 ÷ 5/6 = 1.`},{id:`mc-frac-q7`,type:`numeric`,text:`What is 3 2/5 − 1 4/5?`,answer:8,unit:`/5`,tolerance:0,hint:`Convert to improper fractions: 17/5 − 9/5.`,explanation:`17/5 − 9/5 = 8/5.`},{id:`mc-frac-q8`,type:`multiple-choice`,text:`What is 0.27̄ (0.2777...) expressed as a fraction?`,options:[`27/99`,`5/18`,`3/11`,`1/4`],answer:`5/18`,hint:`Let x = 0.2777... and 10x = 2.777... Subtract.`,explanation:`10x − x = 2.5 → 9x = 2.5 → x = 25/90 = 5/18.`},{id:`mc-frac-q9`,type:`numeric`,text:`Evaluate: (3/4 × 8/9) ÷ (2/3). Give numerator (denominator is 1).`,answer:1,unit:``,tolerance:0,hint:`3/4 × 8/9 = 24/36 = 2/3. Then 2/3 ÷ 2/3.`,explanation:`2/3 ÷ 2/3 = 1.`},{id:`mc-frac-q10`,type:`numeric`,text:`How many fractions of the form n/30 (where 1 ≤ n ≤ 30) are in lowest terms?`,answer:8,unit:``,tolerance:0,hint:`Count n with gcd(n,30)=1. Use Euler's totient: 30=2×3×5, φ(30)=30(1−1/2)(1−1/3)(1−1/5).`,explanation:`φ(30) = 30 × 1/2 × 2/3 × 4/5 = 8.`},{id:`mc-frac-q11`,type:`numeric`,text:`A recipe calls for 2/3 cup of sugar. If you triple the recipe then use half, how many cups of sugar do you need?`,answer:1,unit:`cup`,tolerance:0,hint:`(2/3 × 3) / 2.`,explanation:`2/3 × 3 = 2. Then 2/2 = 1 cup.`},{id:`mc-frac-q12`,type:`multiple-choice`,text:`What is the repeating block length for 1/7 = 0.142857142857...?`,options:[`3`,`4`,`5`,`6`],answer:`6`,hint:`Count the digits before the pattern repeats.`,explanation:`1/7 = 0.142857̄  — the block 142857 has 6 digits.`}]},{id:`mc-exponents-roots`,unit:2,title:`Exponents & Roots`,grade:`Competition`,shortExplanation:`Apply laws of exponents to simplify expressions and evaluate square, cube, and nth roots — essential for MathCounts algebra and number theory.`,detailedExplanation:`**Laws of Exponents**
+Product rule:    aᵐ × aⁿ = aᵐ⁺ⁿ
+Quotient rule:   aᵐ / aⁿ = aᵐ⁻ⁿ
+Power rule:      (aᵐ)ⁿ = aᵐⁿ
+Zero exponent:   a⁰ = 1  (a ≠ 0)
+Negative exp:    a⁻ⁿ = 1/aⁿ
+Product of powers: (ab)ⁿ = aⁿbⁿ
+
+**Evaluating Roots**
+√(a×b) = √a × √b
+√(a/b) = √a / √b
+Simplify: √72 = √(36×2) = 6√2
+
+**Perfect Squares & Cubes (memorize)**
+1,4,9,16,25,36,49,64,81,100,121,144,169,196,225
+Cubes: 1,8,27,64,125,216,343,512,729,1000
+
+**Rational Exponents**
+a^(1/n) = nth root of a
+a^(m/n) = (nth root of a)^m
+  8^(2/3) = (∛8)² = 2² = 4
+
+**Scientific Notation**
+  3.6 × 10⁴ = 36000
+  (2 × 10³)(4 × 10²) = 8 × 10⁵
+
+**Common Contest Tricks**
+2^10 = 1024 ≈ 10³
+The last digit of powers cycles:
+  2: 2,4,8,6,2,4,8,6... (period 4)
+  3: 3,9,7,1,3,9,7,1... (period 4)`,simulationId:``,questions:[{id:`mc-exp-q1`,type:`numeric`,text:`Simplify: 2³ × 2⁵ = 2ⁿ. What is n?`,answer:8,unit:``,tolerance:0,hint:`Product rule: add exponents.`,explanation:`2³ × 2⁵ = 2⁸.`},{id:`mc-exp-q2`,type:`numeric`,text:`What is 8^(2/3)?`,answer:4,unit:``,tolerance:0,hint:`8^(1/3) = 2, then square it.`,explanation:`(∛8)² = 2² = 4.`},{id:`mc-exp-q3`,type:`numeric`,text:`Simplify √72. Give the coefficient of √2.`,answer:6,unit:``,tolerance:0,hint:`72 = 36 × 2.`,explanation:`√72 = √36 × √2 = 6√2.`},{id:`mc-exp-q4`,type:`numeric`,text:`What is the units digit of 3^47?`,answer:7,unit:``,tolerance:0,hint:`Pattern of 3's units digits: 3,9,7,1 (period 4). 47 mod 4 = 3.`,explanation:`Cycle: position 1→3, 2→9, 3→7, 4→1. 47 mod 4 = 3 → units digit 7.`},{id:`mc-exp-q5`,type:`numeric`,text:`What is 2^10?`,answer:1024,unit:``,tolerance:0,hint:`Double ten times from 1.`,explanation:`2^10 = 1024.`},{id:`mc-exp-q6`,type:`multiple-choice`,text:`(3²)³ equals:`,options:[`3⁵`,`3⁶`,`9³`,`27²`],answer:`3⁶`,hint:`Power rule: multiply the exponents.`,explanation:`(3²)³ = 3^(2×3) = 3⁶.`},{id:`mc-exp-q7`,type:`multiple-choice`,text:`What is 5⁰ + 5¹ + 5⁻¹?`,options:[`6`,`31/5`,`6 1/5`,`7`],answer:`31/5`,hint:`5⁰=1, 5¹=5, 5⁻¹=1/5.`,explanation:`1 + 5 + 1/5 = 31/5.`},{id:`mc-exp-q8`,type:`numeric`,text:`If 2^x = 64, what is x?`,answer:6,unit:``,tolerance:0,hint:`2⁶ = 64.`,explanation:`2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32, 2⁶=64.`},{id:`mc-exp-q9`,type:`numeric`,text:`Simplify: (2³ × 3²) / (2 × 3) = 2ᵃ × 3ᵇ. What is a + b?`,answer:3,unit:``,tolerance:0,hint:`Subtract exponents: 2^(3−1) × 3^(2−1).`,explanation:`2² × 3¹. a=2, b=1, a+b=3.`},{id:`mc-exp-q10`,type:`numeric`,text:`√(3² + 4²) = ?`,answer:5,unit:``,tolerance:0,hint:`Evaluate inside first.`,explanation:`√(9+16) = √25 = 5.`},{id:`mc-exp-q11`,type:`numeric`,text:`What is the units digit of 7^100?`,answer:1,unit:``,tolerance:0,hint:`Pattern: 7,9,3,1 (period 4). 100 mod 4 = 0.`,explanation:`100 mod 4 = 0 → last in cycle → units digit 1.`},{id:`mc-exp-q12`,type:`numeric`,text:`How many factors does 2⁴ × 3² have?`,answer:15,unit:``,tolerance:0,hint:`(4+1)(2+1).`,explanation:`5 × 3 = 15.`}]},{id:`mc-quadratics`,unit:2,title:`Quadratic Equations & Factoring`,grade:`Competition`,shortExplanation:`Factor quadratics, apply Vieta's formulas, and use the quadratic formula to solve equations that appear throughout MathCounts Target and Team rounds.`,detailedExplanation:`**Standard Form**
+ax² + bx + c = 0
+
+**Factoring**
+x² + 5x + 6 = (x+2)(x+3) = 0  →  x = −2 or x = −3
+Look for two numbers that MULTIPLY to c and ADD to b.
+
+**Special Factoring Patterns**
+Difference of squares:  a² − b² = (a+b)(a−b)
+Perfect square trinomial: a² + 2ab + b² = (a+b)²
+  x² + 6x + 9 = (x+3)²
+
+**Quadratic Formula**
+x = (−b ± √(b² − 4ac)) / (2a)
+Discriminant: b² − 4ac
+  > 0: two real roots
+  = 0: one repeated root
+  < 0: no real roots
+
+**Vieta's Formulas** (sum/product of roots)
+For ax² + bx + c = 0 with roots r and s:
+  r + s = −b/a
+  r × s = c/a
+Example: x² − 5x + 6 = 0. Sum of roots = 5, product = 6.
+
+**Completing the Square**
+x² + 6x + ? = (x+3)² − 9
+Add (b/2)² to both sides.
+
+**Contest Applications**
+- "Given sum and product of two numbers, find them" → Vieta's
+- "Find the minimum/maximum of a quadratic" → vertex at x = −b/(2a)`,simulationId:``,questions:[{id:`mc-quad-q1`,type:`multiple-choice`,text:`Solve x² − 5x + 6 = 0. What are the roots?`,options:[`2 and 3`,`−2 and −3`,`1 and 6`,`−1 and −6`],answer:`2 and 3`,hint:`Find two numbers that multiply to 6 and add to −5.`,explanation:`(x−2)(x−3)=0, so x=2 or x=3.`},{id:`mc-quad-q2`,type:`numeric`,text:`The sum of two numbers is 10 and their product is 21. What is the larger number?`,answer:7,unit:``,tolerance:0,hint:`Form x² − 10x + 21 = 0 and factor.`,explanation:`(x−3)(x−7)=0. Roots are 3 and 7. Larger = 7.`},{id:`mc-quad-q3`,type:`numeric`,text:`For x² + bx + 16 = 0 to have exactly one solution, what is the positive value of b?`,answer:8,unit:``,tolerance:0,hint:`Discriminant = 0: b² − 4(1)(16) = 0.`,explanation:`b² = 64 → b = 8.`},{id:`mc-quad-q4`,type:`numeric`,text:`If the roots of x² − 7x + k = 0 are consecutive integers, what is k?`,answer:12,unit:``,tolerance:0,hint:`Roots sum to 7 (so 3 and 4). Product = k.`,explanation:`Roots 3 and 4: sum=7 ✓, product = 3×4 = 12.`},{id:`mc-quad-q5`,type:`numeric`,text:`What is the minimum value of x² − 6x + 11?`,answer:2,unit:``,tolerance:0,hint:`Complete the square: (x−3)² + 2.`,explanation:`(x−3)² ≥ 0, so minimum is 2 at x=3.`},{id:`mc-quad-q6`,type:`multiple-choice`,text:`Factor 4x² − 9.`,options:[`(2x−3)²`,`(2x+3)(2x−3)`,`(4x−3)(x+3)`,`(2x−9)(2x+1)`],answer:`(2x+3)(2x−3)`,hint:`Difference of squares: a²−b² = (a+b)(a−b).`,explanation:`(2x)²−3² = (2x+3)(2x−3).`},{id:`mc-quad-q7`,type:`numeric`,text:`Two numbers have a sum of 12 and a product of 32. What is the sum of their squares?`,answer:80,unit:``,tolerance:0,hint:`(a+b)² = a²+2ab+b². So a²+b² = 12²−2(32).`,explanation:`144 − 64 = 80.`},{id:`mc-quad-q8`,type:`numeric`,text:`Solve 2x² − 8 = 0. What is the positive root?`,answer:2,unit:``,tolerance:0,hint:`2x²=8 → x²=4.`,explanation:`x = 2.`},{id:`mc-quad-q9`,type:`numeric`,text:`The product of two consecutive even integers is 168. What is the smaller integer?`,answer:12,unit:``,tolerance:0,hint:`n(n+2) = 168. Try n=12.`,explanation:`12 × 14 = 168. Smaller = 12.`},{id:`mc-quad-q10`,type:`numeric`,text:`For the quadratic x² − px + q = 0, the sum of roots is 8 and the product is 15. What is q?`,answer:15,unit:``,tolerance:0,hint:`By Vieta's: product of roots = q/1 = q.`,explanation:`q = product of roots = 15.`},{id:`mc-quad-q11`,type:`multiple-choice`,text:`Which is a perfect square trinomial?`,options:[`x² + 4x + 8`,`x² + 6x + 9`,`x² + 5x + 6`,`x² + 2x + 4`],answer:`x² + 6x + 9`,hint:`Check if it equals (x+n)² = x² + 2nx + n².`,explanation:`x² + 6x + 9 = (x+3)². Here 2n=6 → n=3 and n²=9 ✓.`},{id:`mc-quad-q12`,type:`numeric`,text:`A rectangle has area 60 and perimeter 32. What is the length of the longer side?`,answer:10,unit:``,tolerance:0,hint:`l+w=16 and lw=60. Solve the quadratic.`,explanation:`x²−16x+60=0 → (x−10)(x−6)=0. Longer side = 10.`}]},{id:`mc-special-triangles`,unit:3,title:`Special Right Triangles (30-60-90 & 45-45-90)`,grade:`Competition`,shortExplanation:`The two special right triangles appear in almost every MathCounts geometry problem. Memorize the side ratios and apply them instantly.`,detailedExplanation:`**45-45-90 Triangle**
+Sides are in ratio  1 : 1 : √2
+Legs = s,  Hypotenuse = s√2
+
+If hypotenuse = h → leg = h/√2 = h√2/2
+
+Example: A square with diagonal 10.
+  Leg = 10/√2 = 5√2.
+
+**30-60-90 Triangle**
+Sides are in ratio  1 : √3 : 2
+Short leg (opposite 30°) = s
+Long leg  (opposite 60°) = s√3
+Hypotenuse                = 2s
+
+If hypotenuse = h → short leg = h/2, long leg = h√3/2.
+
+Example: Equilateral triangle with side 6.
+  Height = 6 × (√3/2) = 3√3.
+
+**Area of Equilateral Triangle**
+Area = (s²√3)/4
+
+**Key Applications**
+- Altitude of equilateral triangle: h = s√3/2
+- Half of an equilateral triangle is a 30-60-90 triangle
+- A square's diagonal creates two 45-45-90 triangles
+- Regular hexagon: made of 6 equilateral triangles
+
+**Mixed Problems**
+If you see: angles 45/45/90 or 30/60/90, or words like "equilateral", "square diagonal", or "regular hexagon" — use these ratios immediately.`,simulationId:``,questions:[{id:`mc-srt-q1`,type:`numeric`,text:`In a 45-45-90 triangle, one leg is 7. What is the hypotenuse? (Give answer as a×√2 — what is a?)`,answer:7,unit:`√2`,tolerance:0,hint:`Hypotenuse = leg × √2.`,explanation:`Hypotenuse = 7√2.`},{id:`mc-srt-q2`,type:`numeric`,text:`In a 30-60-90 triangle, the short leg is 5. What is the hypotenuse?`,answer:10,unit:``,tolerance:0,hint:`Hypotenuse = 2 × short leg.`,explanation:`2 × 5 = 10.`},{id:`mc-srt-q3`,type:`numeric`,text:`An equilateral triangle has side length 8. What is its height? Give the coefficient of √3.`,answer:4,unit:`√3`,tolerance:0,hint:`Height = s × √3/2.`,explanation:`8 × √3/2 = 4√3.`},{id:`mc-srt-q4`,type:`numeric`,text:`A square has diagonal 12. What is its side length? Give the coefficient of √2.`,answer:6,unit:`√2`,tolerance:0,hint:`Diagonal = side × √2, so side = diagonal / √2.`,explanation:`12/√2 = 6√2.`},{id:`mc-srt-q5`,type:`numeric`,text:`In a 30-60-90 triangle, the hypotenuse is 14. What is the long leg? Give the coefficient of √3.`,answer:7,unit:`√3`,tolerance:0,hint:`Short leg = 14/2 = 7. Long leg = 7√3.`,explanation:`Long leg = 7√3.`},{id:`mc-srt-q6`,type:`numeric`,text:`What is the area of an equilateral triangle with side 6? Give the coefficient of √3.`,answer:9,unit:`√3`,tolerance:0,hint:`Area = s²√3/4.`,explanation:`36√3/4 = 9√3.`},{id:`mc-srt-q7`,type:`numeric`,text:`A 45-45-90 triangle has hypotenuse 10. What is its area?`,answer:25,unit:`sq units`,tolerance:0,hint:`Leg = 10/√2 = 5√2. Area = (1/2)(5√2)².`,explanation:`Leg = 5√2. Area = (1/2)(5√2)² = (1/2)(50) = 25.`},{id:`mc-srt-q8`,type:`numeric`,text:`A regular hexagon has side 4. What is its area? Give the coefficient of √3.`,answer:24,unit:`√3`,tolerance:0,hint:`A regular hexagon = 6 equilateral triangles each with area s²√3/4.`,explanation:`6 × (16√3/4) = 6 × 4√3 = 24√3.`},{id:`mc-srt-q9`,type:`multiple-choice`,text:`A ladder of length 10 ft leans against a wall at 60°. How high does it reach?`,options:[`5 ft`,`5√2 ft`,`5√3 ft`,`10√3 ft`],answer:`5√3 ft`,hint:`The triangle is 30-60-90. Height = long leg = hyp × (√3/2).`,explanation:`10 × (√3/2) = 5√3 ft.`},{id:`mc-srt-q10`,type:`numeric`,text:`In a 30-60-90 triangle the long leg is 9. What is the short leg? Give the coefficient of √3 in the long leg (confirm: 9 = ?×√3).`,answer:3,unit:`√3`,tolerance:0,hint:`Long leg = short leg × √3. So short leg = 9/√3 = 3√3.`,explanation:`Short leg = 9/√3 = 3√3. Coefficient is 3.`},{id:`mc-srt-q11`,type:`numeric`,text:`A square has area 50. What is the length of its diagonal?`,answer:10,unit:``,tolerance:0,hint:`Side = √50 = 5√2. Diagonal = 5√2 × √2.`,explanation:`Side = 5√2. Diagonal = 5√2 × √2 = 10.`},{id:`mc-srt-q12`,type:`numeric`,text:`An equilateral triangle has area 25√3. What is its side length?`,answer:10,unit:``,tolerance:0,hint:`Area = s²√3/4 = 25√3 → s² = 100.`,explanation:`s² = 100 → s = 10.`}]},{id:`mc-3d-geometry`,unit:3,title:`3D Geometry: Volume & Surface Area`,grade:`Competition`,shortExplanation:`Calculate volumes and surface areas of prisms, cylinders, pyramids, cones, and spheres — a frequent source of MathCounts problems.`,detailedExplanation:`**Rectangular Prism (Box)**
+Volume = l × w × h
+Surface Area = 2(lw + lh + wh)
+
+**Cube (side s)**
+Volume = s³
+Surface Area = 6s²
+
+**Cylinder (radius r, height h)**
+Volume = πr²h
+Lateral Area = 2πrh
+Total Surface Area = 2πr² + 2πrh = 2πr(r + h)
+
+**Cone (radius r, height h, slant height l)**
+Volume = (1/3)πr²h
+Lateral Area = πrl
+Total Surface Area = πr² + πrl = πr(r + l)
+Slant height: l = √(r² + h²)
+
+**Pyramid (square base, side b, height h)**
+Volume = (1/3)b²h
+Lateral Area = 4 × (1/2 × b × slant height)
+
+**Sphere (radius r)**
+Volume = (4/3)πr³
+Surface Area = 4πr²
+
+**Key Relationships**
+- A cone has 1/3 the volume of the cylinder with same r and h
+- A sphere has 2/3 the volume of the circumscribed cylinder`,simulationId:``,questions:[{id:`mc-3d-q1`,type:`numeric`,text:`What is the volume of a rectangular box that is 4 cm × 5 cm × 6 cm?`,answer:120,unit:`cm³`,tolerance:0,hint:`V = l × w × h.`,explanation:`4 × 5 × 6 = 120 cm³.`},{id:`mc-3d-q2`,type:`numeric`,text:`What is the surface area of a cube with side 5?`,answer:150,unit:`sq units`,tolerance:0,hint:`SA = 6s².`,explanation:`6 × 25 = 150.`},{id:`mc-3d-q3`,type:`numeric`,text:`A cylinder has radius 3 and height 7. What is its volume? Express as a multiple of π.`,answer:63,unit:`π`,tolerance:0,hint:`V = πr²h.`,explanation:`π × 9 × 7 = 63π.`},{id:`mc-3d-q4`,type:`numeric`,text:`A sphere has radius 3. What is its volume? Express as a multiple of π.`,answer:36,unit:`π`,tolerance:0,hint:`V = (4/3)πr³.`,explanation:`(4/3)π(27) = 36π.`},{id:`mc-3d-q5`,type:`numeric`,text:`A cone has radius 4 and height 3. What is its volume? Express as a multiple of π.`,answer:16,unit:`π`,tolerance:0,hint:`V = (1/3)πr²h.`,explanation:`(1/3)π(16)(3) = 16π.`},{id:`mc-3d-q6`,type:`numeric`,text:`A rectangular box has volume 120 cm³. If two dimensions are 4 and 5, what is the third?`,answer:6,unit:`cm`,tolerance:0,hint:`4 × 5 × h = 120.`,explanation:`h = 120/20 = 6 cm.`},{id:`mc-3d-q7`,type:`numeric`,text:`What is the total surface area of a cylinder with radius 3 and height 4? Express as a multiple of π.`,answer:42,unit:`π`,tolerance:0,hint:`SA = 2πr² + 2πrh = 2πr(r+h).`,explanation:`2π(3)(3+4) = 6π×7 = 42π.`},{id:`mc-3d-q8`,type:`numeric`,text:`A cube has surface area 216. What is its volume?`,answer:216,unit:`cubic units`,tolerance:0,hint:`6s² = 216 → s² = 36 → s = 6. Volume = s³.`,explanation:`s = 6. Volume = 216.`},{id:`mc-3d-q9`,type:`numeric`,text:`What is the surface area of a sphere with radius 4? Express as a multiple of π.`,answer:64,unit:`π`,tolerance:0,hint:`SA = 4πr².`,explanation:`4π(16) = 64π.`},{id:`mc-3d-q10`,type:`numeric`,text:`A cone and cylinder share the same base radius (5) and height (9). What is the ratio of their volumes? Give as numerator of the fraction _/3 (denominator is 3).`,answer:1,unit:`/3`,tolerance:0,hint:`Cone volume = (1/3) × cylinder volume.`,explanation:`Cone/Cylinder = 1/3.`},{id:`mc-3d-q11`,type:`numeric`,text:`A square pyramid has base side 6 and height 4. What is its volume?`,answer:48,unit:`cubic units`,tolerance:0,hint:`V = (1/3) × b² × h.`,explanation:`(1/3)(36)(4) = 48.`},{id:`mc-3d-q12`,type:`numeric`,text:`A sphere has surface area 100π. What is its volume? Express as a multiple of π.`,answer:500,unit:`π/3`,tolerance:0,hint:`4πr² = 100π → r² = 25 → r = 5. V = (4/3)πr³.`,explanation:`(4/3)π(125) = 500π/3.`}]},{id:`mc-complementary-counting`,unit:4,title:`Complementary Counting & Inclusion-Exclusion`,grade:`Competition`,shortExplanation:`Count what you DON'T want and subtract from the total — and use inclusion-exclusion when two sets overlap. These are the most powerful counting techniques in competition math.`,detailedExplanation:`**Complementary Counting**
+Count(want) = Total − Count(don't want)
+
+Use when counting directly is hard but the complement is easier.
+
+Example: How many 3-digit numbers have at least one 7?
+Complement: no 7s at all.
+  No 7 in hundreds: 8 choices (1-9 except 7)
+  No 7 in tens:     9 choices (0-9 except 7)
+  No 7 in units:    9 choices
+  No 7: 8 × 9 × 9 = 648
+Total 3-digit numbers: 900
+At least one 7: 900 − 648 = 252
+
+**Inclusion-Exclusion (two sets)**
+|A ∪ B| = |A| + |B| − |A ∩ B|
+
+Example: 40 students play soccer or tennis.
+  26 play soccer, 20 play tennis.
+  Both = 26 + 20 − 40 = 6.
+
+**Inclusion-Exclusion (three sets)**
+|A ∪ B ∪ C| = |A| + |B| + |C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|
+
+**At Least One**
+P(at least one) = 1 − P(none)
+
+Example: Two dice, probability of at least one 6.
+  P(no 6) = (5/6)² = 25/36
+  P(at least one 6) = 1 − 25/36 = 11/36`,simulationId:``,questions:[{id:`mc-cc-q1`,type:`numeric`,text:`How many integers from 1 to 100 are NOT divisible by 3?`,answer:67,unit:``,tolerance:0,hint:`Count divisible by 3: ⌊100/3⌋ = 33. Subtract from 100.`,explanation:`100 − 33 = 67.`},{id:`mc-cc-q2`,type:`numeric`,text:`In a class of 30 students, 18 like math and 15 like science. 5 like neither. How many like both?`,answer:8,unit:``,tolerance:0,hint:`|M ∪ S| = 30−5 = 25. Use inclusion-exclusion.`,explanation:`25 = 18+15−both → both = 8.`},{id:`mc-cc-q3`,type:`numeric`,text:`How many 2-digit numbers have at least one digit equal to 5?`,answer:18,unit:``,tolerance:0,hint:`Tens digit is 5: 50-59 (10 numbers). Units digit is 5: 15,25,35,45,65,75,85,95 (8) + 05 not 2-digit. Subtract overlap (55).`,explanation:`Tens=5: 10 numbers. Units=5: 9 numbers (15,25,...,95). Both (55) counted twice. 10+9−1=18.`},{id:`mc-cc-q4`,type:`numeric`,text:`From 1 to 50, how many integers are divisible by 2 or 3?`,answer:33,unit:``,tolerance:0,hint:`Div by 2: 25. Div by 3: 16. Div by 6: 8. Use inclusion-exclusion.`,explanation:`25 + 16 − 8 = 33.`},{id:`mc-cc-q5`,type:`numeric`,text:`How many 3-digit numbers have all digits different? (Complement: use total − same digit counts is complex, count directly.) Hundreds: 9 choices, tens: 9, units: 8.`,answer:648,unit:``,tolerance:0,hint:`Hundreds: 9 (1-9), Tens: 9 (0-9 except hundreds digit), Units: 8.`,explanation:`9 × 9 × 8 = 648.`},{id:`mc-cc-q6`,type:`numeric`,text:`A survey: 100 people, 60 like chocolate, 50 like vanilla, 30 like both. How many like neither?`,answer:20,unit:``,tolerance:0,hint:`|C ∪ V| = 60+50−30 = 80. Neither = 100−80.`,explanation:`100 − 80 = 20.`},{id:`mc-cc-q7`,type:`numeric`,text:`Two dice are rolled. How many outcomes have at least one die showing a 6? (Total outcomes: 36)`,answer:11,unit:``,tolerance:0,hint:`Complement: no 6 on either die = 5×5=25.`,explanation:`36 − 25 = 11.`},{id:`mc-cc-q8`,type:`numeric`,text:`How many integers from 1 to 200 are divisible by 5 but not by 10?`,answer:20,unit:``,tolerance:0,hint:`Divisible by 5: 40. Divisible by 10: 20. Answer = 40−20.`,explanation:`40 − 20 = 20.`},{id:`mc-cc-q9`,type:`numeric`,text:`In a group of 50, 30 own a cat, 25 own a dog, and 10 own both. How many own a cat or a dog (or both)?`,answer:45,unit:``,tolerance:0,hint:`|C ∪ D| = 30+25−10.`,explanation:`30 + 25 − 10 = 45.`},{id:`mc-cc-q10`,type:`numeric`,text:`How many 4-digit numbers (1000-9999) do NOT contain the digit 0?`,answer:6561,unit:``,tolerance:0,hint:`Each digit: 9 choices (1-9). 9⁴.`,explanation:`9 × 9 × 9 × 9 = 6561.`},{id:`mc-cc-q11`,type:`numeric`,text:`From 1 to 100, how many numbers are divisible by neither 4 nor 6?`,answer:67,unit:``,tolerance:0,hint:`Div by 4: 25. Div by 6: 16. Div by LCM(4,6)=12: 8. Union = 25+16−8 = 33. Neither = 100−33.`,explanation:`Divisible by 4: 25. By 6: 16. By 12: 8. Union: 33. Neither: 100−33=67.`},{id:`mc-cc-q12`,type:`numeric`,text:`How many ways can you get at least one head in 4 coin flips?`,answer:15,unit:``,tolerance:0,hint:`Total outcomes: 2⁴=16. Complement: all tails = 1.`,explanation:`16 − 1 = 15.`}]},{id:`mc-work-rate`,unit:5,title:`Work & Rate Problems`,grade:`Competition`,shortExplanation:`When multiple workers or pipes combine, add their rates — not their times. This single principle unlocks all "working together" problems.`,detailedExplanation:`**Core Principle: Add Rates, Not Times**
+Rate = Work / Time  →  Work = Rate × Time
+
+If A finishes a job in a days, A's rate = 1/a jobs per day.
+If A and B work together:
+  Combined rate = 1/a + 1/b
+  Time together = 1 / (1/a + 1/b) = ab/(a+b)
+
+**Example**
+A finishes in 4 hrs, B finishes in 6 hrs.
+  Combined rate = 1/4 + 1/6 = 3/12 + 2/12 = 5/12
+  Time = 12/5 = 2.4 hours
+
+**Partial Work**
+A works for 2 hours then B joins.
+  Work done by A alone = 2 × (1/4) = 1/2
+  Remaining = 1/2. Now A and B together at rate 5/12.
+  Time remaining = (1/2) / (5/12) = 6/5 hr.
+
+**Pipes Filling/Draining**
+Fill rate (+), Drain rate (−).
+  Pipe A fills in 3 hr, Pipe B drains in 6 hr.
+  Net rate = 1/3 − 1/6 = 1/6. Tank fills in 6 hours.
+
+**Multiple Workers**
+n identical workers: Rate = n/a.
+  5 workers each taking 10 days → rate = 5/10 = 1/2 per day → done in 2 days.`,simulationId:``,questions:[{id:`mc-wr-q1`,type:`numeric`,text:`A can do a job in 6 hours, B in 4 hours. How many hours do they take together? Express as a fraction — numerator (denominator is 5).`,answer:12,unit:`/5 hours`,tolerance:0,hint:`Rate = 1/6+1/4 = 5/12. Time = 12/5.`,explanation:`Time = 12/5 hours.`},{id:`mc-wr-q2`,type:`numeric`,text:`A completes a job in 10 days. After 4 days, B joins and they finish in 2 more days. How many days would B take alone?`,answer:5,unit:`days`,tolerance:0,hint:`A does 4/10 alone. Remaining = 3/5. Together in 2 days: 2×(1/10+1/b)=3/5.`,explanation:`1/10+1/b=3/10 → 1/b=1/5 → b=5 days.`},{id:`mc-wr-q3`,type:`numeric`,text:`Pipe A fills a tank in 3 hours, Pipe B drains it in 6 hours. Both open at once. How long to fill the empty tank?`,answer:6,unit:`hours`,tolerance:0,hint:`Net rate = 1/3−1/6 = 1/6.`,explanation:`1/(1/6) = 6 hours.`},{id:`mc-wr-q4`,type:`numeric`,text:`3 identical machines make 300 parts in 5 hours. How many hours do 5 machines need to make 400 parts?`,answer:4,unit:`hours`,tolerance:0,hint:`Rate per machine = 300/(3×5) = 20 parts/hr. 5 machines: 100/hr. Time = 400/100.`,explanation:`400/100 = 4 hours.`},{id:`mc-wr-q5`,type:`numeric`,text:`A and B together finish a job in 8 days. A alone takes 12 days. How many days does B take alone?`,answer:24,unit:`days`,tolerance:0,hint:`1/B = 1/8 − 1/12.`,explanation:`1/8−1/12 = 3/24−2/24 = 1/24. B takes 24 days.`},{id:`mc-wr-q6`,type:`numeric`,text:`A faucet fills a tub in 12 min. A drain empties it in 18 min. With both open and tub half full, how many minutes to fill completely?`,answer:18,unit:`minutes`,tolerance:0,hint:`Net rate = 1/12−1/18 = 1/36 per min. Need to fill 1/2 tub.`,explanation:`(1/2)/(1/36) = 18 min.`},{id:`mc-wr-q7`,type:`numeric`,text:`It takes 4 workers 15 days to complete a project. How many days do 10 workers need?`,answer:6,unit:`days`,tolerance:0,hint:`Total work = 4×15 = 60 worker-days. 60/10 = 6.`,explanation:`60 ÷ 10 = 6 days.`},{id:`mc-wr-q8`,type:`numeric`,text:`A can paint a house in 8 hours. After working 2 hours, A is joined by B, and together they finish in 3 more hours. How long would B take alone?`,answer:8,unit:`hours`,tolerance:0,hint:`A does 2/8 = 1/4 alone. Remaining = 3/4. In 3 hrs: 3(1/8+1/b)=3/4.`,explanation:`1/8+1/b=1/4 → 1/b=1/8 → b=8 hours.`},{id:`mc-wr-q9`,type:`numeric`,text:`Two pipes A and B fill a tank in 3 and 6 hours respectively. They open together for 1 hour, then A breaks. How many more hours for B to finish alone?`,answer:3,unit:`hours`,tolerance:0,hint:`After 1 hr together: 1/3+1/6=1/2 done. Remaining = 1/2. B alone: (1/2)/(1/6).`,explanation:`(1/2) ÷ (1/6) = 3 hours.`},{id:`mc-wr-q10`,type:`numeric`,text:`A typist can type 40 pages per hour. A second typist types 60 pages per hour. Working together, how many minutes to type 100 pages?`,answer:60,unit:`minutes`,tolerance:0,hint:`Combined rate = 100 pages/hr. Time = 100/100 hr = 1 hr.`,explanation:`100 pages/hr → 1 hour = 60 minutes.`},{id:`mc-wr-q11`,type:`numeric`,text:`A, B, and C can finish a job in 10, 12, and 15 days respectively. How many days do all three take together?`,answer:4,unit:`days`,tolerance:0,hint:`1/10+1/12+1/15. LCM(10,12,15)=60. 6/60+5/60+4/60=15/60=1/4.`,explanation:`Combined rate = 1/4. Time = 4 days.`},{id:`mc-wr-q12`,type:`numeric`,text:`A machine produces 1 widget every 4 minutes. A second machine produces 1 every 6 minutes. Together, how many widgets in 1 hour?`,answer:25,unit:`widgets`,tolerance:0,hint:`Rates: 1/4 + 1/6 = 5/12 per minute. In 60 min: 60 × 5/12.`,explanation:`60 × 5/12 = 25 widgets.`}]},{id:`mc-proportional-reasoning`,unit:5,title:`Proportional Reasoning & Variation`,grade:`Competition`,shortExplanation:`Set up ratios and recognize direct vs. inverse variation to solve word problems efficiently — a constant source of Sprint round problems.`,detailedExplanation:`**Ratios & Proportions**
+A ratio a:b means a/b.
+Cross-multiply to solve: a/b = c/d  →  ad = bc.
+
+**Scaling**
+If a recipe for 4 serves uses 2 cups, for 10 serves: 2 × (10/4) = 5 cups.
+
+**Direct Variation**
+y = kx   (y is directly proportional to x)
+As x doubles, y doubles. k = y/x = constant.
+
+**Inverse Variation**
+y = k/x  (y is inversely proportional to x)
+As x doubles, y halves. k = xy = constant.
+
+**Joint Variation**
+y = kxz  (y varies jointly with x and z)
+
+**Multi-Step Ratios**
+If A:B = 2:3 and B:C = 4:5, then A:B:C:
+  Scale so B matches: A:B = 8:12 and B:C = 12:15
+  A:B:C = 8:12:15
+
+**Mixture / Weighted Average**
+C₁V₁ + C₂V₂ = C_mix(V₁+V₂)
+  20 liters at 30% + 30 liters at 50% = 50 liters at ?%
+  (20×30 + 30×50) / 50 = (600+1500)/50 = 42%.`,simulationId:``,questions:[{id:`mc-pr-q1`,type:`numeric`,text:`If 5 apples cost $3.50, how much do 8 apples cost?`,answer:560,unit:`¢`,tolerance:0,hint:`Unit price = $3.50/5 = $0.70. Multiply by 8.`,explanation:`8 × $0.70 = $5.60 = 560¢.`},{id:`mc-pr-q2`,type:`multiple-choice`,text:`y varies directly with x. When x = 4, y = 12. What is y when x = 7?`,options:[`18`,`21`,`28`,`84`],answer:`21`,hint:`k = y/x = 12/4 = 3. y = 3x.`,explanation:`y = 3 × 7 = 21.`},{id:`mc-pr-q3`,type:`numeric`,text:`y varies inversely with x. When x = 5, y = 8. What is y when x = 10?`,answer:4,unit:``,tolerance:0,hint:`k = xy = 5×8 = 40. y = 40/10.`,explanation:`y = 40/10 = 4.`},{id:`mc-pr-q4`,type:`numeric`,text:`A:B = 3:4 and B:C = 2:5. What is A:C? Give the value of A when C = 20.`,answer:6,unit:``,tolerance:0,hint:`A:B:C — scale B to match: A:B = 6:8 and B:C = 8:20. So A:C = 6:20 → A=6 when C=20.`,explanation:`A/C = 6/20 = 3/10. When C=20, A=6.`},{id:`mc-pr-q5`,type:`numeric`,text:`30 liters of 20% salt solution is mixed with 20 liters of 35% salt solution. What is the concentration of the mixture?`,answer:26,unit:`%`,tolerance:0,hint:`Total salt = 30×0.20 + 20×0.35. Divide by 50.`,explanation:`(6 + 7)/50 = 13/50 = 26%.`},{id:`mc-pr-q6`,type:`numeric`,text:`The number of days to complete a task varies inversely with the number of workers. 4 workers take 9 days. How many workers are needed to finish in 3 days?`,answer:12,unit:`workers`,tolerance:0,hint:`k = 4×9 = 36. 36/3 = 12.`,explanation:`12 workers.`},{id:`mc-pr-q7`,type:`numeric`,text:`A map has scale 1:50000. Two cities are 6 cm apart on the map. What is the real distance in km?`,answer:3,unit:`km`,tolerance:0,hint:`6 cm × 50000 = 300000 cm = 3 km.`,explanation:`300000 cm ÷ 100000 = 3 km.`},{id:`mc-pr-q8`,type:`numeric`,text:`If 3 cats catch 3 mice in 3 minutes, how many cats are needed to catch 100 mice in 100 minutes?`,answer:3,unit:`cats`,tolerance:0,hint:`Rate: 1 cat catches 1 mouse per 3 min, or 100/3 mice in 100 min. Need 100 mice ÷ (100/3) = 3 cats.`,explanation:`1 cat catches 100/3 ≈ 33.3 mice in 100 min. 3 cats catch 100 mice.`},{id:`mc-pr-q9`,type:`numeric`,text:`In a class the ratio of boys to girls is 3:5. If there are 24 boys, how many students total?`,answer:64,unit:`students`,tolerance:0,hint:`Boys = 3 parts = 24, so 1 part = 8. Girls = 5 parts = 40.`,explanation:`24 + 40 = 64 students.`},{id:`mc-pr-q10`,type:`numeric`,text:`z varies jointly with x and y. When x=2 and y=3, z=24. Find z when x=4 and y=5.`,answer:80,unit:``,tolerance:0,hint:`k = z/(xy) = 24/6 = 4. z = 4xy.`,explanation:`z = 4 × 4 × 5 = 80.`},{id:`mc-pr-q11`,type:`numeric`,text:`Two gears mesh. Gear A has 24 teeth, Gear B has 36 teeth. If A rotates 15 times, how many times does B rotate?`,answer:10,unit:`times`,tolerance:0,hint:`Teeth moved must match: 24×15 = 36×n.`,explanation:`n = 360/36 = 10.`},{id:`mc-pr-q12`,type:`numeric`,text:`A car travels 240 miles on 8 gallons of fuel. How many gallons are needed for a 450-mile trip?`,answer:15,unit:`gallons`,tolerance:0,hint:`MPG = 240/8 = 30. Gallons = 450/30.`,explanation:`450/30 = 15 gallons.`}]}];function _r(e){return gr.find(t=>t.id===e)}var vr={1:`Number Theory`,2:`Algebra`,3:`Geometry`,4:`Counting & Probability`,5:`Computation Strategies`},yr={1:{text:`text-sky-400`,bg:`bg-sky-500/20`,bar:`from-sky-500 to-blue-500`},2:{text:`text-violet-400`,bg:`bg-violet-500/20`,bar:`from-violet-500 to-purple-500`},3:{text:`text-emerald-400`,bg:`bg-emerald-500/20`,bar:`from-emerald-500 to-teal-500`},4:{text:`text-orange-400`,bg:`bg-orange-500/20`,bar:`from-orange-500 to-amber-500`},5:{text:`text-rose-400`,bg:`bg-rose-500/20`,bar:`from-rose-500 to-pink-500`}};function br({completedTopics:e,scores:t,onSelect:n,onReset:r,onBackToHome:i}){let a=[...new Set(gr.map(e=>e.unit))],o=gr.length,s=e.length;return(0,v.jsxs)(`div`,{className:`min-h-screen bg-slate-950 p-6`,children:[(0,v.jsxs)(`div`,{className:`max-w-3xl mx-auto mb-8`,children:[(0,v.jsxs)(`div`,{className:`flex items-center justify-between mb-2`,children:[(0,v.jsxs)(`div`,{children:[(0,v.jsx)(`button`,{onClick:i,className:`text-xs text-slate-500 hover:text-slate-300 mb-2 flex items-center gap-1 transition`,children:`← All Subjects`}),(0,v.jsx)(`h1`,{className:`text-3xl font-bold text-white`,children:`MathCounts`}),(0,v.jsx)(`p`,{className:`text-slate-400 text-sm mt-1`,children:`Competition Mathematics · Number Theory, Algebra, Geometry & More`})]}),(0,v.jsx)(`button`,{onClick:r,className:`text-xs text-slate-500 hover:text-slate-300 px-3 py-1.5 border border-slate-700 rounded-lg transition`,children:`Reset Progress`})]}),(0,v.jsxs)(`div`,{className:`mt-4`,children:[(0,v.jsxs)(`div`,{className:`flex justify-between text-xs text-slate-400 mb-1`,children:[(0,v.jsxs)(`span`,{children:[s,` of `,o,` topics completed`]}),(0,v.jsxs)(`span`,{children:[Math.round(s/o*100),`%`]})]}),(0,v.jsx)(`div`,{className:`h-2 bg-slate-800 rounded-full overflow-hidden`,children:(0,v.jsx)(`div`,{className:`h-full bg-gradient-to-r from-orange-500 to-rose-500 transition-all duration-500`,style:{width:`${s/o*100}%`}})})]})]}),(0,v.jsx)(`div`,{className:`max-w-3xl mx-auto space-y-8`,children:a.map(r=>{let i=gr.filter(e=>e.unit===r),a=yr[r],o=i.filter(t=>e.includes(t.id)).length;return(0,v.jsxs)(`div`,{children:[(0,v.jsxs)(`div`,{className:`flex items-center justify-between mb-3`,children:[(0,v.jsxs)(`h2`,{className:`text-xs font-bold uppercase tracking-widest ${a.text}`,children:[`Unit `,r,` — `,vr[r]]}),(0,v.jsxs)(`span`,{className:`text-xs text-slate-500`,children:[o,`/`,i.length]})]}),(0,v.jsx)(`div`,{className:`grid gap-3`,children:i.map(r=>{let i=e.includes(r.id),o=t[r.id];return(0,v.jsx)(`button`,{onClick:()=>n(r.id),className:`
                         w-full text-left px-5 py-4 rounded-xl border transition
                         ${i?`bg-slate-800 border-slate-600`:`bg-slate-800/60 border-slate-700 hover:bg-slate-800 hover:border-slate-500 cursor-pointer`}
                       `,children:(0,v.jsxs)(`div`,{className:`flex items-center gap-4`,children:[(0,v.jsx)(`div`,{className:`
