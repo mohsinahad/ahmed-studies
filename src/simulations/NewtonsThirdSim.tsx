@@ -9,6 +9,7 @@ export default function NewtonsThirdSim() {
   const velARef = useRef(0);
   const velBRef = useRef(0);
   const lastTimeRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
   const runningRef = useRef(false);
   const [running, setRunning] = useState(false);
 
@@ -83,11 +84,12 @@ export default function NewtonsThirdSim() {
   function animate(ts: number) {
     if (!runningRef.current) return;
     if (lastTimeRef.current === null) lastTimeRef.current = ts;
+    if (startTimeRef.current === null) startTimeRef.current = ts;
     const dt = (ts - lastTimeRef.current) / 1000;
     lastTimeRef.current = ts;
 
-    // Impulse over first 0.3s then coast
-    const elapsed = ts / 1000;
+    // Impulse over first 0.3s after pressing Push, then coast
+    const elapsed = (ts - startTimeRef.current) / 1000;
     if (elapsed < 0.3) {
       const F = 500;
       velARef.current -= (F / sc.massA) * dt;
@@ -112,6 +114,7 @@ export default function NewtonsThirdSim() {
     velARef.current = 0;
     velBRef.current = 0;
     lastTimeRef.current = null;
+    startTimeRef.current = null;
     runningRef.current = true;
     setRunning(true);
     animRef.current = requestAnimationFrame(animate);
@@ -125,6 +128,8 @@ export default function NewtonsThirdSim() {
     posBRef.current = 420;
     velARef.current = 0;
     velBRef.current = 0;
+    lastTimeRef.current = null;
+    startTimeRef.current = null;
     draw(340, 420, 0, 0);
   }
 
