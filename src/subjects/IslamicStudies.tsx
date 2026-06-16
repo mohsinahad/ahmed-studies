@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useIslamicStudiesProgress } from '../hooks/useIslamicStudiesProgress';
 import IslamicStudiesTopicMap from '../components/IslamicStudiesTopicMap';
 import IslamicStudiesLessonView from '../components/IslamicStudiesLessonView';
+import SeerahTimeline from '../components/SeerahTimeline';
 import { getIslamicStudiesTopicById } from '../data/islamicStudiesCurriculum';
 
 interface Props {
@@ -11,6 +12,11 @@ interface Props {
 export default function IslamicStudies({ onBack }: Props) {
   const { progress, markCompleted, resetProgress } = useIslamicStudiesProgress();
   const [activeTopic, setActiveTopic] = useState<string | null>(null);
+  const [showTimeline, setShowTimeline] = useState(false);
+
+  if (showTimeline) {
+    return <SeerahTimeline onBack={() => setShowTimeline(false)} />;
+  }
 
   const topic = activeTopic ? getIslamicStudiesTopicById(activeTopic) : null;
 
@@ -32,6 +38,7 @@ export default function IslamicStudies({ onBack }: Props) {
       onSelect={setActiveTopic}
       onReset={resetProgress}
       onBackToHome={onBack}
+      onOpenTimeline={() => setShowTimeline(true)}
     />
   );
 }
