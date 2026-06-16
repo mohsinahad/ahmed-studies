@@ -6,9 +6,10 @@ interface Props {
   onSelect: (topicId: string) => void;
   onReset: () => void;
   onBackToHome: () => void;
+  onOpenTimeline: () => void;
 }
 
-export default function IslamicStudiesTopicMap({ completedTopics, scores, onSelect, onReset, onBackToHome }: Props) {
+export default function IslamicStudiesTopicMap({ completedTopics, scores, onSelect, onReset, onBackToHome, onOpenTimeline }: Props) {
   const total = islamicStudiesCurriculum.length;
   const done = completedTopics.length;
 
@@ -61,6 +62,31 @@ export default function IslamicStudiesTopicMap({ completedTopics, scores, onSele
       </div>
 
       <div className="max-w-3xl mx-auto space-y-6">
+        {/* Featured: Seerah Timeline */}
+        <button
+          onClick={onOpenTimeline}
+          className="w-full text-left rounded-xl border border-emerald-700/50 bg-gradient-to-br from-emerald-900/40 to-slate-900 hover:from-emerald-900/60 hover:border-emerald-600 transition px-5 py-4 cursor-pointer"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/15 flex items-center justify-center text-2xl shrink-0">
+              🕋
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-white text-lg">Life of Prophet Muhammad ﷺ</span>
+                <span className="text-[10px] uppercase tracking-wide font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 rounded px-1.5 py-0.5">
+                  Timeline
+                </span>
+              </div>
+              <p className="text-sm text-slate-400 mt-0.5">
+                An interactive visual Seerah — from his birth (570 CE) to his passing (632 CE),
+                with dates, his age, and a map of each event.
+              </p>
+            </div>
+            <span className="text-emerald-400 text-xl shrink-0">→</span>
+          </div>
+        </button>
+
         {Object.entries(unitGroups).map(([unitStr, topics]) => {
           const unit = Number(unitStr);
           return (
